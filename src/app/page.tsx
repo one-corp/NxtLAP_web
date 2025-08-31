@@ -1,9 +1,265 @@
-"use client";
+"use client"
 
+import { useState } from "react";
 import { allLeagues } from "@/Data/Leagues";
+import { League } from "@/types/League";
+import { RacingNav } from "@/components/racingNav";
+import { LeagueCard } from "@/components/leagueCard";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { 
+  Calendar, 
+  Trophy, 
+  Globe, 
+  Facebook, 
+  Youtube, 
+  Instagram,
+  Twitter
+} from "lucide-react";
+import Image from "next/image";
 
 export default function Home() {
-  
-  
-  return <div></div>;
+  const [activeLeague, setActiveLeague] = useState<string>(allLeagues[0].id);
+  const selectedLeague = allLeagues.find(league => league.id === activeLeague) || allLeagues[0];
+
+  return (
+     <div className="min-h-screen racing-gradient">
+      {/* Background Pattern */}
+      <div className="fixed inset-0 opacity-5">
+        <div className="absolute inset-0 speed-lines" />
+      </div>
+      
+      <div className="relative container mx-auto px-4 py-8">
+        {/* Navigation */}
+        <RacingNav 
+          activeLeague={activeLeague} 
+          onLeagueChange={setActiveLeague} 
+        />
+
+        {/* Hero Section */}
+        <div className="mb-12">
+          <Card className="glass-effect racing-glow overflow-hidden">
+            <div className="relative h-80 md:h-96">
+              <Image
+                src={selectedLeague.banner}
+                alt={selectedLeague.name}
+                width={500}
+                height={500}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent" />
+              
+              <div className="absolute inset-0 flex items-center">
+                <div className="container mx-auto px-8">
+                  <div className="max-w-2xl space-y-6">
+                    <div className="flex items-center gap-4">
+                      <Image
+                        src={selectedLeague.logo}
+                        alt={`${selectedLeague.name} logo`}
+                        width={500}
+                height={500}
+                        className="w-16 h-16 object-contain bg-card/80 rounded-xl p-3 backdrop-blur-sm racing-glow"
+                      />
+                      <div>
+                        <h1 className="text-4xl md:text-5xl font-bold text-gradient animate-fade-in-up">
+                          {selectedLeague.name}
+                        </h1>
+                        <Badge variant="secondary" className="mt-2 racing-glow">
+                          {selectedLeague.shortName}
+                        </Badge>
+                      </div>
+                    </div>
+                    
+                    <div className="flex flex-wrap items-center gap-6 text-foreground/90">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-5 h-5 text-primary" />
+                        <span className="font-semibold">Founded {selectedLeague.formedYear}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Trophy className="w-5 h-5 text-primary" />
+                        <span className="font-semibold">{selectedLeague.sport}</span>
+                      </div>
+                    </div>
+                    
+                    <p className="text-lg text-foreground/80 leading-relaxed max-w-xl">
+                      {selectedLeague.description.slice(0, 200)}...
+                    </p>
+                    
+                    <div className="flex flex-wrap gap-4">
+                      <Button 
+                        asChild 
+                        className="racing-glow animate-glow"
+                      >
+                        <a
+                          href={`https://${selectedLeague.website}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Globe className="w-4 h-4 mr-2" />
+                          Official Website
+                        </a>
+                      </Button>
+                      
+                      <div className="flex items-center gap-2">
+                        {selectedLeague.facebook && (
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            asChild
+                            className="glass-effect"
+                          >
+                            <a
+                              href={`https://${selectedLeague.facebook}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <Facebook className="w-4 h-4" />
+                            </a>
+                          </Button>
+                        )}
+                        
+                        {selectedLeague.x && (
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            asChild
+                            className="glass-effect"
+                          >
+                            <a
+                              href={`https://${selectedLeague.x}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <Twitter className="w-4 h-4" />
+                            </a>
+                          </Button>
+                        )}
+                        
+                        {selectedLeague.youtube && (
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            asChild
+                            className="glass-effect"
+                          >
+                            <a
+                              href={`https://${selectedLeague.youtube}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <Youtube className="w-4 h-4" />
+                            </a>
+                          </Button>
+                        )}
+                        
+                        {selectedLeague.instagram && (
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            asChild
+                            className="glass-effect"
+                          >
+                            <a
+                              href={`https://${selectedLeague.instagram}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <Instagram className="w-4 h-4" />
+                            </a>
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        {/* League Details */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+          {/* Main Content */}
+          <div className="lg:col-span-2">
+            <Card className="glass-effect racing-glow">
+              <CardContent className="p-8 space-y-6">
+                <h2 className="text-2xl font-bold text-gradient">About {selectedLeague.name}</h2>
+                <div className="prose prose-invert max-w-none">
+                  <p className="text-foreground/80 leading-relaxed text-lg">
+                    {selectedLeague.description}
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Sidebar */}
+          <div className="space-y-6">
+            {/* Trophy */}
+            <Card className="glass-effect racing-glow">
+              <CardContent className="p-6 text-center">
+                <Image
+                  src={selectedLeague.trophy}
+                  alt="Championship Trophy"
+                  width={500}
+                height={500}
+                  className="w-20 h-20 object-contain mx-auto mb-4 racing-glow"
+                />
+                <h3 className="font-semibold text-gradient">Championship Trophy</h3>
+              </CardContent>
+            </Card>
+
+            {/* Fan Art Gallery */}
+            <Card className="glass-effect racing-glow">
+              <CardContent className="p-6">
+                <h3 className="font-semibold text-gradient mb-4">Gallery</h3>
+                <div className="grid grid-cols-2 gap-2">
+                  {selectedLeague.fanArt.slice(0, 4).map((art, index) => (
+                    <div key={index} className="relative group overflow-hidden rounded-lg">
+                      <Image
+                        src={art}
+                        alt={`${selectedLeague.name} fan art ${index + 1}`}
+                        width={500}
+                height={500}
+                        className="w-full h-20 object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
+        {/* All Leagues Grid */}
+        <div className="space-y-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-gradient mb-4">
+              All Motorsport Leagues
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              {`Explore the world's premier racing championships`}
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {allLeagues.map((league: League, index) => (
+              <div
+                key={league.id}
+                className="animate-fade-in-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
+                onClick={() => setActiveLeague(league.id)}
+              >
+                <div className="cursor-pointer">
+                  <LeagueCard league={league} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
