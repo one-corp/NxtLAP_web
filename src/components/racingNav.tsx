@@ -21,7 +21,7 @@ export function RacingNav({ activeLeague, onLeagueChange }: RacingNavProps) {
             alt="Motorsports AI Logo"
             className="rounded-lg border"
           />
-          <h1 className="text-3xl font-bold text-gradient">Motosports AI</h1>
+          <h1 className="text-3xl font-bold text-gradient">Motorsports AI</h1>
         </div>
         <div className="flex items-center gap-2">
           {allLeagues.map((league) => (

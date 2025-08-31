@@ -46,8 +46,7 @@ export default function Home() {
               <Image
                 src={selectedLeague.banner}
                 alt={selectedLeague.name}
-                width={500}
-                height={500}
+                fill
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent" />
@@ -256,16 +255,16 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {allLeagues.map((league: League, index) => (
-              <div
+              <button
                 key={league.id}
-                className="animate-fade-in-up"
+                className="animate-fade-in-up text-left w-full"
                 style={{ animationDelay: `${index * 0.1}s` }}
                 onClick={() => setActiveLeague(league.id)}
               >
                 <div className="cursor-pointer">
                   <LeagueCard league={league} />
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>

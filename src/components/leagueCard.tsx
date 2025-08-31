@@ -10,7 +10,7 @@ interface LeagueCardProps {
 
 export function LeagueCard({ league }: LeagueCardProps) {
   return (
-    <Card className="glass-effect racing-glow group hover:animate-glow transition-all duration-500 overflow-hidden">
+    <Card className="glass-effect racing-glow group hover:animate-glow transition-all duration-500 overflow-hidden p-0">
       <div className="relative h-48 overflow-hidden">
         <Image
           src={league.banner}
