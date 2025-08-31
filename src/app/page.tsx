@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import { allLeagues } from "@/Data/Leagues";
@@ -8,38 +8,40 @@ import { LeagueCard } from "@/components/leagueCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Calendar, 
-  Trophy, 
-  Globe, 
-  Facebook, 
-  Youtube, 
+import {
+  Calendar,
+  Trophy,
+  Globe,
+  Facebook,
+  Youtube,
   Instagram,
-  Twitter
+  Twitter,
 } from "lucide-react";
 import Image from "next/image";
 
 export default function Home() {
   const [activeLeague, setActiveLeague] = useState<string>(allLeagues[0].id);
-  const selectedLeague = allLeagues.find(league => league.id === activeLeague) || allLeagues[0];
+  const selectedLeague =
+    allLeagues.find((league) => league.id === activeLeague) || allLeagues[0];
 
   return (
-     <div className="min-h-screen racing-gradient">
+    <>
+    <div className="fixed top-0 left-0 right-0 z-50">
+      <RacingNav
+          activeLeague={activeLeague}
+          onLeagueChange={setActiveLeague}
+        />
+    </div>
+    <div className="min-h-screen racing-gradient">
       {/* Background Pattern */}
       <div className="fixed inset-0 opacity-5">
         <div className="absolute inset-0 speed-lines" />
       </div>
-      
-      <div className="relative container mx-auto px-4 py-8">
-        {/* Navigation */}
-        <RacingNav 
-          activeLeague={activeLeague} 
-          onLeagueChange={setActiveLeague} 
-        />
 
+      <div className="relative container mx-auto px-4 py-32">        
         {/* Hero Section */}
-        <div className="mb-12">
-          <Card className="glass-effect racing-glow overflow-hidden">
+        <div className="mb-10">
+          <Card className="overflow-hidden p-0">
             <div className="relative h-80 md:h-96">
               <Image
                 src={selectedLeague.banner}
@@ -49,7 +51,7 @@ export default function Home() {
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent" />
-              
+
               <div className="absolute inset-0 flex items-center">
                 <div className="container mx-auto px-8">
                   <div className="max-w-2xl space-y-6">
@@ -58,56 +60,57 @@ export default function Home() {
                         src={selectedLeague.logo}
                         alt={`${selectedLeague.name} logo`}
                         width={500}
-                height={500}
-                        className="w-16 h-16 object-contain bg-card/80 rounded-xl p-3 backdrop-blur-sm racing-glow"
+                        height={500}
+                        className="w-16 h-16 object-contain bg-card/80 border rounded-xl p-3 backdrop-blur-xl"
                       />
                       <div>
-                        <h1 className="text-4xl md:text-5xl font-bold text-gradient animate-fade-in-up">
+                        <h1 className="text-4xl md:text-5xl font-bold text-gradient ">
                           {selectedLeague.name}
                         </h1>
-                        <Badge variant="secondary" className="mt-2 racing-glow">
+                        <Badge variant="outline" className="mt-2">
                           {selectedLeague.shortName}
                         </Badge>
                       </div>
                     </div>
-                    
-                    <div className="flex flex-wrap items-center gap-6 text-foreground/90">
+
+                    <div className="flex flex-wrap items-center gap-6 text-foreground">
                       <div className="flex items-center gap-2">
                         <Calendar className="w-5 h-5 text-primary" />
-                        <span className="font-semibold">Founded {selectedLeague.formedYear}</span>
+                        <span className="font-semibold">
+                          Founded {selectedLeague.formedYear}
+                        </span>
                       </div>
                       <div className="flex items-center gap-2">
                         <Trophy className="w-5 h-5 text-primary" />
-                        <span className="font-semibold">{selectedLeague.sport}</span>
+                        <span className="font-semibold">
+                          {selectedLeague.sport}
+                        </span>
                       </div>
                     </div>
-                    
+
                     <p className="text-lg text-foreground/80 leading-relaxed max-w-xl">
                       {selectedLeague.description.slice(0, 200)}...
                     </p>
-                    
+
                     <div className="flex flex-wrap gap-4">
-                      <Button 
-                        asChild 
-                        className="racing-glow animate-glow"
-                      >
+                      <Button asChild className="racing-glow">
                         <a
                           href={`https://${selectedLeague.website}`}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <Globe className="w-4 h-4 mr-2" />
+                          <Globe className="w-4 h-4 mr-1" />
                           Official Website
                         </a>
                       </Button>
-                      
+
                       <div className="flex items-center gap-2">
                         {selectedLeague.facebook && (
                           <Button
                             variant="outline"
                             size="icon"
                             asChild
-                            className="glass-effect"
+                            className="bg-accent/80"
                           >
                             <a
                               href={`https://${selectedLeague.facebook}`}
@@ -118,13 +121,13 @@ export default function Home() {
                             </a>
                           </Button>
                         )}
-                        
+
                         {selectedLeague.x && (
                           <Button
                             variant="outline"
                             size="icon"
                             asChild
-                            className="glass-effect"
+                            className="bg-accent/80"
                           >
                             <a
                               href={`https://${selectedLeague.x}`}
@@ -135,13 +138,13 @@ export default function Home() {
                             </a>
                           </Button>
                         )}
-                        
+
                         {selectedLeague.youtube && (
                           <Button
                             variant="outline"
                             size="icon"
                             asChild
-                            className="glass-effect"
+                            className="bg-accent/80"
                           >
                             <a
                               href={`https://${selectedLeague.youtube}`}
@@ -152,13 +155,13 @@ export default function Home() {
                             </a>
                           </Button>
                         )}
-                        
+
                         {selectedLeague.instagram && (
                           <Button
                             variant="outline"
                             size="icon"
                             asChild
-                            className="glass-effect"
+                            className="bg-accent/80"
                           >
                             <a
                               href={`https://${selectedLeague.instagram}`}
@@ -182,9 +185,11 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           {/* Main Content */}
           <div className="lg:col-span-2">
-            <Card className="glass-effect racing-glow">
+            <Card className="bg-accent/80 racing-glow">
               <CardContent className="p-8 space-y-6">
-                <h2 className="text-2xl font-bold text-gradient">About {selectedLeague.name}</h2>
+                <h2 className="text-2xl font-bold text-gradient">
+                  About {selectedLeague.name}
+                </h2>
                 <div className="prose prose-invert max-w-none">
                   <p className="text-foreground/80 leading-relaxed text-lg">
                     {selectedLeague.description}
@@ -197,31 +202,36 @@ export default function Home() {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Trophy */}
-            <Card className="glass-effect racing-glow">
+            <Card className="bg-racing-gradient racing-glow">
               <CardContent className="p-6 text-center">
                 <Image
                   src={selectedLeague.trophy}
                   alt="Championship Trophy"
                   width={500}
-                height={500}
-                  className="w-20 h-20 object-contain mx-auto mb-4 racing-glow"
+                  height={500}
+                  className="w-20 h-20 object-contain mx-auto mb-4"
                 />
-                <h3 className="font-semibold text-gradient">Championship Trophy</h3>
+                <h3 className="font-semibold text-gradient">
+                  Championship Trophy
+                </h3>
               </CardContent>
             </Card>
 
             {/* Fan Art Gallery */}
-            <Card className="glass-effect racing-glow">
+            <Card className="bg-accent/80 racing-glow">
               <CardContent className="p-6">
                 <h3 className="font-semibold text-gradient mb-4">Gallery</h3>
                 <div className="grid grid-cols-2 gap-2">
                   {selectedLeague.fanArt.slice(0, 4).map((art, index) => (
-                    <div key={index} className="relative group overflow-hidden rounded-lg">
+                    <div
+                      key={index}
+                      className="relative group overflow-hidden rounded-lg"
+                    >
                       <Image
                         src={art}
                         alt={`${selectedLeague.name} fan art ${index + 1}`}
                         width={500}
-                height={500}
+                        height={500}
                         className="w-full h-20 object-cover transition-transform duration-300 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -243,7 +253,7 @@ export default function Home() {
               {`Explore the world's premier racing championships`}
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {allLeagues.map((league: League, index) => (
               <div
@@ -261,5 +271,7 @@ export default function Home() {
         </div>
       </div>
     </div>
+    </>
+    
   );
 }

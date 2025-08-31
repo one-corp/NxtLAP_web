@@ -107,11 +107,11 @@ export const allLeagues: League[] = [
       "https://r2.thesportsdb.com/images/media/league/banner/vrruvt1422121957.jpg",
     facebook: "www.facebook.com/OfficialBTCC",
     website: "btcc.net",
-    x: "x.com/dunlopbtcc",
+    x: "x.com/BTCC",
     youtube: "www.youtube.com/user/btccdotnet",
     sport: "Motorsport",
     rss: "http://www.btcc.net/feed/",
-    instagram: "https://www.instagram.com/btcc/?hl=en",
+    instagram: "www.instagram.com/btcc/?hl=en",
     poster:
       "https://r2.thesportsdb.com/images/media/league/poster/ev49rz1539014930.jpg",
     fanArt: [
@@ -142,7 +142,7 @@ export const allLeagues: League[] = [
     youtube: "www.youtube.com/user/V8SupercarsOfficial",
     sport: "Motorsport",
     rss: "https://au.motorsport.com/rss/v8supercars/news/",
-    instagram: "https://www.instagram.com/supercarschampionship",
+    instagram: "www.instagram.com/supercarschampionship",
     poster:
       "https://r2.thesportsdb.com/images/media/league/poster/gu9rxt1663765504.jpg",
     fanArt: [
@@ -173,7 +173,7 @@ export const allLeagues: League[] = [
     youtube: "www.youtube.com/user/wrc",
     sport: "Motorsport",
     rss: "http://www.wrc.com/cache/EN/news.xml",
-    instagram: "https://www.instagram.com/officialwrc/?hl=en",
+    instagram: "www.instagram.com/officialwrc/?hl=en",
     poster:
       "https://r2.thesportsdb.com/images/media/league/poster/v7fgel1707561787.jpg",
     fanArt: [
@@ -204,7 +204,7 @@ export const allLeagues: League[] = [
     youtube: "https://www.youtube.com/user/supergtmovie",
     sport: "Motorsport",
     rss: "",
-    instagram: "https://www.instagram.com/supergt_official",
+    instagram: "www.instagram.com/supergt_official",
     poster:
       "https://r2.thesportsdb.com/images/media/league/poster/6j3exf1710778171.jpg",
     fanArt: [
@@ -235,7 +235,7 @@ export const allLeagues: League[] = [
     youtube: "www.youtube.com/IMSAOfficial",
     sport: "Motorsport",
     rss: "",
-    instagram: "https://www.instagram.com/imsa_racing/?hl=en",
+    instagram: "www.instagram.com/imsa_racing/?hl=en",
     poster:
       "https://r2.thesportsdb.com/images/media/league/poster/6k2do81565782591.jpg",
     fanArt: [
@@ -266,7 +266,7 @@ export const allLeagues: League[] = [
     youtube: "www.youtube.com/user/indycars",
     sport: "Motorsport",
     rss: "https://racer.com/category/indycar/feed",
-    instagram: "https://www.instagram.com/indycar",
+    instagram: "www.instagram.com/indycar",
     poster:
       "https://r2.thesportsdb.com/images/media/league/poster/8hl2o51641994633.jpg",
     fanArt: [
@@ -297,7 +297,7 @@ export const allLeagues: League[] = [
     youtube: "www.youtube.com/user/BritishGT",
     sport: "Motorsport",
     rss: "",
-    instagram: "https://www.instagram.com/british_gt",
+    instagram: "www.instagram.com/british_gt",
     poster:
       "https://r2.thesportsdb.com/images/media/league/poster/i1k0ea1673693307.jpg",
     fanArt: [
