@@ -11,7 +11,7 @@ export const allLeagues: League[] = [
     badge:
       "https://r2.thesportsdb.com/images/media/league/badge/g8cofl1513623681.png",
     banner:
-      "https://r2.thesportsdb.com/images/media/league/banner/srsuyy1421852767.jpg",
+      "https://cdn.pixabay.com/photo/2023/07/22/09/28/formula-1-8143007_1280.jpg",
     facebook: "www.facebook.com/Formula1",
     website: "www.formula1.com",
     x: "x.com/f1",
@@ -42,7 +42,7 @@ export const allLeagues: League[] = [
     badge:
       "https://r2.thesportsdb.com/images/media/league/badge/ga8k1j1739369519.png",
     banner:
-      "https://r2.thesportsdb.com/images/media/league/banner/qrxpqu1441138872.jpg",
+      "https://cdn.pixabay.com/photo/2017/08/31/20/02/jorge-lorenzo-2702101_1280.jpg",
     facebook: "www.facebook.com/MotoGP",
     website: "www.motogp.com",
     x: "x.com/MotoGP",
@@ -73,7 +73,7 @@ export const allLeagues: League[] = [
     badge:
       "https://r2.thesportsdb.com/images/media/league/badge/spqryk1581101437.png",
     banner:
-      "https://r2.thesportsdb.com/images/media/league/banner/3wod0r1559283060.jpg",
+      "https://cdn.pixabay.com/photo/2013/02/21/19/01/nascar-84466_1280.jpg",
     facebook: "www.facebook.com/NASCAR",
     website: "www.nascar.com",
     x: "x.com/nascar",
@@ -166,7 +166,7 @@ export const allLeagues: League[] = [
     badge:
       "https://r2.thesportsdb.com/images/media/league/badge/xj0p1n1534589660.png",
     banner:
-      "https://r2.thesportsdb.com/images/media/league/banner/syqvpt1421501497.jpg",
+      "https://cdn.pixabay.com/photo/2014/07/17/13/44/rally-395505_1280.jpg",
     facebook: "www.facebook.com/WorldRally/",
     website: "www.wrc.com",
     x: "x.com/OfficialWRC",
@@ -259,7 +259,7 @@ export const allLeagues: League[] = [
     badge:
       "https://r2.thesportsdb.com/images/media/league/badge/m9xm9w1552216863.png",
     banner:
-      "https://r2.thesportsdb.com/images/media/league/banner/vvsvus1481021350.jpg",
+      "https://cdn.pixabay.com/photo/2022/01/20/09/13/indycar-6951839_1280.jpg",
     facebook: "www.facebook.com/indycar",
     website: "www.indycar.com",
     x: "x.com/indycar",

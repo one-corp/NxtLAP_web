@@ -15,9 +15,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Motorsports AI",
   description: "Track upcoming motorsport events with the power of AI",
-  icons: {
-    icon: "/fevicon.ico"
-  }
 };
 
 export default function RootLayout({
