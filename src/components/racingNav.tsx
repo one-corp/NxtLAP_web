@@ -2,6 +2,7 @@
 
 import { allLeagues } from "@/Data/Leagues";
 import { Button } from "./ui/button";
+import Image from "next/image";
 
 interface RacingNavProps {
   activeLeague: string;
@@ -10,18 +11,19 @@ interface RacingNavProps {
 
 export function RacingNav({ activeLeague, onLeagueChange }: RacingNavProps) {
   return (
-    <nav className="glass-effect rounded-2xl p-6 mb-8">
-      <div className="flex items-center justify-center mb-6">
+    <nav className="glass-effect p-4 shadow-lg">
+      <div className="relative flex flex-wrap justify-between">
         <div className="flex items-center gap-3">
-          <h1 className="text-3xl font-bold text-gradient">
-            Motosports AI
-          </h1>
+          <Image
+            src="/logo.png"
+            width={50}
+            height={50}
+            alt="Motorsports AI Logo"
+            className="rounded-lg border"
+          />
+          <h1 className="text-3xl font-bold text-gradient">Motosports AI</h1>
         </div>
-      </div>
-      
-      <div className="relative overflow-hidden rounded-xl bg-secondary/50 p-1">
-        <div className="absolute inset-0 speed-lines opacity-20 animate-speed-dash" />
-        <div className="relative flex flex-wrap justify-center gap-2">
+        <div className="flex items-center gap-2">
           {allLeagues.map((league) => (
             <Button
               key={league.id}
@@ -29,10 +31,11 @@ export function RacingNav({ activeLeague, onLeagueChange }: RacingNavProps) {
               size="sm"
               onClick={() => onLeagueChange(league.id)}
               className={`
-                relative overflow-hidden transition-all duration-300 font-semibold
-                ${activeLeague === league.id 
-                  ? "racing-glow animate-glow" 
-                  : "hover:bg-accent/50"
+                relative overflow-hidden font-semibold
+                ${
+                  activeLeague === league.id
+                    ? "racing-glow"
+                    : "hover:bg-primary/40"
                 }
               `}
             >

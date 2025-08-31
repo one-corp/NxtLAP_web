@@ -41,127 +41,110 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --gradient-racing: var(--gradient-racing);
 }
 
 :root {
-  --radius: 0.65rem;
-  --background: 210 85% 10%;
-  --foreground: 210 85% 94%;
+    --radius: 0.65rem;
+    --background: hsl(210 85% 10%);
+    --foreground: hsl(210 85% 94%);
+    
+    --card: hsl(210 85% 8%);
+    --card-foreground: hsl(210 85% 94%);
+    
+    --popover: hsl(210 85% 8%);
+    --popover-foreground: hsl(210 85% 94%);
+    
+    --primary: hsl(9 100% 50%);
+    --primary-foreground: hsl(9 100% 96%);
+    
+    --secondary: hsl(220 100% 8%);
+    --secondary-foreground: hsl(210 85% 94%);
+    
+    --muted: hsl(220 100% 8%);
+    --muted-foreground: hsl(210 40% 65%);
+    
+    --accent: hsl(220 100% 8%);
+    --accent-foreground: hsl(210 85% 94%);
+    
+    --destructive: hsl(0 84% 60%);
+    --destructive-foreground: hsl(210 40% 98%);
+    
+    --border: hsl(0 0% 100% / 10%);
+    --input: hsl(0 0% 100% / 15%);
+    --ring: hsl(9 100% 50%);
+    
+    --chart-1: hsl(264 55% 55%);
+    --chart-2: hsl(162 70% 65%);
+    --chart-3: hsl(70 75% 70%);
+    --chart-4: hsl(304 65% 60%);
+    --chart-5: hsl(16 70% 65%);
 
-  --card: 210 85% 8%;
-  --card-foreground: 210 85% 94%;
+    --radius: 0.65rem;
+    
+    /* Racing gradients */
+    --gradient-racing: linear-gradient(120deg, var(--background), hsl(220 100% 5%), var(--background));
+    --gradient-speed: linear-gradient(90deg, var(--primary), hsl(25 100% 45%));
+    --gradient-track: linear-gradient(45deg, var(--secondary), var(--accent));
+    
+    /* Speed animations */
+    --speed-lines: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 10px,
+      var(--primary) / 0.1 12px,
+      var(--primary) / 0.1 14px
+    );
 
-  --popover: 210 85% 8%;
-  --popover-foreground: 210 85% 94%;
+    --sidebar-background: hsl(0 0% 98%);
+    --sidebar-foreground: hsl(240 5.3% 26.1%);
+    --sidebar-primary: hsl(240 5.9% 10%);
+    --sidebar-primary-foreground: hsl(0 0% 98%);
+    --sidebar-accent: hsl(240 4.8% 95.9%);
+    --sidebar-accent-foreground: hsl(240 5.9% 10%);
+    --sidebar-border: hsl(220 13% 91%);
+    --sidebar-ring: hsl(217.2 91.2% 59.8%);
+  }
 
-  --primary: 9 100% 50%;
-  --primary-foreground: 9 100% 96%;
-
-  --secondary: 220 100% 8%;
-  --secondary-foreground: 210 85% 94%;
-
-  --muted: 220 100% 8%;
-  --muted-foreground: 210 40% 65%;
-
-  --accent: 220 100% 8%;
-  --accent-foreground: 210 85% 94%;
-
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 210 40% 98%;
-
-  --border: 0 0% 100% / 10%;
-  --input: 0 0% 100% / 15%;
-  --ring: 9 100% 50%;
-
-  --chart-1: 264 55% 55%;
-  --chart-2: 162 70% 65%;
-  --chart-3: 70 75% 70%;
-  --chart-4: 304 65% 60%;
-  --chart-5: 16 70% 65%;
-
-  --radius: 0.65rem;
-
-  /* Racing gradients */
-  --gradient-racing: linear-gradient(
-    135deg,
-    hsl(var(--background)),
-    hsl(220 100% 5%)
-  );
-  --gradient-speed: linear-gradient(
-    90deg,
-    hsl(var(--primary)),
-    hsl(25 100% 45%)
-  );
-  --gradient-track: linear-gradient(
-    45deg,
-    hsl(var(--secondary)),
-    hsl(var(--accent))
-  );
-
-  /* Speed animations */
-  --speed-lines: repeating-linear-gradient(
-    90deg,
-    transparent,
-    transparent 10px,
-    hsl(var(--primary) / 0.1) 12px,
-    hsl(var(--primary) / 0.1) 14px
-  );
-
-  --sidebar-background: 0 0% 98%;
-
-  --sidebar-foreground: 240 5.3% 26.1%;
-
-  --sidebar-primary: 240 5.9% 10%;
-
-  --sidebar-primary-foreground: 0 0% 98%;
-
-  --sidebar-accent: 240 4.8% 95.9%;
-
-  --sidebar-accent-foreground: 240 5.9% 10%;
-
-  --sidebar-border: 220 13% 91%;
-
-  --sidebar-ring: 217.2 91.2% 59.8%;
-}
-
-.dark {
-  --radius: 0.65rem;
-  --background: 210 85% 10%;
-  --foreground: 210 85% 94%;
-
-  --card: 210 85% 8%;
-  --card-foreground: 210 85% 94%;
-
-  --popover: 210 85% 8%;
-  --popover-foreground: 210 85% 94%;
-
-  --primary: 9 100% 50%;
-  --primary-foreground: 9 100% 96%;
-
-  --secondary: 220 100% 8%;
-  --secondary-foreground: 210 85% 94%;
-
-  --muted: 220 100% 8%;
-  --muted-foreground: 210 40% 65%;
-
-  --accent: 220 100% 8%;
-  --accent-foreground: 210 85% 94%;
-
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 210 40% 98%;
-
-  --border: 0 0% 100% / 10%;
-  --input: 0 0% 100% / 15%;
-  --ring: 9 100% 50%;
-  --sidebar-background: 240 5.9% 10%;
-  --sidebar-foreground: 240 4.8% 95.9%;
-  --sidebar-primary: 224.3 76.3% 48%;
-  --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 240 3.7% 15.9%;
-  --sidebar-accent-foreground: 240 4.8% 95.9%;
-  --sidebar-border: 240 3.7% 15.9%;
-  --sidebar-ring: 217.2 91.2% 59.8%;
-}
+  .dark {
+    --radius: 0.65rem;
+    --background: hsl(210 85% 10%);
+    --foreground: hsl(210 85% 94%);
+    
+    --card: hsl(210 85% 8%);
+    --card-foreground: hsl(210 85% 94%);
+    
+    --popover: hsl(210 85% 8%);
+    --popover-foreground: hsl(210 85% 94%);
+    
+    --primary: hsl(9 100% 50%);
+    --primary-foreground: hsl(9 100% 96%);
+    
+    --secondary: hsl(220 100% 8%);
+    --secondary-foreground: hsl(210 85% 94%);
+    
+    --muted: hsl(220 100% 8%);
+    --muted-foreground: hsl(210 40% 65%);
+    
+    --accent: hsl(220 100% 8%);
+    --accent-foreground: hsl(210 85% 94%);
+    
+    --destructive: hsl(0 84% 60%);
+    --destructive-foreground: hsl(210 40% 98%);
+    
+    --border: hsl(0 0% 100% / 10%);
+    --input: hsl(0 0% 100% / 15%);
+    --ring: hsl(9 100% 50%);
+    
+    --sidebar-background: hsl(240 5.9% 10%);
+    --sidebar-foreground: hsl(240 4.8% 95.9%);
+    --sidebar-primary: hsl(224.3 76.3% 48%);
+    --sidebar-primary-foreground: hsl(0 0% 100%);
+    --sidebar-accent: hsl(240 3.7% 15.9%);
+    --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
+    --sidebar-border: hsl(240 3.7% 15.9%);
+    --sidebar-ring: hsl(217.2 91.2% 59.8%);
+  }
 
 @layer base {
   * {
@@ -179,33 +162,32 @@
   .racing-gradient {
     background: var(--gradient-racing);
   }
-
+  
   .speed-gradient {
     background: var(--gradient-speed);
   }
-
+  
   .track-gradient {
     background: var(--gradient-track);
   }
-
+  
   .speed-lines {
     background: var(--speed-lines);
   }
-
+  
   .glass-effect {
-    backdrop-filter: blur(12px);
-    background: hsl(var(--card) / 0.8);
-    border: 1px solid hsl(var(--border));
+    backdrop-filter: blur(10px);
+    background: var(--card) / 0.8;
   }
-
-  .racing-glow {
-    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
-  }
-
+  
   .text-gradient {
     background: var(--gradient-speed);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  .racing-glow {
+    box-shadow: hsl(9 100 20) 0px 0px 16px;
   }
 }
