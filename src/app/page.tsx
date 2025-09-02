@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
   Calendar,
+  LineSquiggle,
   ClipboardClock,
   Trophy,
   Globe,
@@ -21,10 +22,15 @@ import {
 import Image from "next/image";
 import { baseURL } from "@/utils/constants";
 import { Event } from "@/types/Event";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export default function Home() {
   const [activeLeague, setActiveLeague] = useState<string>(allLeagues[0].id);
-  const [season, setSeason] = useState<string>("");
   const [upcomingEvents, setUpcomingEvents] = useState<Event[]>([]);
 
   const selectedLeague =
@@ -41,7 +47,6 @@ export default function Home() {
         (event: Event) => event.strTimestamp > now
       );
       setUpcomingEvents(futureEvents);
-      setSeason(futureEvents[0].strSeason);
     };
     fetchLeageEvents();
   }, [activeLeague]);
@@ -60,10 +65,10 @@ export default function Home() {
           <div className="absolute inset-0 speed-lines" />
         </div>
 
-        <div className="relative container mx-auto px-4 py-32">
+        <div className="relative container mx-auto px-4 py-24">
           {/* Hero Section */}
           <div className="mb-10">
-            <Card className="overflow-hidden p-0">
+            <Card className="overflow-hidden p-0 gap-0">
               <div className="relative h-80 md:h-96">
                 <Image
                   src={selectedLeague.banner}
@@ -71,7 +76,9 @@ export default function Home() {
                   fill
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent" />
+
+                <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-background/50 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-accent via-accent/50 to-transparent" />
 
                 <div className="absolute inset-0 flex items-center">
                   <div className="container mx-auto px-8">
@@ -80,8 +87,8 @@ export default function Home() {
                         <Image
                           src={selectedLeague.logo}
                           alt={`${selectedLeague.name} logo`}
-                          width={500}
-                          height={500}
+                          width={16}
+                          height={16}
                           className="w-16 h-16 object-contain bg-card/80 border rounded-xl p-3 backdrop-blur-xl"
                         />
                         <div>
@@ -131,7 +138,7 @@ export default function Home() {
                               variant="outline"
                               size="icon"
                               asChild
-                              className="bg-accent/80"
+                              className="bg-accent/30 hover:text-primary"
                             >
                               <a
                                 href={`https://${selectedLeague.facebook}`}
@@ -148,7 +155,7 @@ export default function Home() {
                               variant="outline"
                               size="icon"
                               asChild
-                              className="bg-accent/80"
+                              className="bg-accent/30 hover:text-primary"
                             >
                               <a
                                 href={`https://${selectedLeague.x}`}
@@ -165,7 +172,7 @@ export default function Home() {
                               variant="outline"
                               size="icon"
                               asChild
-                              className="bg-accent/80"
+                              className="bg-accent/30 hover:text-primary"
                             >
                               <a
                                 href={`https://${selectedLeague.youtube}`}
@@ -182,7 +189,7 @@ export default function Home() {
                               variant="outline"
                               size="icon"
                               asChild
-                              className="bg-accent/80"
+                              className="bg-accent/30 hover:text-primary"
                             >
                               <a
                                 href={`https://${selectedLeague.instagram}`}
@@ -199,7 +206,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <Card className="bg-accent rounded-none">
+              <Card className="bg-accent rounded-none border-0">
                 <CardContent className="p-8 space-y-6">
                   <div className="flex items-center gap-2">
                     <ClipboardClock className="text-primary" />
@@ -208,7 +215,73 @@ export default function Home() {
                     </h2>
                   </div>
                   <div className="prose prose-invert max-w-none">
-                    here I will display all events data
+                    <Accordion
+                      type="single"
+                      collapsible
+                      className="w-full"
+                      defaultValue="item-0"
+                    >
+                      {upcomingEvents.map((event, index) => (
+                        <AccordionItem
+                          value={`item-${index}`}
+                          key={event.idEvent}
+                        >
+                          <AccordionTrigger className="text-lg font-semibold text-gradient">
+                            {event.strEvent}
+                          </AccordionTrigger>
+
+                          <AccordionContent>
+                            <div className="flex flex-col sm:flex-row gap-4 rounded-2xl bg-primary/10 p-4 m-4 racing-glow border border-primary/20">
+                              <div className="sm:w-1/3">
+                                <Image
+                                  src={
+                                    event.strThumb ||
+                                    event.strPoster ||
+                                    "/fallback.jpg"
+                                  }
+                                  width={500}
+                                  height={500}
+                                  alt={event.strEvent}
+                                  className="w-full h-40 sm:h-full object-cover rounded-xl"
+                                />
+                              </div>
+
+                              {/* Right: Info */}
+                              <div className="flex flex-col justify-between sm:w-2/3 gap-3">
+                                <div>
+                                  <h3 className="text-xl font-bold text-gradient">
+                                    {event.strLeague}
+                                  </h3>
+                                  <p className="text-sm text-gray-400">
+                                    Round {event.intRound} • Season{" "}
+                                    {event.strSeason}
+                                  </p>
+                                  <p className="mt-2 text-base text-white flex items-center gap-1">
+                                    <LineSquiggle className="w-5 text-primary" /> {event.strVenue},{" "}
+                                    {event.strCountry}
+                                  </p>
+                                </div>
+
+                                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-4 gap-2">
+                                  <p className="text-sm text-gray-300">
+                                    {new Date(
+                                      event.strTimestamp
+                                    ).toLocaleDateString("en-GB", {
+                                      weekday: "long",
+                                      day: "numeric",
+                                      month: "long",
+                                      year: "numeric",
+                                    })}
+                                    {" • "}
+                                    {event.strTimeLocal}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </AccordionContent>
+                        </AccordionItem>
+                      ))}
+                    </Accordion>
                   </div>
                 </CardContent>
               </Card>
