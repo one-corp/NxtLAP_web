@@ -178,6 +178,12 @@
     backdrop-filter: blur(10px);
     background: var(--card) / 0.8;
   }
+
+  @media (max-width: 640px) {
+    .glass-effect {
+      backdrop-filter: blur(18px);
+    }
+  }
   
   .text-gradient {
     background: var(--gradient-speed);
