@@ -1,0 +1,1 @@
+export const baseURL = "https://www.thesportsdb.com/api/v1/json/3"
