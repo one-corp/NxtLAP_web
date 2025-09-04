@@ -69,7 +69,8 @@ export default function Home() {
           {/* Hero Section */}
           <div className="mb-10">
             <Card className="overflow-hidden p-0 gap-0">
-              <div className="relative h-80 md:h-96">
+              {/* Banner */}
+              <div className="relative h-64 sm:h-80 md:h-96">
                 <Image
                   src={selectedLeague.banner}
                   alt={selectedLeague.name}
@@ -77,51 +78,59 @@ export default function Home() {
                   className="w-full h-full object-cover"
                 />
 
+                {/* overlays */}
                 <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-background/50 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-t from-accent via-accent/50 to-transparent" />
 
                 <div className="absolute inset-0 flex items-center">
-                  <div className="container mx-auto px-8">
-                    <div className="max-w-2xl space-y-6">
-                      <div className="flex items-center gap-4">
+                  <div className="container mx-auto px-4 sm:px-8">
+                    <div className="max-w-lg sm:max-w-2xl space-y-4 sm:space-y-6">
+                      {/* Logo + Name */}
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                         <Image
                           src={selectedLeague.logo}
                           alt={`${selectedLeague.name} logo`}
                           width={16}
                           height={16}
-                          className="w-16 h-16 object-contain bg-card/80 border rounded-xl p-3 backdrop-blur-xl"
+                          className="w-14 h-14 sm:w-16 sm:h-16 object-contain bg-card/80 border rounded-xl p-2 sm:p-3 backdrop-blur-xl"
                         />
                         <div>
-                          <h1 className="text-4xl md:text-5xl font-bold text-gradient ">
+                          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gradient">
                             {selectedLeague.name}
                           </h1>
-                          <Badge variant="outline" className="mt-2">
+                          <Badge variant="outline" className="mt-1 sm:mt-2">
                             {selectedLeague.shortName}
                           </Badge>
                         </div>
                       </div>
 
-                      <div className="flex flex-wrap items-center gap-6 text-foreground">
-                        <div className="flex items-center gap-2">
-                          <Calendar className="w-5 h-5 text-primary" />
+                      {/* Founded + Sport */}
+                      <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-foreground">
+                        <div className="flex items-center gap-2 text-sm sm:text-base">
+                          <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                           <span className="font-semibold">
                             Founded {selectedLeague.formedYear}
                           </span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <Trophy className="w-5 h-5 text-primary" />
+                        <div className="flex items-center gap-2 text-sm sm:text-base">
+                          <Trophy className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                           <span className="font-semibold">
                             {selectedLeague.sport}
                           </span>
                         </div>
                       </div>
 
-                      <p className="text-lg text-foreground/80 leading-relaxed max-w-xl">
+                      {/* Description */}
+                      <p className="text-sm sm:text-lg text-foreground/80 leading-relaxed max-w-md sm:max-w-xl">
                         {selectedLeague.description.slice(0, 200)}...
                       </p>
 
-                      <div className="flex flex-wrap gap-4">
-                        <Button asChild className="racing-glow">
+                      {/* Website + Socials */}
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+                        <Button
+                          asChild
+                          className="racing-glow w-full sm:w-auto"
+                        >
                           <a
                             href={`https://${selectedLeague.website}`}
                             target="_blank"
@@ -132,7 +141,7 @@ export default function Home() {
                           </a>
                         </Button>
 
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-wrap gap-2 sm:gap-3">
                           {selectedLeague.facebook && (
                             <Button
                               variant="outline"
@@ -149,7 +158,6 @@ export default function Home() {
                               </a>
                             </Button>
                           )}
-
                           {selectedLeague.x && (
                             <Button
                               variant="outline"
@@ -166,7 +174,6 @@ export default function Home() {
                               </a>
                             </Button>
                           )}
-
                           {selectedLeague.youtube && (
                             <Button
                               variant="outline"
@@ -183,7 +190,6 @@ export default function Home() {
                               </a>
                             </Button>
                           )}
-
                           {selectedLeague.instagram && (
                             <Button
                               variant="outline"
@@ -206,128 +212,87 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <Card className="bg-accent rounded-none border-0">
-                <CardContent className="p-8 space-y-6">
+
+              {/* Upcoming Events */}
+              <Card className="bg-accent pt-24 md:pt-0 rounded-none border-0">
+                <CardContent className="p-4 sm:p-8 space-y-6">
                   <div className="flex items-center gap-2">
                     <ClipboardClock className="text-primary" />
-                    <h2 className="text-2xl font-bold text-gradient">
+                    <h2 className="text-xl sm:text-2xl font-bold text-gradient">
                       Upcoming Events
                     </h2>
                   </div>
-                  <div className="prose prose-invert max-w-none">
-                    <Accordion
-                      type="single"
-                      collapsible
-                      className="w-full"
-                      defaultValue="item-0"
-                    >
-                      {upcomingEvents.map((event, index) => (
-                        <AccordionItem
-                          value={`item-${index}`}
-                          key={event.idEvent}
-                        >
-                          <AccordionTrigger className="text-lg font-semibold text-gradient">
-                            {event.strEvent}
-                          </AccordionTrigger>
 
-                          <AccordionContent>
-                            <div className="flex flex-col sm:flex-row gap-4 rounded-2xl bg-primary/10 p-4 m-4 racing-glow border border-primary/20">
-                              <div className="sm:w-1/3">
-                                <Image
-                                  src={
-                                    event.strThumb ||
-                                    event.strPoster ||
-                                    "/fallback.jpg"
-                                  }
-                                  width={500}
-                                  height={500}
-                                  alt={event.strEvent}
-                                  className="w-full h-40 sm:h-full object-cover rounded-xl"
-                                />
+                  <Accordion
+                    type="single"
+                    collapsible
+                    className="w-full"
+                    defaultValue="item-0"
+                  >
+                    {upcomingEvents.map((event, index) => (
+                      <AccordionItem
+                        value={`item-${index}`}
+                        key={event.idEvent}
+                      >
+                        <AccordionTrigger className="text-base sm:text-lg font-semibold text-gradient">
+                          {event.strEvent}
+                        </AccordionTrigger>
+
+                        <AccordionContent>
+                          <div className="flex flex-col sm:flex-row gap-4 rounded-2xl bg-primary/10 p-3 sm:p-4 m-2 sm:m-4 racing-glow border border-primary/20">
+                            <div className="w-full sm:w-1/3">
+                              <Image
+                                src={
+                                  event.strThumb ||
+                                  event.strPoster ||
+                                  "/fallback.jpg"
+                                }
+                                width={500}
+                                height={500}
+                                alt={event.strEvent}
+                                className="w-full h-40 sm:h-full object-cover rounded-xl"
+                              />
+                            </div>
+
+                            {/* Right: Info */}
+                            <div className="flex flex-col justify-between w-full sm:w-2/3 gap-2 sm:gap-3">
+                              <div>
+                                <h3 className="text-lg sm:text-xl font-bold text-gradient">
+                                  {event.strLeague}
+                                </h3>
+                                <p className="text-xs sm:text-sm text-gray-400">
+                                  Round {event.intRound} • Season{" "}
+                                  {event.strSeason}
+                                </p>
+                                <p className="mt-2 text-sm sm:text-base text-white flex items-center gap-1">
+                                  <LineSquiggle className="w-4 sm:w-5 text-primary" />
+                                  {event.strVenue}, {event.strCountry}
+                                </p>
                               </div>
 
-                              {/* Right: Info */}
-                              <div className="flex flex-col justify-between sm:w-2/3 gap-3">
-                                <div>
-                                  <h3 className="text-xl font-bold text-gradient">
-                                    {event.strLeague}
-                                  </h3>
-                                  <p className="text-sm text-gray-400">
-                                    Round {event.intRound} • Season{" "}
-                                    {event.strSeason}
-                                  </p>
-                                  <p className="mt-2 text-base text-white flex items-center gap-1">
-                                    <LineSquiggle className="w-5 text-primary" /> {event.strVenue},{" "}
-                                    {event.strCountry}
-                                  </p>
-                                </div>
-
-                                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-4 gap-2">
-                                  <p className="text-sm text-gray-300">
-                                    {new Date(
-                                      event.strTimestamp
-                                    ).toLocaleDateString("en-GB", {
-                                      weekday: "long",
-                                      day: "numeric",
-                                      month: "long",
-                                      year: "numeric",
-                                    })}
-                                    {" • "}
-                                    {event.strTimeLocal}
-                                  </p>
-                                </div>
+                              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-2 sm:mt-4 gap-1 sm:gap-2">
+                                <p className="text-xs sm:text-sm text-gray-300">
+                                  {new Date(
+                                    event.strTimestamp
+                                  ).toLocaleDateString("en-GB", {
+                                    weekday: "long",
+                                    day: "numeric",
+                                    month: "long",
+                                    year: "numeric",
+                                  })}{" "}
+                                  • {event.strTimeLocal}
+                                </p>
                               </div>
                             </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                      ))}
-                    </Accordion>
-                  </div>
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
                 </CardContent>
               </Card>
             </Card>
           </div>
-
-          {/* League Details */}
-          {/* <div className="grid grid-cols-1 gap-y-8 mb-12">
-            {/* Main Content 
-            <Card className="bg-accent">
-              <CardContent className="p-8 space-y-6">
-                <div className="flex items-center gap-2">
-                  <ClipboardClock className="text-primary" />
-                  <h2 className="text-2xl font-bold text-gradient">
-                    Upcoming Events
-                  </h2>
-                </div>
-                <div className="prose prose-invert max-w-none">
-                  here I will display all events data
-                </div>
-              </CardContent>
-            </Card>
-            {/* Fan Art Gallery 
-            <Card className="bg-accent/80 racing-glow">
-              <CardContent className="p-6">
-                <h3 className="font-semibold text-gradient mb-4">Gallery</h3>
-                <div className="grid grid-cols-2 gap-2">
-                  {selectedLeague.fanArt.slice(0, 4).map((art, index) => (
-                    <div
-                      key={index}
-                      className="relative group overflow-hidden rounded-lg"
-                    >
-                      <Image
-                        src={art}
-                        alt={`${selectedLeague.name} fan art ${index + 1}`}
-                        width={500}
-                        height={500}
-                        className="w-full h-20 object-cover transition-transform duration-300 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div> */}
 
           {/* All Leagues Grid */}
           <div className="space-y-8">
