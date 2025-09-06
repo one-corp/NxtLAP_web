@@ -12,6 +12,7 @@ import {
   Youtube,
 } from "lucide-react";
 import { League } from "@/types/League";
+import SocialMediaBtn from "./SocialMediaBtn";
 
 interface HeroProps {
   selectedleague: League;
@@ -40,8 +41,8 @@ function Hero({ selectedleague }: HeroProps) {
               <Image
                 src={selectedleague.logo}
                 alt={`${selectedleague.name} logo`}
-                width={16}
-                height={16}
+                width={100}
+                height={100}
                 className="w-14 h-14 sm:w-16 sm:h-16 object-contain bg-card/80 border rounded-xl p-2 sm:p-3 backdrop-blur-xl"
               />
               <div>
@@ -88,68 +89,16 @@ function Hero({ selectedleague }: HeroProps) {
 
               <div className="flex flex-wrap gap-2 sm:gap-3">
                 {selectedleague.facebook && (
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    asChild
-                    className="bg-accent/30 hover:text-primary"
-                  >
-                    <a
-                      href={`https://${selectedleague.facebook}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Facebook className="w-4 h-4" />
-                    </a>
-                  </Button>
+                  <SocialMediaBtn url={selectedleague.facebook} icon={<Facebook className="w-4 h-4" />} />
                 )}
                 {selectedleague.x && (
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    asChild
-                    className="bg-accent/30 hover:text-primary"
-                  >
-                    <a
-                      href={`https://${selectedleague.x}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Twitter className="w-4 h-4" />
-                    </a>
-                  </Button>
+                  <SocialMediaBtn url={selectedleague.x} icon={<Twitter className="w-4 h-4" />} />
                 )}
                 {selectedleague.youtube && (
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    asChild
-                    className="bg-accent/30 hover:text-primary"
-                  >
-                    <a
-                      href={`https://${selectedleague.youtube}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Youtube className="w-4 h-4" />
-                    </a>
-                  </Button>
+                  <SocialMediaBtn url={selectedleague.youtube} icon={<Youtube className="w-4 h-4" />} />
                 )}
                 {selectedleague.instagram && (
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    asChild
-                    className="bg-accent/30 hover:text-primary"
-                  >
-                    <a
-                      href={`https://${selectedleague.instagram}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Instagram className="w-4 h-4" />
-                    </a>
-                  </Button>
+                  <SocialMediaBtn url={selectedleague.instagram} icon={<Instagram className="w-4 h-4" />} />
                 )}
               </div>
             </div>
