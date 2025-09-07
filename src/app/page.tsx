@@ -60,7 +60,7 @@ export default function Home() {
             <Card className="overflow-hidden p-0 gap-0">
               {/* Banner */}
               <Hero selectedleague={selectedLeague} />
-              
+
               {/* Upcoming Events */}
               <Card className="bg-accent pt-24 md:pt-0 rounded-none border-0">
                 <CardContent className="p-4 sm:p-8 space-y-6">
@@ -82,8 +82,21 @@ export default function Home() {
                         value={`item-${index}`}
                         key={event.idEvent}
                       >
-                        <AccordionTrigger className="text-base sm:text-lg font-semibold text-gradient">
-                          {event.strEvent}
+                        <AccordionTrigger className="text-sx sm:text-lg font-semibold cursor-pointer ">
+                          <div className="flex w-full justify-between items-center gap-12">
+                            <span className="text-gradient">
+                              {event.strEvent}
+                            </span>
+                            <span className="text-muted-foreground">
+                              {new Date(event.strTimestamp).toLocaleDateString(
+                                "en-GB",
+                                {
+                                  day: "numeric",
+                                  month: "short",
+                                }
+                              )}
+                            </span>
+                          </div>
                         </AccordionTrigger>
 
                         <AccordionContent>
