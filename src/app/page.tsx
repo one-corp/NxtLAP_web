@@ -7,7 +7,6 @@ import { RacingNav } from "@/components/racingNav";
 import { LeagueCard } from "@/components/leagueCard";
 import { Card, CardContent } from "@/components/ui/card";
 import { LineSquiggle, ClipboardClock } from "lucide-react";
-import Image from "next/image";
 import { baseURL } from "@/utils/constants";
 import { Event } from "@/types/Event";
 import {
@@ -17,25 +16,36 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Hero from "@/components/Hero";
+import { SkeletonAccordian } from "@/components/SkeletonAccordian";
+import { SkeletonImage } from "@/components/SkeletonImage";
 
 export default function Home() {
   const [activeLeague, setActiveLeague] = useState<string>(allLeagues[0].id);
   const [upcomingEvents, setUpcomingEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const selectedLeague =
     allLeagues.find((league) => league.id === activeLeague) || allLeagues[0];
 
   useEffect(() => {
     const fetchLeageEvents = async () => {
-      const response = await fetch(
-        `${baseURL}/eventsseason.php?id=${activeLeague}&s=${new Date().getFullYear()}`
-      );
-      const data = await response.json();
-      const now = new Date().toISOString().slice(0, 19);
-      const futureEvents: Event[] = data?.events.filter(
-        (event: Event) => event.strTimestamp > now
-      );
-      setUpcomingEvents(futureEvents);
+      try {
+        setLoading(true);
+        const response = await fetch(
+          `${baseURL}/eventsseason.php?id=${activeLeague}&s=${new Date().getFullYear()}`
+        );
+        const data = await response.json();
+
+        const now = new Date().toISOString().slice(0, 19);
+        const futureEvents: Event[] =
+          data?.events.filter((event: Event) => event.strTimestamp > now) || [];
+
+        setUpcomingEvents(futureEvents);
+      } catch (e) {
+        console.error(e instanceof Error ? e.message : e);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchLeageEvents();
   }, [activeLeague]);
@@ -76,8 +86,9 @@ export default function Home() {
                     collapsible
                     className="w-full"
                     defaultValue="item-0"
-                  >
-                    {upcomingEvents.map((event, index) => (
+                  >{loading ? Array.from({length: 6}).map((_, idx) => (
+                    <SkeletonAccordian key={idx} />
+                  )) : upcomingEvents.map((event, index) => (
                       <AccordionItem
                         value={`item-${index}`}
                         key={event.idEvent}
@@ -100,55 +111,55 @@ export default function Home() {
                         </AccordionTrigger>
 
                         <AccordionContent>
-                          <div className="flex flex-col sm:flex-row gap-4 rounded-2xl bg-primary/10 p-3 sm:p-4 m-2 sm:m-4 racing-glow border border-primary/20">
-                            <div className="w-full sm:w-1/3">
-                              <Image
-                                src={
-                                  event.strThumb ||
-                                  event.strPoster ||
-                                  "/fallback.jpg"
-                                }
-                                width={500}
-                                height={500}
-                                alt={event.strEvent}
-                                className="w-full h-40 sm:h-full object-cover rounded-xl"
-                              />
-                            </div>
-
-                            {/* Right: Info */}
-                            <div className="flex flex-col justify-between w-full sm:w-2/3 gap-2 sm:gap-3">
-                              <div>
-                                <h3 className="text-lg sm:text-xl font-bold text-gradient">
-                                  {event.strLeague}
-                                </h3>
-                                <p className="text-xs sm:text-sm text-gray-400">
-                                  Round {event.intRound} • Season{" "}
-                                  {event.strSeason}
-                                </p>
-                                <p className="mt-2 text-sm sm:text-base text-white flex items-center gap-1">
-                                  <LineSquiggle className="w-4 sm:w-5 text-primary" />
-                                  {event.strVenue}, {event.strCountry}
-                                </p>
+                          
+                            <div className="flex flex-col sm:flex-row gap-4 rounded-2xl bg-primary/10 p-3 sm:p-4 m-2 sm:m-4 racing-glow border border-primary/20">
+                              <div className="w-full sm:w-1/3">
+                                <SkeletonImage
+                                  src={
+                                    event.strThumb ||
+                                    event.strPoster ||
+                                    "/fallback.jpg"
+                                  }
+                                  alt={event.strEvent}
+                                  className="w-full h-40 sm:h-full object-cover rounded-xl"
+                                />
                               </div>
 
-                              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-2 sm:mt-4 gap-1 sm:gap-2">
-                                <p className="text-xs sm:text-sm text-gray-300">
-                                  {new Date(
-                                    event.strTimestamp
-                                  ).toLocaleDateString("en-GB", {
-                                    weekday: "long",
-                                    day: "numeric",
-                                    month: "long",
-                                    year: "numeric",
-                                  })}{" "}
-                                  • {event.strTimeLocal}
-                                </p>
+                              {/* Right: Info */}
+                              <div className="flex flex-col justify-between w-full sm:w-2/3 gap-2 sm:gap-3">
+                                <div>
+                                  <h3 className="text-lg sm:text-xl font-bold text-gradient">
+                                    {event.strLeague}
+                                  </h3>
+                                  <p className="text-xs sm:text-sm text-gray-400">
+                                    Round {event.intRound} • Season{" "}
+                                    {event.strSeason}
+                                  </p>
+                                  <p className="mt-2 text-sm sm:text-base text-white flex items-center gap-1">
+                                    <LineSquiggle className="w-4 sm:w-5 text-primary" />
+                                    {event.strVenue}, {event.strCountry}
+                                  </p>
+                                </div>
+
+                                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-2 sm:mt-4 gap-1 sm:gap-2">
+                                  <p className="text-xs sm:text-sm text-gray-300">
+                                    {new Date(
+                                      event.strTimestamp
+                                    ).toLocaleDateString("en-GB", {
+                                      weekday: "long",
+                                      day: "numeric",
+                                      month: "long",
+                                      year: "numeric",
+                                    })}{" "}
+                                    • {event.strTimeLocal}
+                                  </p>
+                                </div>
                               </div>
                             </div>
-                          </div>
                         </AccordionContent>
                       </AccordionItem>
-                    ))}
+                    )) }
+                    
                   </Accordion>
                 </CardContent>
               </Card>
