@@ -86,80 +86,80 @@ export default function Home() {
                     collapsible
                     className="w-full"
                     defaultValue="item-0"
-                  >{loading ? Array.from({length: 6}).map((_, idx) => (
-                    <SkeletonAccordian key={idx} />
-                  )) : upcomingEvents.map((event, index) => (
-                      <AccordionItem
-                        value={`item-${index}`}
-                        key={event.idEvent}
-                      >
-                        <AccordionTrigger className="text-sx sm:text-lg font-semibold cursor-pointer ">
-                          <div className="flex w-full justify-between items-center gap-12">
-                            <span className="text-gradient">
-                              {event.strEvent}
-                            </span>
-                            <span className="text-muted-foreground">
-                              {new Date(event.strTimestamp).toLocaleDateString(
-                                "en-GB",
-                                {
-                                  day: "numeric",
-                                  month: "short",
-                                }
-                              )}
-                            </span>
-                          </div>
-                        </AccordionTrigger>
-
-                        <AccordionContent>
-                          
-                            <div className="flex flex-col sm:flex-row gap-4 rounded-2xl bg-primary/10 p-3 sm:p-4 m-2 sm:m-4 racing-glow border border-primary/20">
-                              <div className="w-full sm:w-1/3">
-                                <SkeletonImage
-                                  src={
-                                    event.strThumb ||
-                                    event.strPoster ||
-                                    "/fallback.jpg"
-                                  }
-                                  alt={event.strEvent}
-                                  className="w-full h-40 sm:h-full object-cover rounded-xl"
-                                />
+                  >
+                    {loading
+                      ? Array.from({ length: 6 }).map((_, idx) => (
+                          <SkeletonAccordian key={idx} />
+                        ))
+                      : upcomingEvents.map((event, index) => (
+                          <AccordionItem
+                            value={`item-${index}`}
+                            key={event.idEvent}
+                          >
+                            <AccordionTrigger className="text-sx sm:text-lg font-semibold cursor-pointer ">
+                              <div className="flex w-full justify-between items-center gap-12">
+                                <span className="text-gradient">
+                                  {event.strEvent}
+                                </span>
+                                <span className="text-muted-foreground">
+                                  {new Date(
+                                    event.strTimestamp
+                                  ).toLocaleDateString("en-GB", {
+                                    day: "numeric",
+                                    month: "short",
+                                  })}
+                                </span>
                               </div>
+                            </AccordionTrigger>
 
-                              {/* Right: Info */}
-                              <div className="flex flex-col justify-between w-full sm:w-2/3 gap-2 sm:gap-3">
-                                <div>
-                                  <h3 className="text-lg sm:text-xl font-bold text-gradient">
-                                    {event.strLeague}
-                                  </h3>
-                                  <p className="text-xs sm:text-sm text-gray-400">
-                                    Round {event.intRound} • Season{" "}
-                                    {event.strSeason}
-                                  </p>
-                                  <p className="mt-2 text-sm sm:text-base text-white flex items-center gap-1">
-                                    <LineSquiggle className="w-4 sm:w-5 text-primary" />
-                                    {event.strVenue}, {event.strCountry}
-                                  </p>
+                            <AccordionContent>
+                              <div className="flex flex-col sm:flex-row gap-4 rounded-2xl bg-primary/10 p-3 sm:p-4 m-2 sm:m-4 racing-glow border border-primary/20">
+                                <div className="w-full sm:w-1/3">
+                                  <SkeletonImage
+                                    src={
+                                      event.strThumb ||
+                                      event.strPoster ||
+                                      "/fallback.jpg"
+                                    }
+                                    alt={event.strEvent}
+                                    className="w-full h-40 sm:h-full object-cover rounded-xl"
+                                  />
                                 </div>
 
-                                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-2 sm:mt-4 gap-1 sm:gap-2">
-                                  <p className="text-xs sm:text-sm text-gray-300">
-                                    {new Date(
-                                      event.strTimestamp
-                                    ).toLocaleDateString("en-GB", {
-                                      weekday: "long",
-                                      day: "numeric",
-                                      month: "long",
-                                      year: "numeric",
-                                    })}{" "}
-                                    • {event.strTimeLocal}
-                                  </p>
+                                {/* Right: Info */}
+                                <div className="flex flex-col justify-between w-full sm:w-2/3 gap-2 sm:gap-3">
+                                  <div>
+                                    <h3 className="text-lg sm:text-xl font-bold text-gradient">
+                                      {event.strLeague}
+                                    </h3>
+                                    <p className="text-xs sm:text-sm text-gray-400">
+                                      Round {event.intRound} • Season{" "}
+                                      {event.strSeason}
+                                    </p>
+                                    <p className="mt-2 text-sm sm:text-base text-white flex items-center gap-1">
+                                      <LineSquiggle className="w-4 sm:w-5 text-primary" />
+                                      {event.strVenue}, {event.strCountry}
+                                    </p>
+                                  </div>
+
+                                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-2 sm:mt-4 gap-1 sm:gap-2">
+                                    <p className="text-xs sm:text-sm text-gray-300">
+                                      {new Date(
+                                        event.strTimestamp
+                                      ).toLocaleDateString("en-GB", {
+                                        weekday: "long",
+                                        day: "numeric",
+                                        month: "long",
+                                        year: "numeric",
+                                      })}{" "}
+                                      • {event.strTimeLocal}
+                                    </p>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                    )) }
-                    
+                            </AccordionContent>
+                          </AccordionItem>
+                        ))}
                   </Accordion>
                 </CardContent>
               </Card>

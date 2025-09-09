@@ -1,7 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
+
+export const viewport: Viewport = {
+  themeColor: "#ff2600",
+}
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +18,60 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.motorsportsai.in"),
   title: "Motorsports AI",
-  description: "Track upcoming motorsport events with the power of AI",
+  description:
+    "Discover and track upcoming motorsport events with AI-powered insights. Stay updated with races, schedules, and leagues in one place.",
+  keywords: [
+    "Motorsport",
+    "Racing",
+    "F1 events",
+    "MotoGP schedule",
+    "racing leagues",
+    "upcoming races",
+    "NASCAR",
+    "BTCC",
+    "V8 Supercars",
+    "WRC",
+    "SGT",
+    "IMSA",
+    "IndyCar",
+    "British GT",
+  ],
+  authors: [
+    { name: "Mohd Sohail Ansari", url: "https://www.motorsportsai.in" },
+    {
+      name: "Mohd Sohail Ansari",
+      url: "https://sohail-portfolio-ruby.vercel.app",
+    },
+    { name: "Vaidik Dubey", url: "https://www.vaidik.life" },
+  ],
+  openGraph: {
+    title: "Motorsports AI",
+    description: "Track upcoming motorsport events with the power of AI. Stay informed with smart insights on leagues, venues, and schedules.",
+    url: "https://www.motorsportsai.in",
+    siteName: "Motorsports AI",
+    images: [{
+      url: "/og-banner.png",
+      width: 1200,
+      height: 630,
+      alt: "Motorsports AI - Preview Image"
+    }],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Motorsports AI",
+    description:
+      "Discover and track upcoming motorsport events with AI-powered insights. Stay updated with races, schedules, and leagues in one place.",
+    images: ["/og-banner.png"],
+    creator: "@codephilic_guy",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.PNG",
+  },
 };
 
 export default function RootLayout({
