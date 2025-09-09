@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import LeaguesMenu from "./LeaguesMenu";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import Link from "next/link";
 
 interface RacingNavProps {
   activeLeague: string;
@@ -18,24 +19,27 @@ export function RacingNav({ activeLeague, onLeagueChange }: RacingNavProps) {
   const isMobile = useIsMobile(640);
 
   useEffect(() => {
-    if(!isMobile){
+    if (!isMobile) {
       setIsMobileMenuOpen(false);
     }
-  },[isMobile]);
+  }, [isMobile]);
 
   return (
     <nav className="glass-effect p-4 shadow-lg">
       <div className="flex justify-between items-center">
-        <div className="flex items-center gap-3">
-          <Image
-            src="/logo.png"
-            width={50}
-            height={50}
-            alt="Motorsports AI Logo"
-            className="rounded-lg border"
-          />
-          <h1 className="text-3xl font-bold text-gradient">Motorsports AI</h1>
-        </div>
+        <Link href="/">
+          <div className="flex items-center gap-3">
+            <Image
+              src="/logo.png"
+              width={50}
+              height={50}
+              alt="Motorsports AI Logo"
+              className="rounded-lg border"
+            />
+            <h1 className="text-3xl font-bold text-gradient">Motorsports AI</h1>
+          </div>
+        </Link>
+
         <div className="hidden md:flex items-center gap-2">
           {allLeagues.map((league) => (
             <Button
@@ -60,7 +64,8 @@ export function RacingNav({ activeLeague, onLeagueChange }: RacingNavProps) {
           ))}
         </div>
         <div id="leaguesMenu" className="md:hidden">
-          <Button onClick={() => setIsMobileMenuOpen((prev) => !prev)}>{isMobileMenuOpen ? <X /> : <Menu />}
+          <Button onClick={() => setIsMobileMenuOpen((prev) => !prev)}>
+            {isMobileMenuOpen ? <X /> : <Menu />}
           </Button>
         </div>
       </div>
