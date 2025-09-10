@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     url: "https://www.motorsportsai.in",
     siteName: "Motorsports AI",
     images: [{
-      url: "/og-banner.png",
+      url: "/og-banner.jpg",
       width: 1200,
       height: 630,
       alt: "Motorsports AI - Preview Image"
@@ -65,12 +65,12 @@ export const metadata: Metadata = {
     title: "Motorsports AI",
     description:
       "Discover and track upcoming motorsport events with AI-powered insights. Stay updated with races, schedules, and leagues in one place.",
-    images: ["/og-banner.png"],
+    images: ["/og-banner.jpg"],
     creator: "@codephilic_guy",
   },
   icons: {
     icon: "/favicon.ico",
-    apple: "/apple-touch-icon.PNG",
+    apple: "/apple-touch-icon.png",
   },
 };
 
