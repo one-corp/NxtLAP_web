@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import Navigation from "@/components/Navigation";
+import MobileNavigation from "@/components/MobileNavigation";
 
 export const viewport: Viewport = {
   themeColor: "#ff2600",
@@ -84,6 +86,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div className="fixed top-0 left-0 right-0 z-50">
+          <Navigation />
+        </div>
+        <div className="md:hidden fixed bottom-0 left-0 right-0 z-50">
+          <MobileNavigation />
+        </div>
         {children}
         <Analytics />
       </body>

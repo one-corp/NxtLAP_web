@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { allLeagues } from "@/Data/Leagues";
 import { League } from "@/types/League";
-import { RacingNav } from "@/components/racingNav";
 import { LeagueCard } from "@/components/leagueCard";
 import { Card, CardContent } from "@/components/ui/card";
 import { LineSquiggle, ClipboardClock } from "lucide-react";
@@ -52,12 +51,6 @@ export default function Home() {
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 z-50">
-        <RacingNav
-          activeLeague={activeLeague}
-          onLeagueChange={setActiveLeague}
-        />
-      </div>
       <div className="min-h-screen racing-gradient">
         {/* Background Pattern */}
         <div className="fixed inset-0 opacity-5">
