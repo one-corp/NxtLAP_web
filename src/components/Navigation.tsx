@@ -9,16 +9,16 @@ function Navigation() {
   const pathname = usePathname();
 
   return (
-    <nav className="glass-effect p-4 shadow-lg">
+    <nav className="glass-effect p-2 px-2 md:px-8 shadow-lg">
       <div className="flex justify-between items-center">
         <Link href="/">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <Image
               src="/logo.png"
               width={50}
               height={50}
               alt="Motorsports AI Logo"
-              className="rounded-lg border"
+              className="rounded-lg border w-10"
             />
             <h1 className="text-3xl font-bold text-gradient">Motorsports AI</h1>
           </div>

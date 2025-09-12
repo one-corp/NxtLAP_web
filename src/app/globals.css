@@ -85,15 +85,6 @@
     --gradient-racing: linear-gradient(120deg, var(--background), hsl(220 100% 5%), var(--background));
     --gradient-speed: linear-gradient(90deg, var(--primary), hsl(25 100% 45%));
     --gradient-track: linear-gradient(45deg, var(--secondary), var(--accent));
-    
-    /* Speed animations */
-    --speed-lines: repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 10px,
-      var(--primary) / 0.1 12px,
-      var(--primary) / 0.1 14px
-    );
 
     --sidebar-background: hsl(0 0% 98%);
     --sidebar-foreground: hsl(240 5.3% 26.1%);
@@ -168,10 +159,6 @@
   
   .track-gradient {
     background: var(--gradient-track);
-  }
-  
-  .speed-lines {
-    background: var(--speed-lines);
   }
   
   .glass-effect {
