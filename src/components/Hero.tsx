@@ -19,9 +19,8 @@ interface HeroProps {
 }
 
 function Hero({ selectedleague }: HeroProps) {
-  
   return (
-    <div className="relative h-64 sm:h-80 md:h-96">
+    <div className="relative h-64 md:h-[500px]">
       <Image
         src={selectedleague.banner}
         alt={selectedleague.name}
@@ -33,30 +32,12 @@ function Hero({ selectedleague }: HeroProps) {
       <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-background/50 to-transparent" />
       <div className="absolute inset-0 bg-gradient-to-t from-accent via-accent/50 to-transparent" />
 
-      <div className="absolute inset-0 flex items-center">
-        <div className="container mx-auto px-4 sm:px-8">
+      <div className="absolute inset-0 m-4">
           <div className="max-w-lg sm:max-w-2xl space-y-4 sm:space-y-6">
-            {/* Logo + Name */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-              <Image
-                src={selectedleague.logo}
-                alt={`${selectedleague.name} logo`}
-                width={100}
-                height={100}
-                className="w-14 h-14 sm:w-16 sm:h-16 object-contain bg-card/80 border rounded-xl p-2 sm:p-3 backdrop-blur-xl"
-              />
-              <div>
-                <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gradient">
-                  {selectedleague.name}
-                </h1>
-                <Badge variant="outline" className="mt-1 sm:mt-2">
-                  {selectedleague.shortName}
-                </Badge>
-              </div>
-            </div>
-
-            {/* Founded + Sport */}
             <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-foreground">
+              <Badge variant="outline">
+                {selectedleague.shortName}
+              </Badge>
               <div className="flex items-center gap-2 text-sm sm:text-base">
                 <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                 <span className="font-semibold">
@@ -67,6 +48,7 @@ function Hero({ selectedleague }: HeroProps) {
                 <Trophy className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                 <span className="font-semibold">{selectedleague.sport}</span>
               </div>
+              
             </div>
 
             {/* Description */}
@@ -89,23 +71,35 @@ function Hero({ selectedleague }: HeroProps) {
 
               <div className="flex flex-wrap gap-2 sm:gap-3">
                 {selectedleague.facebook && (
-                  <SocialMediaBtn url={selectedleague.facebook} icon={<Facebook className="w-4 h-4" />} />
+                  <SocialMediaBtn
+                    url={selectedleague.facebook}
+                    icon={<Facebook className="w-4 h-4" />}
+                  />
                 )}
                 {selectedleague.x && (
-                  <SocialMediaBtn url={selectedleague.x} icon={<Twitter className="w-4 h-4" />} />
+                  <SocialMediaBtn
+                    url={selectedleague.x}
+                    icon={<Twitter className="w-4 h-4" />}
+                  />
                 )}
                 {selectedleague.youtube && (
-                  <SocialMediaBtn url={selectedleague.youtube} icon={<Youtube className="w-4 h-4" />} />
+                  <SocialMediaBtn
+                    url={selectedleague.youtube}
+                    icon={<Youtube className="w-4 h-4" />}
+                  />
                 )}
                 {selectedleague.instagram && (
-                  <SocialMediaBtn url={selectedleague.instagram} icon={<Instagram className="w-4 h-4" />} />
+                  <SocialMediaBtn
+                    url={selectedleague.instagram}
+                    icon={<Instagram className="w-4 h-4" />}
+                  />
                 )}
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    
   );
 }
 
