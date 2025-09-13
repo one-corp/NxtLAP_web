@@ -20,7 +20,7 @@ interface HeroProps {
 
 function Hero({ selectedleague }: HeroProps) {
   return (
-    <div className="relative h-64 md:h-[500px]">
+    <div className="relative h-64 md:h-96">
       <Image
         src={selectedleague.banner}
         alt={selectedleague.name}
@@ -52,7 +52,7 @@ function Hero({ selectedleague }: HeroProps) {
             </div>
 
             {/* Description */}
-            <p className="text-sm sm:text-lg text-foreground/80 leading-relaxed max-w-md sm:max-w-xl">
+            <p className="text-sm hidden md:block sm:text-lg text-foreground/80 leading-relaxed max-w-md sm:max-w-xl">
               {selectedleague.description.slice(0, 200)}...
             </p>
 

@@ -38,7 +38,7 @@ function LeaguesAccordion() {
                   {/* Banner */}
                   <Hero selectedleague={league} />
                   {/* Upcoming Events */}
-                  <Card className="bg-accent pt-24 md:pt-0 rounded-none border-0">
+                  <Card className="bg-accent rounded-none border-0">
                     <CardContent className="p-4 sm:p-8 space-y-6">
                       <div className="flex items-center gap-2">
                         <ClipboardClock className="text-primary" />

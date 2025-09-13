@@ -9,12 +9,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { LineSquiggle, ClipboardClock } from "lucide-react";
 import { baseURL } from "@/utils/constants";
 import { Event } from "@/types/Event";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import Hero from "@/components/Hero";
 import { SkeletonAccordian } from "@/components/SkeletonAccordian";
 import { SkeletonImage } from "@/components/SkeletonImage";
