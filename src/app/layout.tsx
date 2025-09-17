@@ -4,10 +4,11 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import Navigation from "@/components/Navigation";
 import MobileNavigation from "@/components/MobileNavigation";
+import Footer from "@/components/Footer";
 
 export const viewport: Viewport = {
   themeColor: "#ff2600",
-}
+};
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,15 +51,18 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Motorsports AI",
-    description: "Track upcoming motorsport events with the power of AI. Stay informed with smart insights on leagues, venues, and schedules.",
+    description:
+      "Track upcoming motorsport events with the power of AI. Stay informed with smart insights on leagues, venues, and schedules.",
     url: "https://www.motorsportsai.in",
     siteName: "Motorsports AI",
-    images: [{
-      url: "/og-banner.png",
-      width: 1200,
-      height: 630,
-      alt: "Motorsports AI - Preview Image"
-    }],
+    images: [
+      {
+        url: "/og-banner.png",
+        width: 1200,
+        height: 630,
+        alt: "Motorsports AI - Preview Image",
+      },
+    ],
     locale: "en_US",
     type: "website",
   },
@@ -93,6 +97,7 @@ export default function RootLayout({
           <MobileNavigation />
         </div>
         {children}
+        <Footer />
         <Analytics />
       </body>
     </html>
