@@ -2,10 +2,13 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import Navigation from "@/components/Navigation";
+import MobileNavigation from "@/components/MobileNavigation";
+import Footer from "@/components/Footer";
 
 export const viewport: Viewport = {
   themeColor: "#ff2600",
-}
+};
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,15 +51,18 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Motorsports AI",
-    description: "Track upcoming motorsport events with the power of AI. Stay informed with smart insights on leagues, venues, and schedules.",
+    description:
+      "Track upcoming motorsport events with the power of AI. Stay informed with smart insights on leagues, venues, and schedules.",
     url: "https://www.motorsportsai.in",
     siteName: "Motorsports AI",
-    images: [{
-      url: "/og-banner.png",
-      width: 1200,
-      height: 630,
-      alt: "Motorsports AI - Preview Image"
-    }],
+    images: [
+      {
+        url: "/og-banner.png",
+        width: 1200,
+        height: 630,
+        alt: "Motorsports AI - Preview Image",
+      },
+    ],
     locale: "en_US",
     type: "website",
   },
@@ -84,7 +90,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div className="fixed top-0 left-0 right-0 z-50">
+          <Navigation />
+        </div>
+        <div className="md:hidden fixed bottom-0 left-0 right-0 z-50">
+          <MobileNavigation />
+        </div>
         {children}
+        <Footer />
         <Analytics />
       </body>
     </html>
