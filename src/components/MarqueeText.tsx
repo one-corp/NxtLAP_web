@@ -3,7 +3,7 @@ import Marquee from "react-fast-marquee";
 
 function MarqueeText() {
   return (
-    <div className="font-bold overflow-hidden">
+    <div className="font-bold overflow-hidden pt-2">
       {/* Top line scroll left */}
       <Marquee speed={40}>
         <span>

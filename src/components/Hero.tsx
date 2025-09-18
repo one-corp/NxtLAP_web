@@ -58,7 +58,7 @@ function Hero({ selectedleague }: HeroProps) {
                 </span>
               </div>
 
-              <div className="flex items-center text-green-400 gap-2 px-4 py-2 bg-chart-2/20 rounded-full backdrop-blur-sm border border-chart-2/30">
+              <div className="hidden md:flex items-center text-green-400 gap-2 px-4 py-2 bg-chart-2/20 rounded-full backdrop-blur-sm border border-chart-2/30">
                 <Trophy className="w-4 h-4" />
                 <span className="text-xs md:text-sm font-medium">
                   {selectedleague.sport}

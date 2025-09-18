@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 
 function Page() {
   return (
-    <section className="relative flex flex-col items-center justify-center py-12 sm:py-20 px-4 sm:px-6">
+    <section className="relative flex flex-col items-center justify-center py-12 sm:py-20 px-4 sm:px-6 mb-10">
 
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none mt-20 sm:mt-24">
         <div className="w-[95%] sm:w-[90%] max-w-5xl h-full border-2 border-dashed border-border rounded-lg" />
