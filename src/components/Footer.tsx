@@ -25,13 +25,13 @@ function Footer() {
         <div className="space-y-4">
           <div className="relative">
             {/* Glowing effect behind text */}
-            <div className="absolute inset-0 text-gradient text-6xl md:text-[200px] blur-sm opacity-30 select-none">
+            <div className="absolute inset-0 text-gradient font-bold text-5xl md:text-[200px] blur-sm opacity-30 select-none">
               <h1 className="leading-none">Motorsports</h1>
               <h1 className="leading-none -mt-2 md:-mt-12">AI</h1>
             </div>
 
             {/* Main text */}
-            <div className="relative text-gradient text-6xl md:text-[200px] tracking-normal">
+            <div className="relative text-gradient font-bold text-5xl md:text-[200px] tracking-normal">
               <h1 className="leading-none">Motorsports</h1>
               <h1 className="leading-none -mt-2 md:-mt-12">AI</h1>
             </div>
