@@ -27,6 +27,9 @@ export default function Home() {
         const futureEvents: Event[] =
           data?.events.filter((event: Event) => event.strTimestamp > now) || [];
 
+          console.log(futureEvents);
+          
+
         setUpcomingEvents(futureEvents);
       } catch (e) {
         console.error(e instanceof Error ? e.message : e);
