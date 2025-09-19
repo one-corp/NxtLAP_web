@@ -8,9 +8,35 @@ import {
 import Image from "next/image";
 import Hero from "./Hero";
 import { Card, CardContent } from "@/components/ui/card";
-import { ClipboardClock} from "lucide-react";
+import { ClipboardClock } from "lucide-react";
+import EventCard from "./EventCard";
 
 function LeaguesAccordion() {
+  const eventInfo = {
+    idEvent: "2225675",
+    idLeague: "4370",
+    idVenue: "15627",
+    strEvent: "Azerbaijan Grand Prix Free Practice 2",
+    strPoster:
+      "https://r2.thesportsdb.com/images/media/event/poster/t41w7q1740497000.jpg",
+    intRound: 17,
+    strBanner:
+      "https://r2.thesportsdb.com/images/media/event/banner/x8kkkt1740497439.jpg",
+    strMap: "",
+    strLeagueBadge:
+      "https://r2.thesportsdb.com/images/media/league/badge/g8cofl1513623681.png",
+    strVenue: "Baku City Circuit",
+    strCity: "Baku",
+    strCountry: "Azerbaijan",
+    strLeague: "Formula 1",
+    strPostponed: "no",
+    strSeason: "2025",
+    strThumb:
+      "https://r2.thesportsdb.com/images/media/event/thumb/rlk1671740496476.jpg",
+    strTime: "12:00:00",
+    strTimeLocal: "16:00:00",
+    strTimestamp: "2025-09-19T12:00:00",
+  };
   return (
     <section
       id="all-leagues"
@@ -25,7 +51,8 @@ function LeaguesAccordion() {
           Explore Racing Leagues
         </h2>
         <p className="text-accent-foreground text-lg sm:text-xl max-w-2xl mx-auto">
-          Discover details, upcoming races, and follow your favorite motorsport leagues worldwide.
+          Discover details, upcoming races, and follow your favorite motorsport
+          leagues worldwide.
         </p>
       </div>
 
@@ -54,7 +81,7 @@ function LeaguesAccordion() {
                 <h1 className="font-bold text-left leading-tight">
                   {league.name}
                 </h1>
-              </div>            
+              </div>
             </AccordionTrigger>
 
             <AccordionContent className="bg-background backdrop-blur-sm p-0">
@@ -65,7 +92,7 @@ function LeaguesAccordion() {
                   <div className="absolute inset-0 bg-gradient-to-t from-background/10 via-transparent to-transparent pointer-events-none" />
                 </div>
 
-                {/* Upcoming Events */}
+                {/* Upcoming This Week */}
                 <Card className="bg-card backdrop-blur-sm rounded-none border-0 p-0 shadow-lg">
                   <CardContent className="p-6 sm:p-8 space-y-6">
                     <div className="flex items-center gap-3">
@@ -73,18 +100,10 @@ function LeaguesAccordion() {
                         <ClipboardClock className="text-primary w-6 h-6" />
                       </div>
                       <h2 className="text-xl sm:text-2xl font-bold text-gradient">
-                        Upcoming Events
+                        Upcoming This Week
                       </h2>
                     </div>
-                    <div className="bg-slate-700/30 rounded-xl p-6 border border-slate-600/30">
-                      <p className="text-slate-300 text-base leading-relaxed">
-                        Race schedules and events will be displayed here. Stay tuned for the latest updates on upcoming races, qualifying sessions, and championship standings.
-                      </p>
-                      <div className="mt-4 flex items-center gap-2">
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                        <span className="text-sm text-green-400 font-medium">Live updates coming soon</span>
-                      </div>
-                    </div>
+                    <EventCard eventData={eventInfo} />
                   </CardContent>
                 </Card>
               </Card>
