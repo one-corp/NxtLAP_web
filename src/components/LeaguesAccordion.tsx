@@ -1,3 +1,5 @@
+"use client";
+
 import { allLeagues } from "@/Data/Leagues";
 import {
   Accordion,
@@ -10,33 +12,56 @@ import Hero from "./Hero";
 import { Card, CardContent } from "@/components/ui/card";
 import { ClipboardClock } from "lucide-react";
 import EventCard from "./EventCard";
+import { useState, useEffect } from "react";
+import { League } from "@/types/League";
+import { baseURL } from "@/utils/constants";
+import { Event } from "@/types/Event";
+import { EventCardSkeleton } from "./skeletons/EventCard";
 
 function LeaguesAccordion() {
-  const eventInfo = {
-    idEvent: "2225675",
-    idLeague: "4370",
-    idVenue: "15627",
-    strEvent: "Azerbaijan Grand Prix Free Practice 2",
-    strPoster:
-      "https://r2.thesportsdb.com/images/media/event/poster/t41w7q1740497000.jpg",
-    intRound: 17,
-    strBanner:
-      "https://r2.thesportsdb.com/images/media/event/banner/x8kkkt1740497439.jpg",
-    strMap: "",
-    strLeagueBadge:
-      "https://r2.thesportsdb.com/images/media/league/badge/g8cofl1513623681.png",
-    strVenue: "Baku City Circuit",
-    strCity: "Baku",
-    strCountry: "Azerbaijan",
-    strLeague: "Formula 1",
-    strPostponed: "no",
-    strSeason: "2025",
-    strThumb:
-      "https://r2.thesportsdb.com/images/media/event/thumb/rlk1671740496476.jpg",
-    strTime: "12:00:00",
-    strTimeLocal: "16:00:00",
-    strTimestamp: "2025-09-19T12:00:00",
-  };
+  const [selectedLeague, setSelectedLeague] = useState<League | null>(null);
+  const [loadingEvents, setLoadingEvents] = useState<boolean>(false);
+  const [upcomingEvents, setUpcomingEvents] = useState<Event[]>([]);
+
+  useEffect(() => {
+    const fetchLeageEvents = async () => {
+      try {
+        setLoadingEvents(true);
+        const response = await fetch(
+          `${baseURL}/eventsseason.php?id=${
+            selectedLeague?.id
+          }&s=${new Date().getFullYear()}`
+        );
+        const data = await response.json();
+
+        // Ensure events is an array before filtering
+        const eventsArray = Array.isArray(data?.events) ? data.events : [];
+
+        //getting current time
+        const now = new Date();
+
+        //Calculating end of current week
+        const endOfWeek = new Date(now);
+        endOfWeek.setDate(now.getDate() + (7 - now.getDay()));
+
+        //Converting to ISO:
+        const nowISO = now.toISOString().slice(0, 19);
+        const endOfWeekISO = endOfWeek.toISOString().slice(0, 19);
+
+        const futureEvents: Event[] =
+          eventsArray.filter((event: Event) => event.strTimestamp > nowISO) ||
+          [];
+
+        setUpcomingEvents(futureEvents);
+      } catch (e) {
+        console.error(e instanceof Error ? e.message : e);
+      } finally {
+        setLoadingEvents(false);
+      }
+    };
+    fetchLeageEvents();
+  }, [selectedLeague]);
+
   return (
     <section
       id="all-leagues"
@@ -67,7 +92,10 @@ function LeaguesAccordion() {
             key={league.id}
             className="group rounded-2xl border border-slate-700/50 bg-slate-800/40 backdrop-blur-md shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-slate-600/60 hover:bg-slate-800/60"
           >
-            <AccordionTrigger className="rounded-b-none px-6 sm:px-8 py-6 font-semibold text-xl sm:text-2xl cursor-pointer flex items-center justify-between gap-6 hover:bg-slate-700/30 transition-all duration-300 data-[state=open]:bg-slate-700/40 data-[state=open]:border-b data-[state=open]:border-slate-600/50 data-[state=open]:text-primary [&>svg]:hidden">
+            <AccordionTrigger
+              onClick={() => setSelectedLeague(league)}
+              className="rounded-b-none px-6 sm:px-8 py-6 font-semibold text-xl sm:text-2xl cursor-pointer flex items-center justify-between gap-6 hover:bg-slate-700/30 transition-all duration-300 data-[state=open]:bg-slate-700/40 data-[state=open]:border-b data-[state=open]:border-slate-600/50 data-[state=open]:text-primary [&>svg]:hidden"
+            >
               <div className="flex items-center gap-6 text-left flex-1">
                 <div className="relative flex-shrink-0">
                   <Image
@@ -100,10 +128,10 @@ function LeaguesAccordion() {
                         <ClipboardClock className="text-primary w-6 h-6" />
                       </div>
                       <h2 className="text-xl sm:text-2xl font-bold text-gradient">
-                        Upcoming This Week
+                        Upcoming events
                       </h2>
                     </div>
-                    <EventCard eventData={eventInfo} />
+                    {loadingEvents ? <EventCardSkeleton /> : <EventCard events={upcomingEvents} />}
                   </CardContent>
                 </Card>
               </Card>
