@@ -11,6 +11,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "www.thesportsdb.com",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
         hostname: "cdn.pixabay.com",
         pathname: "**",
       },
