@@ -25,15 +25,13 @@ function Footer() {
         <div className="space-y-4">
           <div className="relative">
             {/* Glowing effect behind text */}
-            <div className="absolute inset-0 text-gradient font-bold text-5xl md:text-[200px] blur-sm opacity-30 select-none">
-              <h1 className="leading-none">Motorsports</h1>
-              <h1 className="leading-none -mt-2 md:-mt-12">AI</h1>
+            <div className="absolute inset-0 text-center text-gradient font-bold text-5xl md:text-[200px] blur-sm opacity-30 select-none">
+              <h1 className="leading-none">NxtLAP</h1>
             </div>
 
             {/* Main text */}
-            <div className="relative text-gradient font-bold text-5xl md:text-[200px] tracking-normal">
-              <h1 className="leading-none">Motorsports</h1>
-              <h1 className="leading-none -mt-2 md:-mt-12">AI</h1>
+            <div className="relative text-center text-gradient font-bold text-5xl md:text-[200px] tracking-normal">
+              <h1 className="leading-none">NxtLAP</h1>
             </div>
           </div>
         </div>
@@ -102,7 +100,7 @@ function Footer() {
 
             <div className="text-center">
               <p className="text-slate-400 text-sm font-medium">
-                © {new Date().getFullYear()} Motorsports AI
+                © {new Date().getFullYear()} NxtLAP
               </p>
               <p className="text-slate-500 text-xs mt-1">All rights reserved</p>
             </div>

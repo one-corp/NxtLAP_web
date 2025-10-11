@@ -30,10 +30,10 @@ function Page() {
           need to get started. If you still have questions, feel free to reach
           out to us at{" "}
           <a
-            href="mailto:support@motorsportsai.in"
+            href="mailto:founders@nxtlap.com"
             className="text-primary/80 underline break-words"
           >
-            support@motorsportsai.in
+            founders@nxtlap.com
           </a>
           .
         </p>
