@@ -1,11 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
-import { remark } from "remark";
-import remarkRehype from "remark-rehype";
-import rehypeStringify from "rehype-stringify";
-import rehypePrettyCode from "rehype-pretty-code";
-import { formatISO, parseISO } from "date-fns";
+import { marked } from "marked";
 
 export type PostMeta = {
   title: string;
@@ -60,9 +56,7 @@ export async function getAllPostsMeta(): Promise<PostMeta[]> {
       const meta: PostMeta = {
         title: data.title ?? slug,
         description: data.description ?? "",
-        date: data.date 
-          ? formatISO(parseISO(String(data.date))) 
-          : new Date().toISOString(),
+        date: data.date ? String(data.date) : new Date().toISOString(),
         tags: Array.isArray(data.tags) 
           ? data.tags 
           : (data.tags ? [String(data.tags)] : []),
@@ -81,6 +75,12 @@ export async function getAllPostsMeta(): Promise<PostMeta[]> {
   return posts;
 }
 
+// Configure marked
+marked.setOptions({
+  gfm: true,
+  breaks: false,
+});
+
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   const possible = [`${slug}.mdx`, `${slug}.md`];
   
@@ -90,24 +90,13 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
       const raw = await fs.readFile(fullPath, "utf-8");
       const { data, content } = matter(raw);
 
-      // Use remark -> rehype -> stringify to produce HTML
-      const processed = await remark()
-        .use(remarkRehype, { allowDangerousHtml: true })
-        .use(rehypePrettyCode, {
-          theme: "one-dark-pro",
-          keepBackground: false,
-        })
-        .use(rehypeStringify, { allowDangerousHtml: true })
-        .process(content);
-
-      const contentHtml = String(processed);
+      // Convert markdown to HTML using marked
+      const contentHtml = await marked(content);
 
       const meta: PostMeta = {
         title: data.title ?? slug,
         description: data.description ?? "",
-        date: data.date 
-          ? formatISO(parseISO(String(data.date))) 
-          : new Date().toISOString(),
+        date: data.date ? String(data.date) : new Date().toISOString(),
         tags: Array.isArray(data.tags) 
           ? data.tags 
           : (data.tags ? [String(data.tags)] : []),
@@ -117,7 +106,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 
       return { meta, contentHtml };
     } catch (err) {
-      // try next candidate
+      console.error(`Error processing ${fileName}:`, err);
       continue;
     }
   }
