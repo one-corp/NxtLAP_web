@@ -29,7 +29,7 @@ const lora = Lora({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.motorsportsai.in"),
-  title: "Motorsports AI",
+  title: "NxtLAP | Track upcoming motorsports events",
   description:
     "Discover and track upcoming motorsport events with AI-powered insights. Stay updated with races, schedules, and leagues in one place.",
   keywords: [

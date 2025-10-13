@@ -34,7 +34,7 @@ export default async function PostPage({ params }: Params) {
   if (!post) notFound();
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background pt-10">
       {/* Hero Section with Gradient */}
       <div className="relative bg-gradient-to-b from-card/50 to-transparent border-b border-border/50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -158,7 +158,7 @@ export default async function PostPage({ params }: Params) {
               prose-table:border-y prose-table:border-border prose-table:table-fixed
               prose-thead:border-b-2 prose-thead:border-border
               prose-th:border-0 prose-th:bg-transparent prose-th:px-4 prose-th:py-4 
-              prose-th:text-left prose-th:font-bold prose-th:text-foreground prose-th:text-base prose-th:align-top
+              prose-th:text-left prose-th:font-bold prose-th:text-foreground prose-th:text-base
               prose-td:border-0 prose-td:border-t prose-td:border-border/50 prose-td:px-4 prose-td:py-4 
               prose-td:text-muted-foreground prose-td:align-top prose-td:break-words
               prose-tr:border-0
