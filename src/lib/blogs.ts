@@ -17,7 +17,6 @@ export type Post = {
   contentHtml: string;
 };
 
-// Fixed path - note: "srt" -> "src"
 const POSTS_PATH = path.join(process.cwd(), "src", "posts");
 
 function slugFromFilename(filename: string) {

@@ -228,8 +228,8 @@
   .prose table thead th {
     @apply font-bold text-foreground bg-transparent;
     padding-top: 1rem;
+    text-align: left;
     padding-bottom: 1rem;
-    vertical-align: top;
     word-wrap: break-word;
     overflow-wrap: break-word;
   }
