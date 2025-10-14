@@ -10,7 +10,9 @@
     "validate:seo": "tsx scripts/validate-seo.ts",
     "validate:sitemap": "tsx scripts/validate-sitemap.ts",
     "validate:rss": "tsx scripts/validate-rss.ts",
-    "test:meta-tags": "tsx scripts/test-meta-tags.ts"
+    "test:meta-tags": "tsx scripts/test-meta-tags.ts",
+    "test:structured-data": "tsx scripts/test-structured-data.ts",
+    "verify:deployment": "bash scripts/verify-deployment.sh"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",

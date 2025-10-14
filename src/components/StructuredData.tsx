@@ -3,7 +3,7 @@
  * Injects JSON-LD structured data into the page head for SEO
  */
 
-import React from 'react';
+import Script from 'next/script';
 import {
   ArticleSchema,
   OrganizationSchema,
@@ -47,11 +47,12 @@ export function StructuredData({ data }: StructuredDataProps) {
   return (
     <>
       {schemas.map((schema, index) => (
-        <script
+        <Script
           key={`structured-data-${index}`}
+          id={`structured-data-${index}`}
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(schema, null, 0), // Minified JSON
+            __html: JSON.stringify(schema),
           }}
         />
       ))}

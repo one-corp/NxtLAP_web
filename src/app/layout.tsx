@@ -28,7 +28,7 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.motorsportsai.in"),
+  metadataBase: new URL("https://www.nxtlap.com"),
   title: "NxtLAP | Track upcoming motorsports events",
   description:
     "Discover and track upcoming motorsport events with AI-powered insights. Stay updated with races, schedules, and leagues in one place.",
@@ -48,19 +48,11 @@ export const metadata: Metadata = {
     "IndyCar",
     "British GT",
   ],
-  authors: [
-    { name: "Mohd Sohail Ansari", url: "https://www.motorsportsai.in" },
-    {
-      name: "Mohd Sohail Ansari",
-      url: "https://sohail-portfolio-ruby.vercel.app",
-    },
-    { name: "Vaidik Dubey", url: "https://www.vaidik.life" },
-  ],
   openGraph: {
     title: "Motorsports AI",
     description:
       "Track upcoming motorsport events with the power of AI. Stay informed with smart insights on leagues, venues, and schedules.",
-    url: "https://www.motorsportsai.in",
+    url: "https://www.nxtlap.com",
     siteName: "Motorsports AI",
     images: [
       {
