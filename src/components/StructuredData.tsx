@@ -1,9 +1,11 @@
 /**
  * StructuredData Component
- * Injects JSON-LD structured data into the page head for SEO
+ * Injects JSON-LD structured data into the page for SEO
+ * 
+ * Note: In Next.js App Router, we render script tags directly (not using next/script)
+ * because JSON-LD is data, not executable JavaScript
  */
 
-import Script from 'next/script';
 import {
   ArticleSchema,
   OrganizationSchema,
