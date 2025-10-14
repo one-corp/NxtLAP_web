@@ -49,9 +49,8 @@ export function StructuredData({ data }: StructuredDataProps) {
   return (
     <>
       {schemas.map((schema, index) => (
-        <Script
+        <script
           key={`structured-data-${index}`}
-          id={`structured-data-${index}`}
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(schema),
