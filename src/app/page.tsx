@@ -1,7 +1,11 @@
 import LeaguesAccordion from "@/components/LeaguesAccordion";
 import { LatestBlogs } from "@/components/LatestBlogs";
 import { generatePageMetadata } from "@/lib/seo/metadata";
-import { buildOrganizationSchema, buildWebSiteSchema } from "@/lib/seo/structured-data";
+import {
+  buildOrganizationSchema,
+  buildWebSiteSchema,
+  buildItemListSchema,
+} from "@/lib/seo/structured-data";
 import { StructuredData } from "@/components/StructuredData";
 import { getAllPostsMeta } from "@/lib/blogs";
 
@@ -24,16 +28,20 @@ export const metadata = generatePageMetadata({
 });
 
 export default async function Home() {
-  // Generate Organization and WebSite schemas for rich search results
-  const organizationSchema = buildOrganizationSchema();
-  const webSiteSchema = buildWebSiteSchema();
-  
   // Get latest blog posts for homepage
   const posts = await getAllPostsMeta();
+  const latestPosts = posts.slice(0, 3);
+
+  // Generate schemas for rich search results
+  const organizationSchema = buildOrganizationSchema();
+  const webSiteSchema = buildWebSiteSchema();
+  const itemListSchema = buildItemListSchema(latestPosts);
 
   return (
     <>
-      <StructuredData data={[organizationSchema, webSiteSchema]} />
+      <StructuredData
+        data={[organizationSchema, webSiteSchema, itemListSchema]}
+      />
       <LeaguesAccordion />
       <LatestBlogs posts={posts} limit={3} />
     </>
