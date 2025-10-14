@@ -106,6 +106,22 @@ export interface WebSiteSchema {
 }
 
 /**
+ * ItemList Schema for blog post carousel
+ * Enables carousel/list rich results in search
+ */
+export interface ItemListSchema {
+  '@context': 'https://schema.org';
+  '@type': 'ItemList';
+  itemListElement: Array<{
+    '@type': 'ListItem';
+    position: number;
+    url: string;
+    name: string;
+    image?: string;
+  }>;
+}
+
+/**
  * SportsEvent Schema for motorsport events
  * Enables event rich snippets with date and location
  */
@@ -275,6 +291,25 @@ export function buildSportsEventSchema(event: Event): SportsEventSchema {
     },
     sport: 'Motorsport',
     ...(event.strPoster && { image: event.strPoster }),
+  };
+}
+
+/**
+ * Build ItemList schema for blog posts carousel
+ */
+export function buildItemListSchema(posts: PostMeta[]): ItemListSchema {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: posts.map((post, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      url: `${siteConfig.url}/blogs/${post.slug}`,
+      name: post.title,
+      image: post.featuredImage 
+        ? `${siteConfig.url}${post.featuredImage}`
+        : `${siteConfig.url}${siteConfig.ogImage}`,
+    })),
   };
 }
 
