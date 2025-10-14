@@ -313,22 +313,8 @@ export interface MetadataValidation {
   twitter: ValidationResult;
 }
 
-export function validateMetadata(metadata: {
-  title?: string;
-  description?: string;
-  openGraph?: {
-    title?: string;
-    description?: string;
-    images?: Array<{ url: string }>;
-    url?: string;
-  };
-  twitter?: {
-    card?: string;
-    title?: string;
-    description?: string;
-    images?: string[];
-  };
-}): MetadataValidation {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function validateMetadata(metadata: any): MetadataValidation {
   const titleResult: ValidationResult = {
     valid: true,
     errors: [],
@@ -354,23 +340,28 @@ export function validateMetadata(metadata: {
   };
 
   // Validate title
-  if (!metadata.title) {
+  // Handle both string and TemplateString from Next.js Metadata
+  const titleValue = typeof metadata.title === 'string' 
+    ? metadata.title 
+    : metadata.title?.default || metadata.title?.absolute;
+    
+  if (!titleValue || titleValue === null) {
     titleResult.valid = false;
     titleResult.errors.push('Missing title');
-  } else {
-    if (metadata.title.length > 60) {
-      titleResult.warnings.push(`Title is ${metadata.title.length} characters (recommended: under 60)`);
+  } else if (typeof titleValue === 'string') {
+    if (titleValue.length > 60) {
+      titleResult.warnings.push(`Title is ${titleValue.length} characters (recommended: under 60)`);
     }
-    if (metadata.title.length < 30) {
-      titleResult.warnings.push(`Title is ${metadata.title.length} characters (recommended: 30-60)`);
+    if (titleValue.length < 30) {
+      titleResult.warnings.push(`Title is ${titleValue.length} characters (recommended: 30-60)`);
     }
   }
 
   // Validate description
-  if (!metadata.description) {
+  if (!metadata.description || metadata.description === null) {
     descriptionResult.valid = false;
     descriptionResult.errors.push('Missing description');
-  } else {
+  } else if (typeof metadata.description === 'string') {
     if (metadata.description.length > 160) {
       descriptionResult.warnings.push(`Description is ${metadata.description.length} characters (recommended: 150-160)`);
     }
@@ -380,15 +371,15 @@ export function validateMetadata(metadata: {
   }
 
   // Validate Open Graph
-  if (!metadata.openGraph) {
+  if (!metadata.openGraph || metadata.openGraph === null) {
     openGraphResult.valid = false;
     openGraphResult.errors.push('Missing Open Graph metadata');
   } else {
-    if (!metadata.openGraph.title) {
+    if (!metadata.openGraph.title || metadata.openGraph.title === null) {
       openGraphResult.errors.push('Missing og:title');
       openGraphResult.valid = false;
     }
-    if (!metadata.openGraph.description) {
+    if (!metadata.openGraph.description || metadata.openGraph.description === null) {
       openGraphResult.errors.push('Missing og:description');
       openGraphResult.valid = false;
     }
@@ -396,13 +387,13 @@ export function validateMetadata(metadata: {
       openGraphResult.errors.push('Missing og:image');
       openGraphResult.valid = false;
     }
-    if (!metadata.openGraph.url) {
+    if (!metadata.openGraph.url || metadata.openGraph.url === null) {
       openGraphResult.warnings.push('Missing og:url (recommended)');
     }
   }
 
   // Validate Twitter Card
-  if (!metadata.twitter) {
+  if (!metadata.twitter || metadata.twitter === null) {
     twitterResult.valid = false;
     twitterResult.errors.push('Missing Twitter Card metadata');
   } else {
@@ -410,11 +401,11 @@ export function validateMetadata(metadata: {
       twitterResult.errors.push('Missing twitter:card');
       twitterResult.valid = false;
     }
-    if (!metadata.twitter.title) {
+    if (!metadata.twitter.title || metadata.twitter.title === null) {
       twitterResult.errors.push('Missing twitter:title');
       twitterResult.valid = false;
     }
-    if (!metadata.twitter.description) {
+    if (!metadata.twitter.description || metadata.twitter.description === null) {
       twitterResult.errors.push('Missing twitter:description');
       twitterResult.valid = false;
     }

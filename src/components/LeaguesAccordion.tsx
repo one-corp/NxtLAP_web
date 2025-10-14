@@ -46,7 +46,6 @@ function LeaguesAccordion() {
 
         //Converting to ISO:
         const nowISO = now.toISOString().slice(0, 19);
-        const endOfWeekISO = endOfWeek.toISOString().slice(0, 19);
 
         const futureEvents: Event[] =
           eventsArray.filter((event: Event) => event.strTimestamp > nowISO) ||
