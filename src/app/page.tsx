@@ -1,7 +1,9 @@
 import LeaguesAccordion from "@/components/LeaguesAccordion";
+import { LatestBlogs } from "@/components/LatestBlogs";
 import { generatePageMetadata } from "@/lib/seo/metadata";
 import { buildOrganizationSchema, buildWebSiteSchema } from "@/lib/seo/structured-data";
 import { StructuredData } from "@/components/StructuredData";
+import { getAllPostsMeta } from "@/lib/blogs";
 
 export const metadata = generatePageMetadata({
   title: "NxtLAP | Track Upcoming Motorsports Events",
@@ -21,15 +23,19 @@ export const metadata = generatePageMetadata({
   path: "/",
 });
 
-export default function Home() {
+export default async function Home() {
   // Generate Organization and WebSite schemas for rich search results
   const organizationSchema = buildOrganizationSchema();
   const webSiteSchema = buildWebSiteSchema();
+  
+  // Get latest blog posts for homepage
+  const posts = await getAllPostsMeta();
 
   return (
     <>
       <StructuredData data={[organizationSchema, webSiteSchema]} />
-      <LeaguesAccordion /> 
+      <LeaguesAccordion />
+      <LatestBlogs posts={posts} limit={3} />
     </>
   );
 }
