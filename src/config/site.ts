@@ -17,10 +17,6 @@ export const siteConfig = {
   
   authors: [
     {
-      name: 'Mohd Sohail Ansari',
-      url: 'https://sohail-portfolio-ruby.vercel.app',
-    },
-    {
       name: 'Vaidik Dubey',
       url: 'https://www.vaidik.life',
     },
