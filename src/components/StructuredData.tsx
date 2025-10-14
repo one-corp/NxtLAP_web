@@ -13,6 +13,7 @@ import {
   BreadcrumbSchema,
   WebSiteSchema,
   SportsEventSchema,
+  ItemListSchema,
 } from '@/lib/seo/structured-data';
 
 type StructuredDataSchema =
@@ -21,7 +22,8 @@ type StructuredDataSchema =
   | FAQSchema
   | BreadcrumbSchema
   | WebSiteSchema
-  | SportsEventSchema;
+  | SportsEventSchema
+  | ItemListSchema;
 
 interface StructuredDataProps {
   data: StructuredDataSchema | StructuredDataSchema[];
