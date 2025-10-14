@@ -62,7 +62,7 @@ export function LeagueCard({ league }: LeagueCardProps) {
           <div className="flex items-center gap-2">
             <Image
               src={league.trophy}
-              alt="Trophy"
+              alt={`${league.name} championship trophy`}
               width={500}
                 height={500}
               className="w-6 h-6 object-contain"

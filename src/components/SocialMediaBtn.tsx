@@ -9,6 +9,9 @@ interface SocialMediaBtnProps {
 }
 
 function SocialMediaBtn({ url, icon, className }: SocialMediaBtnProps) {
+  // Extract platform name from URL for aria-label
+  const platformName = url.split('/')[0].split('.')[0] || 'social media';
+  
   return (
     <Button
       variant="outline"
@@ -16,8 +19,13 @@ function SocialMediaBtn({ url, icon, className }: SocialMediaBtnProps) {
       asChild
       className={cn("bg-accent/30 hover:text-primary", className)}
     >
-      <a href={`https://${url}`} target="_blank" rel="noopener noreferrer">
-        {icon}
+      <a 
+        href={`https://${url}`} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        aria-label={`Follow on ${platformName}`}
+      >
+        <span aria-hidden="true">{icon}</span>
       </a>
     </Button>
   );

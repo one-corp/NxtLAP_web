@@ -46,20 +46,20 @@ function Hero({ selectedleague }: HeroProps) {
             <div className="flex flex-wrap items-center gap-3 mb-6">
               <Badge
                 variant="outline"
-                className="px-3 py-2 text-xsm md:text-sm font-semibold bg-secondary/20 border backdrop-blur-sm"
+                className="px-3 py-2 text-xsm md:text-sm font-semibold bg-secondary/30 border backdrop-blur-sm"
               >
                 {selectedleague.shortName}
               </Badge>
 
-              <div className="flex items-center gap-2 text-purple-400 px-4 py-2 bg-chart-1/20 rounded-full backdrop-blur-sm border border-chart-1/30">
-                <Calendar className="w-4 h-4" />
+              <div className="flex items-center gap-2 text-purple-300 px-4 py-2 bg-chart-1/30 rounded-full backdrop-blur-sm border border-chart-1/40">
+                <Calendar className="w-4 h-4" aria-hidden="true" />
                 <span className="text-xs md:text-sm font-medium">
                   Founded {selectedleague.formedYear}
                 </span>
               </div>
 
-              <div className="hidden md:flex items-center text-green-400 gap-2 px-4 py-2 bg-chart-2/20 rounded-full backdrop-blur-sm border border-chart-2/30">
-                <Trophy className="w-4 h-4" />
+              <div className="hidden md:flex items-center text-green-300 gap-2 px-4 py-2 bg-chart-2/30 rounded-full backdrop-blur-sm border border-chart-2/40">
+                <Trophy className="w-4 h-4" aria-hidden="true" />
                 <span className="text-xs md:text-sm font-medium">
                   {selectedleague.sport}
                 </span>
@@ -79,11 +79,12 @@ function Hero({ selectedleague }: HeroProps) {
                       href={`https://${selectedleague.website}`}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Visit ${selectedleague.name} official website`}
                       className="flex items-center gap-2"
                     >
-                      <Globe className="w-5 h-5" />
+                      <Globe className="w-5 h-5" aria-hidden="true" />
                       Official Website
-                      <ExternalLink className="w-4 h-4" />
+                      <ExternalLink className="w-4 h-4" aria-hidden="true" />
                     </a>
                   </Button>
 
@@ -92,15 +93,16 @@ function Hero({ selectedleague }: HeroProps) {
                       asChild
                       variant="outline"
                       size="sm"
-                      className="bg-chart-3/20 border-chart-3/30 text-chart-3 hover:bg-chart-3/30 hover:text-foreground backdrop-blur-sm transition-all duration-300"
+                      className="bg-chart-3/30 border-chart-3/40 text-chart-3 hover:bg-chart-3/40 hover:text-foreground backdrop-blur-sm transition-all duration-300"
                     >
                       <a
                         href={selectedleague.rss}
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label={`Subscribe to ${selectedleague.name} RSS feed`}
                         className="flex items-center gap-2"
                       >
-                        <Rss className="w-5 h-5" />
+                        <Rss className="w-5 h-5" aria-hidden="true" />
                         RSS Feed
                       </a>
                     </Button>
@@ -108,7 +110,7 @@ function Hero({ selectedleague }: HeroProps) {
                 </div>
 
                 {/* Social Media Links */}
-                <div className="flex items-center gap-2">
+                <nav className="flex items-center gap-2" aria-label="Social media links">
                   <span className="text-muted-foreground text-sm font-medium mr-2">
                     Follow:
                   </span>
@@ -117,32 +119,32 @@ function Hero({ selectedleague }: HeroProps) {
                       <SocialMediaBtn
                         url={selectedleague.facebook}
                         icon={<Facebook className="w-5 h-5" />}
-                        className="bg-blue-600/20 border-blue-500/30 text-blue-400 hover:bg-blue-600/30 hover:text-blue-300"
+                        className="bg-blue-600/30 border-blue-500/40 text-blue-300 hover:bg-blue-600/40 hover:text-blue-200"
                       />
                     )}
                     {selectedleague.x && (
                       <SocialMediaBtn
                         url={selectedleague.x}
                         icon={<Twitter className="w-5 h-5" />}
-                        className="bg-slate-600/20 border-slate-500/30 text-slate-400 hover:bg-slate-600/30 hover:text-slate-300"
+                        className="bg-slate-600/30 border-slate-500/40 text-slate-300 hover:bg-slate-600/40 hover:text-slate-200"
                       />
                     )}
                     {selectedleague.youtube && (
                       <SocialMediaBtn
                         url={selectedleague.youtube}
                         icon={<Youtube className="w-5 h-5" />}
-                        className="bg-red-600/20 border-red-500/30 text-red-400 hover:bg-red-600/30 hover:text-red-300"
+                        className="bg-red-600/30 border-red-500/40 text-red-300 hover:bg-red-600/40 hover:text-red-200"
                       />
                     )}
                     {selectedleague.instagram && (
                       <SocialMediaBtn
                         url={selectedleague.instagram}
                         icon={<Instagram className="w-5 h-5" />}
-                        className="bg-pink-600/20 border-pink-500/30 text-pink-400 hover:bg-pink-600/30 hover:text-pink-300"
+                        className="bg-pink-600/30 border-pink-500/40 text-pink-300 hover:bg-pink-600/40 hover:text-pink-200"
                       />
                     )}
                   </div>
-                </div>
+                </nav>
               </div>
             </div>
           </div>

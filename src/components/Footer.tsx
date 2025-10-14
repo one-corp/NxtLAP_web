@@ -7,16 +7,16 @@ function Footer() {
   const navLinks = navItems.filter((item, i) => i > 1);
 
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-br from-background via-accent/50 to-background">
+    <footer className="relative overflow-hidden bg-gradient-to-br from-background via-accent/50 to-background" role="contentinfo">
       {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-10" aria-hidden="true">
         <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-r from-red-500 to-orange-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-gradient-to-r from-green-500 to-teal-500 rounded-full blur-2xl animate-pulse delay-500"></div>
       </div>
 
       {/* Racing stripe decoration */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-orange-500 via-yellow-500 via-green-500 via-blue-500 via-indigo-500 to-purple-500"></div>
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-orange-500 via-yellow-500 via-green-500 via-blue-500 via-indigo-500 to-purple-500" aria-hidden="true"></div>
 
       <MarqueeText />
 
@@ -25,13 +25,13 @@ function Footer() {
         <div className="space-y-4">
           <div className="relative">
             {/* Glowing effect behind text */}
-            <div className="absolute inset-0 text-center text-gradient font-bold text-5xl md:text-[200px] blur-sm opacity-30 select-none">
-              <h1 className="leading-none">NxtLAP</h1>
+            <div className="absolute inset-0 text-center text-gradient font-bold text-5xl md:text-[200px] blur-sm opacity-30 select-none" aria-hidden="true">
+              <h2 className="leading-none">NxtLAP</h2>
             </div>
 
             {/* Main text */}
             <div className="relative text-center text-gradient font-bold text-5xl md:text-[200px] tracking-normal">
-              <h1 className="leading-none">NxtLAP</h1>
+              <h2 className="leading-none">NxtLAP</h2>
             </div>
           </div>
         </div>
@@ -39,30 +39,33 @@ function Footer() {
         {/* Content Section */}
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Navigation Links */}
-          <div className="space-y-8">
+          <nav className="space-y-8" aria-label="Footer navigation">
             <div className="group">
               <h3 className="font-bold text-accent-foreground text-lg mb-4 border-b pb-2">
                 Navigation
               </h3>
 
-              <div className="flex flex-col space-y-2">
-                <Link
-                  href="/"
-                  className="hover:text-primary cursor-pointer font-medium"
-                >
-                  Home
-                </Link>
+              <ul className="flex flex-col space-y-2" role="list">
+                <li>
+                  <Link
+                    href="/"
+                    className="hover:text-primary cursor-pointer font-medium focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-4 rounded transition-colors duration-200"
+                  >
+                    Home
+                  </Link>
+                </li>
 
                 {navLinks.map((item, idx) => (
-                  <Link
-                    key={idx}
-                    href={item.href}
-                    className="hover:text-primary cursor-pointer font-medium"
-                  >
-                    {item.label}
-                  </Link>
+                  <li key={idx}>
+                    <Link
+                      href={item.href}
+                      className="hover:text-primary cursor-pointer font-medium focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-4 rounded transition-colors duration-200"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
 
             {/* <div className="group">
@@ -78,13 +81,13 @@ function Footer() {
                 ))}
               </div>
             </div> */}
-          </div>
+          </nav>
 
           {/* Logo Section */}
           <div className="flex flex-col items-center space-y-6">
             <div className="relative group">
               {/* Glowing ring around logo */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-red-500 blur-md opacity-60 group-hover:opacity-80 transition-opacity duration-300 animate-pulse"></div>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-red-500 blur-md opacity-60 group-hover:opacity-80 transition-opacity duration-300 animate-pulse" aria-hidden="true"></div>
 
               {/* Logo container */}
               <div className="relative bg-slate-800 p-6 rounded-full border border-slate-600 shadow-2xl group-hover:scale-110 transition-transform duration-300">
@@ -92,14 +95,14 @@ function Footer() {
                   src="/favicon.ico"
                   width={100}
                   height={100}
-                  alt="Motorsports AI Logo"
+                  alt="NxtLAP logo icon"
                   className="w-16 h-16 md:w-24 md:h-24 drop-shadow-lg"
                 />
               </div>
             </div>
 
             <div className="text-center">
-              <p className="text-slate-400 text-sm font-medium">
+              <p className="text-slate-400 text-sm font-medium" role="contentinfo">
                 © {new Date().getFullYear()} NxtLAP
               </p>
               <p className="text-slate-500 text-xs mt-1">All rights reserved</p>
@@ -131,7 +134,7 @@ function Footer() {
         </div>
 
         {/* Bottom racing stripes */}
-        <div className="relative mt-12">
+        <div className="relative mt-12" aria-hidden="true">
           <div className="flex space-x-1 opacity-20">
             <div className="h-1 bg-red-500 flex-1"></div>
             <div className="h-1 bg-orange-500 flex-1"></div>

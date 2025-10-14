@@ -94,16 +94,29 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="NxtLAP RSS Feed"
+          href="/rss.xml"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${lora.variable} antialiased`}
       >
+        <a href="#main-content" className="skip-to-main">
+          Skip to main content
+        </a>
         <div className="fixed top-0 left-0 right-0 z-50">
           <Navigation />
         </div>
         <div className="md:hidden fixed bottom-0 left-0 right-0 z-50">
           <MobileNavigation />
         </div>
-        {children}
+        <main id="main-content">
+          {children}
+        </main>
         <Footer />
         <Analytics />
       </body>

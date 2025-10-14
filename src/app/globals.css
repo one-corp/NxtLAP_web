@@ -62,7 +62,7 @@
     --secondary-foreground: hsl(210 85% 94%);
     
     --muted: hsl(220 100% 8%);
-    --muted-foreground: hsl(210 40% 65%);
+    --muted-foreground: hsl(210 40% 70%);
     
     --accent: hsl(220 100% 8%);
     --accent-foreground: hsl(210 85% 80%);
@@ -115,7 +115,7 @@
     --secondary-foreground: hsl(210 85% 94%);
     
     --muted: hsl(220 100% 8%);
-    --muted-foreground: hsl(210 40% 65%);
+    --muted-foreground: hsl(210 40% 70%);
     
     --accent: hsl(220 100% 8%);
     --accent-foreground: hsl(210 85% 94%);
@@ -146,6 +146,23 @@
     @apply bg-background text-foreground;
     background: var(--gradient-racing);
     min-height: 100vh;
+  }
+
+  /* Enhanced focus styles for accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-primary outline-offset-2;
+  }
+
+  /* Ensure keyboard navigation is visible */
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible {
+    @apply outline-2 outline-primary outline-offset-4 rounded;
+  }
+
+  /* Skip to main content link for screen readers */
+  .skip-to-main {
+    @apply absolute -top-full left-0 bg-primary text-primary-foreground px-4 py-2 z-50 focus:top-0 transition-all;
   }
 }
 

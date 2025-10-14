@@ -1,5 +1,19 @@
 import React from "react";
 import { Construction } from "lucide-react";
+import { generatePageMetadata } from "@/lib/seo/metadata";
+
+export const metadata = generatePageMetadata({
+  title: "About NxtLAP | Your Motorsport Event Companion",
+  description: "Learn about NxtLAP, the AI-powered platform for tracking motorsport events. Discover how we help racing fans stay updated with F1, MotoGP, NASCAR, and more.",
+  keywords: [
+    "About NxtLAP",
+    "Motorsport platform",
+    "Racing event tracker",
+    "AI motorsport insights",
+    "Racing fan community",
+  ],
+  path: "/about",
+});
 
 function Page() {
   return (

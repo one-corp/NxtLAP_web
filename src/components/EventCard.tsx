@@ -121,7 +121,7 @@ const EventCard = ({ events }: EventCardProps) => {
                           src={strPoster || "/posterFallback.png"}
                           width={680}
                           height={1000}
-                          alt={strEvent}
+                          alt={`${strEvent} official poster - ${strVenue}, ${strCity}`}
                           className="h-full w-auto lg:h-80 object-cover rounded-xl shadow-lg border border-border/30 transition-transform duration-300 group-hover:scale-105"
                         />
                       </div>
@@ -139,7 +139,7 @@ const EventCard = ({ events }: EventCardProps) => {
                     src={strThumb || "/thumbFallback.png"}
                     width={680}
                     height={1000}
-                    alt={strEvent}
+                    alt={`${strEvent} at ${strVenue}, ${strCity}`}
                     className="w-full object-cover"
                   />
                 </div>

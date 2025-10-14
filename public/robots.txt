@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /node_modules/
 
-Sitemap: https://www.motorsportsai.in/sitemap.xml
+Sitemap: https://www.nxtlap.com/sitemap.xml
