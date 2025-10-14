@@ -66,13 +66,14 @@ function LeaguesAccordion() {
     <section
       id="all-leagues"
       className="relative min-h-screen bg-gradient-to-br from-background via-slate-accent/70 to-background flex flex-col items-center justify-center px-4 sm:px-6 md:px-12 py-16 md:py-20"
+      aria-labelledby="leagues-heading"
     >
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(56,189,248,0.1),transparent_50%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(56,189,248,0.1),transparent_50%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(56,189,248,0.1),transparent_50%)] pointer-events-none" aria-hidden="true" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(56,189,248,0.1),transparent_50%)] pointer-events-none" aria-hidden="true" />
 
       <div className="relative z-10 max-w-4xl w-full text-center mb-12 sm:mb-16">
-        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4">
+        <h2 id="leagues-heading" className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-4">
           Explore Racing Leagues
         </h2>
         <p className="text-accent-foreground text-lg sm:text-xl max-w-2xl mx-auto">
@@ -94,7 +95,8 @@ function LeaguesAccordion() {
           >
             <AccordionTrigger
               onClick={() => setSelectedLeague(league)}
-              className="rounded-b-none px-6 sm:px-8 py-6 font-semibold text-xl sm:text-2xl cursor-pointer flex items-center justify-between gap-6 hover:bg-slate-700/30 transition-all duration-300 data-[state=open]:bg-slate-700/40 data-[state=open]:border-b data-[state=open]:border-slate-600/50 data-[state=open]:text-primary [&>svg]:hidden"
+              aria-label={`View details for ${league.name}`}
+              className="rounded-b-none px-6 sm:px-8 py-6 font-semibold text-xl sm:text-2xl cursor-pointer flex items-center justify-between gap-6 hover:bg-slate-700/30 transition-all duration-300 data-[state=open]:bg-slate-700/40 data-[state=open]:border-b data-[state=open]:border-slate-600/50 data-[state=open]:text-primary [&>svg]:hidden focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
             >
               <div className="flex items-center gap-6 text-left flex-1">
                 <div className="relative flex-shrink-0">
@@ -106,9 +108,9 @@ function LeaguesAccordion() {
                     className="w-16 sm:w-20 h-auto object-contain transition-transform duration-300 group-hover:scale-105"
                   />
                 </div>
-                <h1 className="font-bold text-left leading-tight">
+                <h3 className="font-bold text-left leading-tight">
                   {league.name}
-                </h1>
+                </h3>
               </div>
             </AccordionTrigger>
 
@@ -117,7 +119,7 @@ function LeaguesAccordion() {
                 <div className="relative">
                   <Hero selectedleague={league} />
                   {/* Overlay gradient for better text readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/10 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/10 via-transparent to-transparent pointer-events-none" aria-hidden="true" />
                 </div>
 
                 {/* Upcoming This Week */}
@@ -140,7 +142,7 @@ function LeaguesAccordion() {
         ))}
       </Accordion>
 
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" aria-hidden="true" />
     </section>
   );
 }

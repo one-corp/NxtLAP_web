@@ -1,12 +1,26 @@
 import Link from "next/link";
 import { format } from "date-fns";
 import { getAllPostsMeta } from "@/lib/blogs";
+import { generatePageMetadata } from "@/lib/seo/metadata";
 import { Calendar, Clock, Tag, ArrowRight, Zap, TrendingUp, LibraryBig } from "lucide-react";
 
-export const metadata = {
-  title: "Racing Chronicles | Latest Updates",
-  description: "Stay updated with the latest racing news, insights, and stories",
-};
+export const metadata = generatePageMetadata({
+  title: "Racing Chronicles | Latest Motorsport News & Updates",
+  description: "Stay updated with the latest racing news, insights, and stories from Formula 1, MotoGP, NASCAR, IndyCar, and more. Expert analysis and race recaps.",
+  keywords: [
+    "Racing news",
+    "Motorsport blog",
+    "F1 news",
+    "MotoGP news",
+    "NASCAR updates",
+    "IndyCar news",
+    "race recaps",
+    "racing analysis",
+    "motorsport insights",
+    "racing stories",
+  ],
+  path: "/blogs",
+});
 
 export default async function BlogsPage() {
   const posts = await getAllPostsMeta();

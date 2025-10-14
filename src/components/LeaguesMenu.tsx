@@ -11,7 +11,7 @@ interface MobileMenuProps {
 
 function LeaguesMenu({ activeLeague, onLeagueChange, toggleMenu }: MobileMenuProps) {
   return (
-    <div className="grid grid-cols-1 gap-4 pt-8">
+    <nav className="grid grid-cols-1 gap-4 pt-8" aria-label="Leagues menu">
       {allLeagues.map((league: League) => (
         <Button
           key={league.id}
@@ -21,6 +21,8 @@ function LeaguesMenu({ activeLeague, onLeagueChange, toggleMenu }: MobileMenuPro
             onLeagueChange(league.id)
             toggleMenu(prev => !prev);
           }}
+          aria-pressed={activeLeague === league.id}
+          aria-label={`Select ${league.name} league`}
           className={`flex justify-end w-full text-right font-bold text-lg transition ${
             activeLeague === league.id ? "racing-glow" : "hover:bg-primary/40"
           }`}
@@ -28,7 +30,7 @@ function LeaguesMenu({ activeLeague, onLeagueChange, toggleMenu }: MobileMenuPro
           {league.name}
         </Button>
       ))}
-    </div>
+    </nav>
   );
 }
 

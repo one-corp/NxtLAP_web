@@ -1,5 +1,9 @@
 import { notFound } from "next/navigation";
 import { getPostBySlug, getAllSlugs } from "@/lib/blogs";
+import { generateBlogMetadata } from "@/lib/seo/metadata";
+import { buildArticleSchema } from "@/lib/seo/structured-data";
+import { StructuredData } from "@/components/StructuredData";
+import { RelatedPosts } from "@/components/RelatedPosts";
 import { format } from "date-fns";
 import { Calendar, Clock, Tag, ArrowLeft, Share2 } from "lucide-react";
 import Link from "next/link";
@@ -16,16 +20,8 @@ export async function generateMetadata({ params }: Params) {
   const post = await getPostBySlug(slug);
   if (!post) return { title: "Post not found" };
 
-  return {
-    title: `${post.meta.title} | Racing Chronicles`,
-    description: post.meta.description,
-    openGraph: {
-      title: post.meta.title,
-      description: post.meta.description,
-      type: "article",
-      publishedTime: post.meta.date,
-    },
-  };
+  // Use the centralized metadata generator with canonical URLs and article tags
+  return generateBlogMetadata(post.meta);
 }
 
 export default async function PostPage({ params }: Params) {
@@ -33,8 +29,13 @@ export default async function PostPage({ params }: Params) {
   const post = await getPostBySlug(slug);
   if (!post) notFound();
 
+  // Generate Article schema for rich search results
+  const articleSchema = buildArticleSchema(post.meta);
+
   return (
-    <main className="min-h-screen bg-background pt-10">
+    <>
+      <StructuredData data={articleSchema} />
+      <main className="min-h-screen bg-background pt-10">
       {/* Hero Section with Gradient */}
       <div className="relative bg-gradient-to-b from-card/50 to-transparent border-b border-border/50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -181,6 +182,9 @@ export default async function PostPage({ params }: Params) {
           />
         </div>
 
+        {/* Related Posts Section */}
+        <RelatedPosts currentSlug={slug} limit={3} />
+
         {/* Footer Section */}
         <footer className="py-12 border-t border-border/50">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
@@ -207,5 +211,6 @@ export default async function PostPage({ params }: Params) {
         </footer>
       </article>
     </main>
+    </>
   );
 }

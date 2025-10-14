@@ -1,5 +1,8 @@
 import React from "react";
 import faqData from "@/Data/FAQs";
+import { generatePageMetadata } from "@/lib/seo/metadata";
+import { buildFAQSchema } from "@/lib/seo/structured-data";
+import { StructuredData } from "@/components/StructuredData";
 import {
   Accordion,
   AccordionContent,
@@ -8,9 +11,28 @@ import {
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 
+export const metadata = generatePageMetadata({
+  title: "Frequently Asked Questions | NxtLAP",
+  description: "Find answers to common questions about NxtLAP, motorsport event tracking, racing leagues, schedules, and how to stay updated with upcoming races.",
+  keywords: [
+    "NxtLAP FAQ",
+    "Motorsport questions",
+    "Racing event help",
+    "How to track races",
+    "Motorsport leagues",
+    "Racing schedule FAQ",
+  ],
+  path: "/faqs",
+});
+
 function Page() {
+  // Generate FAQPage schema for rich search results
+  const faqSchema = buildFAQSchema(faqData);
+
   return (
-    <section className="relative flex flex-col items-center justify-center py-12 sm:py-20 px-4 sm:px-6 mb-10">
+    <>
+      <StructuredData data={faqSchema} />
+      <section className="relative flex flex-col items-center justify-center py-12 sm:py-20 px-4 sm:px-6 mb-10">
 
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none mt-20 sm:mt-24">
         <div className="w-[95%] sm:w-[90%] max-w-5xl h-full border-2 border-dashed border-border rounded-lg" />
@@ -60,6 +82,7 @@ function Page() {
         ))}
       </Accordion>
     </section>
+    </>
   );
 }
 
