@@ -12,7 +12,7 @@ export const siteConfig = {
   
   links: {
     twitter: 'https://twitter.com/codephilic_guy',
-    github: 'https://github.com/yourusername',
+    github: 'https://github.com/thecodephilic-guy',
   },
   
   authors: [
