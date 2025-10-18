@@ -21,17 +21,6 @@
         }
       ],
       "permanent": true
-    },
-    {
-      "source": "/(.*)",
-      "destination": "https://nxtlap.com/$1",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.nxtlap.com"
-        }
-      ],
-      "permanent": true
     }
   ]
 }
