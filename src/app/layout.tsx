@@ -28,7 +28,7 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nxtlap.com"),
+  metadataBase: new URL("https://www.nxtlap.com"),
   alternates:{
     canonical: "/",
   },
