@@ -1,12 +1,12 @@
 const faqData = [
   {
     "id": 1,
-    "question": "What is Motorsports AI?",
-    "answer": "Motorsports AI is a platform that combines artificial intelligence and motorsport analytics to provide insights, predictions, and tools for fans, teams, and enthusiasts."
+    "question": "What is NxtLap?",
+    "answer": "NxtLAP is a platform that combines artificial intelligence and motorsport analytics to provide insights, predictions, and tools for fans, teams, and enthusiasts."
   },
   {
     "id": 2,
-    "question": "How does Motorsports AI use artificial intelligence?",
+    "question": "How does NxtLAP use artificial intelligence?",
     "answer": "We use AI models to analyze race data, driver performance, car telemetry, and historical records to generate predictions, race insights, and performance breakdowns."
   },
   {
@@ -16,7 +16,7 @@ const faqData = [
   },
   {
     "id": 4,
-    "question": "Is Motorsports AI free to use?",
+    "question": "Is NxtLAP free to use?",
     "answer": "Yes, our core insights and analysis are free to access. However, we may offer premium features in the future for advanced analytics and exclusive content."
   },
   {
@@ -31,7 +31,7 @@ const faqData = [
   },
   {
     "id": 7,
-    "question": "Can I use Motorsports AI on mobile?",
+    "question": "Can I use NxtLAP on mobile?",
     "answer": "Yes, our website is fully responsive and optimized for mobile devices, so you can access AI insights on the go."
   },
   {
@@ -46,18 +46,18 @@ const faqData = [
   },
   {
     "id": 10,
-    "question": "Can teams or professionals use Motorsports AI?",
+    "question": "Can teams or professionals use NxtLAP?",
     "answer": "Absolutely. While we design our insights for fans, racing professionals and teams can also benefit from our analytics for performance evaluation."
   },
   {
     "id": 11,
-    "question": "Does Motorsports AI have an API?",
+    "question": "Does NxtLAP have an API?",
     "answer": "We are working on an API that will allow developers and teams to integrate our motorsport insights into their own applications and tools."
   },
   {
     "id": 12,
-    "question": "How can I contact the Motorsports AI team?",
-    "answer": "You can reach us via the contact form on our website or email us directly at support@motorsportsai.in."
+    "question": "How can I contact the NxtLAP team?",
+    "answer": "You can reach us via the contact form on our website or email us directly at founders@nxtlap.com"
   }
 ]
 

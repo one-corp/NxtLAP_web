@@ -28,14 +28,18 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.nxtlap.com"),
-  title: "NxtLAP | Track upcoming motorsports events",
+  metadataBase: new URL("https://nxtlap.com"),
+  alternates:{
+    canonical: "/",
+  },
+  title: "NxtLAP | Track Upcoming Motorsports Events",
   description:
     "Discover and track upcoming motorsport events with AI-powered insights. Stay updated with races, schedules, and leagues in one place.",
   keywords: [
-    "Motorsport",
-    "Racing",
-    "F1 events",
+    "upcoming f1 races",
+    "motorsport",
+    "racing",
+    "f1 events",
     "MotoGP schedule",
     "racing leagues",
     "upcoming races",
@@ -49,17 +53,17 @@ export const metadata: Metadata = {
     "British GT",
   ],
   openGraph: {
-    title: "Motorsports AI",
+    title: "NxtLAP",
     description:
       "Track upcoming motorsport events with the power of AI. Stay informed with smart insights on leagues, venues, and schedules.",
     url: "https://www.nxtlap.com",
-    siteName: "Motorsports AI",
+    siteName: "NxtLAP",
     images: [
       {
         url: "/og-banner.png",
         width: 1200,
         height: 630,
-        alt: "Motorsports AI - Preview Image",
+        alt: "NxtLAP - Preview Image",
       },
     ],
     locale: "en_US",
@@ -67,7 +71,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Motorsports AI",
+    title: "NxtLAP",
     description:
       "Discover and track upcoming motorsport events with AI-powered insights. Stay updated with races, schedules, and leagues in one place.",
     images: ["/og-banner.png"],

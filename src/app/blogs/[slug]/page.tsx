@@ -5,8 +5,10 @@ import { buildArticleSchema } from "@/lib/seo/structured-data";
 import { StructuredData } from "@/components/StructuredData";
 import { RelatedPosts } from "@/components/RelatedPosts";
 import { format } from "date-fns";
-import { Calendar, Clock, Tag, ArrowLeft, Share2 } from "lucide-react";
+import { Calendar, Clock, Tag, ArrowLeft} from "lucide-react";
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
+import ShareButton from "@/components/ShareButton";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -24,6 +26,7 @@ export async function generateMetadata({ params }: Params) {
   return generateBlogMetadata(post.meta);
 }
 
+
 export default async function PostPage({ params }: Params) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
@@ -36,78 +39,77 @@ export default async function PostPage({ params }: Params) {
     <>
       <StructuredData data={articleSchema} />
       <main className="min-h-screen bg-background pt-10">
-      {/* Hero Section with Gradient */}
-      <div className="relative bg-gradient-to-b from-card/50 to-transparent border-b border-border/50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <Link
-            href="/blogs"
-            className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors group"
-          >
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            Back to Chronicles
-          </Link>
+        {/* Hero Section with Gradient */}
+        <div className="relative bg-gradient-to-b from-card/50 to-transparent border-b border-border/50">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <Link
+              href="/blogs"
+              className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors group"
+            >
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+              Back to Chronicles
+            </Link>
+          </div>
         </div>
-      </div>
 
-      {/* Article Container */}
-      <article className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Section */}
-        <header className="py-12 lg:py-16">
-          {/* Tags */}
-          {post.meta.tags && post.meta.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-6">
-              {post.meta.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-full bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors"
-                >
-                  <Tag className="w-3 h-3" />
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
-
-          {/* Title */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-[1.1] text-foreground">
-            {post.meta.title}
-          </h1>
-
-          {/* Description */}
-          {post.meta.description && (
-            <p className="text-lg sm:text-xl text-muted-foreground mb-8 leading-relaxed max-w-3xl">
-              {post.meta.description}
-            </p>
-          )}
-
-          {/* Meta Info */}
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm text-muted-foreground pt-6 border-t border-border/50">
-            <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4 text-primary" />
-              <time dateTime={post.meta.date}>
-                {format(new Date(post.meta.date), "MMMM dd, yyyy")}
-              </time>
-            </div>
-
-            {post.meta.readingTime && (
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-primary" />
-                <span>{post.meta.readingTime}</span>
+        {/* Article Container */}
+        <article className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header Section */}
+          <header className="py-12 lg:py-16">
+            {/* Tags */}
+            {post.meta.tags && post.meta.tags.length > 0 && (
+              <div className="flex flex-wrap gap-2 mb-6">
+                {post.meta.tags.map((tag) => (
+                  <Badge
+                    key={tag}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-full bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors"
+                  >
+                    <Tag className="w-3 h-3" />
+                    {tag}
+                  </Badge>
+                ))}
               </div>
             )}
 
-            <button className="ml-auto inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-card border border-border text-sm font-medium hover:bg-accent hover:border-primary/30 transition-all">
-              <Share2 className="w-4 h-4" />
-              <span className="hidden sm:inline">Share</span>
-            </button>
-          </div>
-        </header>
+            {/* Title */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-[1.1] text-foreground">
+              {post.meta.title}
+            </h1>
 
-        {/* Content Section with Better Spacing */}
-        <div className="pb-16 lg:pb-20">
-          <div
-            style={{ fontFamily: 'var(--font-geist-sans), system-ui, sans-serif' }}
-            className="prose prose-invert prose-xl max-w-none
+            {/* Description */}
+            {post.meta.description && (
+              <p className="text-lg sm:text-xl text-muted-foreground mb-8 leading-relaxed max-w-3xl">
+                {post.meta.description}
+              </p>
+            )}
+
+            {/* Meta Info */}
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm text-muted-foreground pt-6 border-t border-border/50">
+              <div className="flex items-center gap-2">
+                <Calendar className="w-4 h-4 text-primary" />
+                <time dateTime={post.meta.date}>
+                  {format(new Date(post.meta.date), "MMMM dd, yyyy")}
+                </time>
+              </div>
+
+              {post.meta.readingTime && (
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-primary" />
+                  <span>{post.meta.readingTime}</span>
+                </div>
+              )}
+
+              <ShareButton />
+            </div>
+          </header>
+
+          {/* Content Section with Better Spacing */}
+          <div className="pb-16 lg:pb-20">
+            <div
+              style={{
+                fontFamily: "var(--font-geist-sans), system-ui, sans-serif",
+              }}
+              className="prose prose-invert prose-xl max-w-none
               /* Base Styles */
               [&>*]:max-w-none
               
@@ -178,39 +180,36 @@ export default async function PostPage({ params }: Params) {
               /* Citation links - smaller and subtle */
               [&_sup]:text-xs [&_sup]:text-primary/70 [&_sup]:font-normal
               [&_sup_a]:text-primary/70 [&_sup_a]:no-underline hover:[&_sup_a]:text-primary"
-            dangerouslySetInnerHTML={{ __html: post.contentHtml }}
-          />
-        </div>
-
-        {/* Related Posts Section */}
-        <RelatedPosts currentSlug={slug} limit={3} />
-
-        {/* Footer Section */}
-        <footer className="py-12 border-t border-border/50">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-            <div>
-              <p className="text-sm text-muted-foreground mb-3">
-                Enjoyed this article?
-              </p>
-              <Link
-                href="/blogs"
-                className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all group"
-              >
-                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                Read more stories
-              </Link>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <span className="text-sm text-muted-foreground">Share:</span>
-              <button className="p-3 rounded-lg bg-card border border-border hover:bg-primary/10 hover:border-primary/30 transition-all">
-                <Share2 className="w-4 h-4" />
-              </button>
-            </div>
+              dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+            />
           </div>
-        </footer>
-      </article>
-    </main>
+
+          {/* Related Posts Section */}
+          <RelatedPosts currentSlug={slug} limit={3} />
+
+          {/* Footer Section */}
+          <footer className="py-12 border-t border-border/50">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+              <div>
+                <p className="text-sm text-muted-foreground mb-3">
+                  Enjoyed this article?
+                </p>
+                <Link
+                  href="/blogs"
+                  className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all group"
+                >
+                  <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                  Read more stories
+                </Link>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <ShareButton />
+              </div>
+            </div>
+          </footer>
+        </article>
+      </main>
     </>
   );
 }
