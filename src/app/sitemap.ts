@@ -3,7 +3,7 @@ import { getAllPostsMeta } from "@/lib/blogs";
 import fs from "fs/promises";
 import path from "path";
 
-const siteUrl = "https://www.nxtlap.com";
+const siteUrl = "https://nxtlap.com";
 
 /**
  * Get the last modification time for a static page file
