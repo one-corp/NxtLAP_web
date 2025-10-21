@@ -28,7 +28,7 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.nxtlap.com"),
+  metadataBase: new URL("https://nxtlap.com"),
   alternates:{
     canonical: "/",
   },
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title: "NxtLAP",
     description:
       "Track upcoming motorsport events with the power of AI. Stay informed with smart insights on leagues, venues, and schedules.",
-    url: "https://www.nxtlap.com",
+    url: "https://nxtlap.com",
     siteName: "NxtLAP",
     images: [
       {

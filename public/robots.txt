@@ -4,4 +4,4 @@ Disallow: /api/
 Disallow: /_next/
 Disallow: /node_modules/
 
-Sitemap: https://www.nxtlap.com/sitemap.xml
+Sitemap: https://nxtlap.com/sitemap.xml
