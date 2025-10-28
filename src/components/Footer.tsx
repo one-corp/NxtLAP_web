@@ -1,13 +1,25 @@
 import MarqueeText from "./MarqueeText";
 import Image from "next/image";
 import navItems from "@/Data/NavItem";
+import socialHandles from "@/Data/SocialHandles";
 import Link from "next/link";
 
 function Footer() {
-  const navLinks = navItems.filter((item, i) => i > 1);
+  const navLinks = navItems.reduce((acc, item) => {
+    if (item.label === "All Leagues") {
+      acc.push({ ...item, label: "Home" });
+    } else {
+      acc.push(item);
+    }
+
+    return acc;
+  }, [] as typeof navItems);
 
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-br from-background via-accent/50 to-background" role="contentinfo">
+    <footer
+      className="relative overflow-hidden bg-gradient-to-br from-background via-accent/50 to-background"
+      role="contentinfo"
+    >
       {/* Animated background elements */}
       <div className="absolute inset-0 opacity-10" aria-hidden="true">
         <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-3xl animate-pulse"></div>
@@ -16,7 +28,10 @@ function Footer() {
       </div>
 
       {/* Racing stripe decoration */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-orange-500 via-yellow-500 via-green-500 via-blue-500 via-indigo-500 to-purple-500" aria-hidden="true"></div>
+      <div
+        className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-orange-500 via-yellow-500 via-green-500 via-blue-500 via-indigo-500 to-purple-500"
+        aria-hidden="true"
+      ></div>
 
       <MarqueeText />
 
@@ -25,7 +40,10 @@ function Footer() {
         <div className="space-y-4">
           <div className="relative">
             {/* Glowing effect behind text */}
-            <div className="absolute inset-0 text-center text-gradient font-bold text-5xl md:text-[200px] blur-sm opacity-30 select-none" aria-hidden="true">
+            <div
+              className="absolute inset-0 text-center text-gradient font-bold text-5xl md:text-[200px] blur-sm opacity-30 select-none"
+              aria-hidden="true"
+            >
               <h2 className="leading-none">NxtLAP</h2>
             </div>
 
@@ -46,15 +64,6 @@ function Footer() {
               </h3>
 
               <ul className="flex flex-col space-y-2" role="list">
-                <li>
-                  <Link
-                    href="/"
-                    className="hover:text-primary cursor-pointer font-medium focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-4 rounded transition-colors duration-200"
-                  >
-                    Home
-                  </Link>
-                </li>
-
                 {navLinks.map((item, idx) => (
                   <li key={idx}>
                     <Link
@@ -68,26 +77,34 @@ function Footer() {
               </ul>
             </div>
 
-            {/* <div className="group">
-              <h3 className="font-bold text-lg mb-4 border-b pb-2">Connect</h3>
-              <div className="space-y-3">
-                {["Instagram", "LinkedIn"].map((item) => (
-                  <h6
-                    key={item}
-                    className="text-slate-300 hover:text-white cursor-pointer transition-all duration-300 hover:translate-x-2 hover:text-lg font-medium"
-                  >
-                    {item}
-                  </h6>
+            <div className="group">
+              <h3 className="font-bold text-accent-foreground text-lg mb-4 border-b pb-2">
+                Connect
+              </h3>
+              <ul className="flex flex-col space-y-2" role="list">
+                {socialHandles.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      target="_blank"
+                      className="hover:text-primary cursor-pointer font-medium focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-4 rounded transition-colors duration-200"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
                 ))}
-              </div>
-            </div> */}
+              </ul>
+            </div>
           </nav>
 
           {/* Logo Section */}
           <div className="flex flex-col items-center space-y-6">
             <div className="relative group">
               {/* Glowing ring around logo */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-red-500 blur-md opacity-60 group-hover:opacity-80 transition-opacity duration-300 animate-pulse" aria-hidden="true"></div>
+              <div
+                className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-red-500 blur-md opacity-60 group-hover:opacity-80 transition-opacity duration-300 animate-pulse"
+                aria-hidden="true"
+              ></div>
 
               {/* Logo container */}
               <div className="relative bg-slate-800 p-6 rounded-full border border-slate-600 shadow-2xl group-hover:scale-110 transition-transform duration-300">
@@ -102,7 +119,10 @@ function Footer() {
             </div>
 
             <div className="text-center">
-              <p className="text-slate-400 text-sm font-medium" role="contentinfo">
+              <p
+                className="text-slate-400 text-sm font-medium"
+                role="contentinfo"
+              >
                 © {new Date().getFullYear()} NxtLAP
               </p>
               <p className="text-slate-500 text-xs mt-1">All rights reserved</p>

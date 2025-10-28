@@ -3,7 +3,6 @@ import { Geist, Geist_Mono, Lora } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import Navigation from "@/components/Navigation";
-import MobileNavigation from "@/components/MobileNavigation";
 import Footer from "@/components/Footer";
 
 export const viewport: Viewport = {
@@ -34,7 +33,7 @@ export const metadata: Metadata = {
   },
   title: "NxtLAP | Track Upcoming Motorsports Events",
   description:
-    "Discover and track upcoming motorsport events with AI-powered insights. Stay updated with races, schedules, and leagues in one place.",
+    "Discover and track upcoming motorsport events with AI-powered insights. Stay updated with races, schedules, and leagues.",
   keywords: [
     "upcoming f1 races",
     "motorsport",
@@ -106,9 +105,6 @@ export default function RootLayout({
         </a>
         <div className="fixed top-0 left-0 right-0 z-50">
           <Navigation />
-        </div>
-        <div className="md:hidden fixed bottom-0 left-0 right-0 z-50">
-          <MobileNavigation />
         </div>
         <main id="main-content">
           {children}

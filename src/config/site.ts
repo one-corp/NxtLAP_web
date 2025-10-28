@@ -7,7 +7,7 @@ export const siteConfig = {
   name: 'NxtLAP',
   title: 'NxtLAP | Track Upcoming Motorsports Events',
   description: 'Discover and track upcoming motorsport events with AI-powered insights. Stay updated with races, schedules, and leagues in one place.',
-  url: 'https://www.nxtlap.com',
+  url: 'https://nxtlap.com',
   ogImage: '/og-banner.png',
   
   links: {
