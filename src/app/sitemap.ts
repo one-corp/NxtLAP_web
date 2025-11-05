@@ -26,12 +26,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllPostsMeta();
 
   // Get modification times for static pages
-  const [homeModified, myLeaguesModified, faqsModified, aboutModified, blogsModified] = 
+  const [homeModified, faqsModified, blogsModified] = 
     await Promise.all([
       getPageModifiedTime("page.tsx"),
-      getPageModifiedTime("my-leagues/page.tsx"),
       getPageModifiedTime("faqs/page.tsx"),
-      getPageModifiedTime("about/page.tsx"),
       getPageModifiedTime("blogs/page.tsx"),
     ]);
 
@@ -61,18 +59,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: faqsModified,
       changeFrequency: "monthly" as const,
       priority: 0.5,
-    },
-    {
-      url: `${siteUrl}/about`,
-      lastModified: aboutModified,
-      changeFrequency: "yearly" as const,
-      priority: 0.5,
-    },
-    {
-      url: `${siteUrl}/my-leagues`,
-      lastModified: myLeaguesModified,
-      changeFrequency: "never" as const,
-      priority: 0.3,
     },
     ...blogUrls,
   ];

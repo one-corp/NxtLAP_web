@@ -17,8 +17,29 @@ export interface F1Race {
   };
 }
 
+export interface F1Event {
+  idEvent: string;
+  idLeague: string;
+  idVenue: string;
+  strEvent: string;
+  strPoster: string;
+  intRound: number;
+  strBanner: string;
+  strLeagueBadge: string;
+  strVenue: string;
+  strCity: string;
+  strCountry: string;
+  strLeague: string;
+  strPostponed: string;
+  strSeason: string;
+  strThumb: string;
+  strTime: string;
+  strTimeLocal: string;
+  strTimestamp: string;
+}
+
 export class F1ApiService {
-  static async getUpcomingF1Events(): Promise<any[]> {
+  static async getUpcomingF1Events(): Promise<F1Event[]> {
     try {
       const currentYear = new Date().getFullYear();
       const url = `https://api.jolpi.ca/ergast/f1/${currentYear}.json`;
@@ -56,7 +77,7 @@ export class F1ApiService {
     }
   }
 
-  static getFallbackF1Data(): any[] {
+  static getFallbackF1Data(): F1Event[] {
     
     const fallbackRaces = [
       {
@@ -106,7 +127,9 @@ export class F1ApiService {
       idLeague: "4370",
       idVenue: `circuit_${index}`,
       strEvent: race.name,
-      intRound: race.round,
+      strPoster: "https://r2.thesportsdb.com/images/media/league/poster/g8cofl1513623681.jpg",
+      intRound: parseInt(race.round),
+      strBanner: "https://r2.thesportsdb.com/images/media/league/banner/g8cofl1513623681.jpg",
       strLeagueBadge: "https://r2.thesportsdb.com/images/media/league/badge/g8cofl1513623681.png",
       strVenue: race.circuit,
       strCity: race.location,
@@ -114,13 +137,14 @@ export class F1ApiService {
       strLeague: "Formula 1",
       strPostponed: "no",
       strSeason: "2025",
+      strThumb: "https://r2.thesportsdb.com/images/media/league/thumb/g8cofl1513623681.jpg",
       strTime: "14:00:00",
       strTimeLocal: "14:00:00",
       strTimestamp: new Date(`${race.date}T14:00:00`).toISOString(),
     }));
   }
 
-  static convertF1RaceToEvent(race: F1Race): any {
+  static convertF1RaceToEvent(race: F1Race): F1Event {
     const raceDate = new Date(`${race.date}T${race.time || '14:00:00'}`);
     
     return {
@@ -128,7 +152,9 @@ export class F1ApiService {
       idLeague: "4370",
       idVenue: race.Circuit.circuitId,
       strEvent: race.raceName,
-      intRound: race.round,
+      strPoster: "https://r2.thesportsdb.com/images/media/league/poster/g8cofl1513623681.jpg",
+      intRound: parseInt(race.round),
+      strBanner: "https://r2.thesportsdb.com/images/media/league/banner/g8cofl1513623681.jpg",
       strLeagueBadge: "https://r2.thesportsdb.com/images/media/league/badge/g8cofl1513623681.png",
       strVenue: race.Circuit.circuitName,
       strCity: race.Circuit.Location.locality,
@@ -136,6 +162,7 @@ export class F1ApiService {
       strLeague: "Formula 1",
       strPostponed: "no",
       strSeason: race.season,
+      strThumb: "https://r2.thesportsdb.com/images/media/league/thumb/g8cofl1513623681.jpg",
       strTime: raceDate.toTimeString().split(' ')[0],
       strTimeLocal: raceDate.toTimeString().split(' ')[0],
       strTimestamp: raceDate.toISOString(),
