@@ -1,6 +1,5 @@
 import { Event } from "@/types/Event";
 import { Calendar, MapPin, Clock, Flag } from "lucide-react";
-import Image from "next/image";
 
 interface EventCardProps {
   events: Event[];
@@ -26,8 +25,6 @@ const EventCard = ({ events }: EventCardProps) => {
           strCountry,
           strLeague,
           strSeason,
-          strThumb,
-          strPoster,
           strTimeLocal,
           strTimestamp,
           strPostponed,
@@ -55,10 +52,6 @@ const EventCard = ({ events }: EventCardProps) => {
             {/* Desktop Layout */}
             <div className="hidden md:block">
               <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-card via-card/90 to-card backdrop-blur-sm border border-border/50">
-                <div
-                  className="absolute inset-0 bg-cover bg-center opacity-10"
-                  style={{ backgroundImage: `url(${strThumb})` }}
-                />
                 <div className="absolute inset-0 bg-card/70 backdrop-blur-sm" />
 
                 {/* Content */}
@@ -117,13 +110,17 @@ const EventCard = ({ events }: EventCardProps) => {
 
                     <div className="lg:col-span-1">
                       <div className="relative group">
-                        <Image
-                          src={strPoster || "/posterFallback.png"}
-                          width={680}
-                          height={1000}
-                          alt={`${strEvent} official poster - ${strVenue}, ${strCity}`}
-                          className="h-full w-auto lg:h-80 object-cover rounded-xl shadow-lg border border-border/30 transition-transform duration-300 group-hover:scale-105"
-                        />
+                        <div className="h-80 w-full bg-gradient-to-br from-red-600/20 via-slate-800/40 to-red-800/20 rounded-xl shadow-lg border border-border/30 transition-transform duration-300 group-hover:scale-105 flex items-center justify-center">
+                          <div className="text-center space-y-3">
+                            <Flag className="w-12 h-12 text-red-500 mx-auto animate-pulse" />
+                            <div className="text-lg font-bold text-gradient">
+                              {strLeague}
+                            </div>
+                            <div className="text-sm text-muted-foreground">
+                              Round {intRound}
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -134,14 +131,13 @@ const EventCard = ({ events }: EventCardProps) => {
             {/* Mobile Layout */}
             <div className="block md:hidden">
               <div className="bg-card backdrop-blur-sm rounded-xl border border-border/50 overflow-hidden shadow-lg">
-                <div className="relative h-48">
-                  <Image
-                    src={strThumb || "/thumbFallback.png"}
-                    width={680}
-                    height={1000}
-                    alt={`${strEvent} at ${strVenue}, ${strCity}`}
-                    className="w-full object-cover"
-                  />
+                <div className="relative h-48 bg-gradient-to-br from-red-600/20 via-slate-800/40 to-red-800/20 flex items-center justify-center">
+                  <div className="text-center space-y-2">
+                    <Flag className="w-10 h-10 text-red-500 mx-auto animate-pulse" />
+                    <div className="text-sm font-bold text-gradient">
+                      {strLeague}
+                    </div>
+                  </div>
                 </div>
 
                 <div className="p-4 space-y-4">

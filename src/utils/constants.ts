@@ -1,1 +1,3 @@
-export const baseURL = "https://www.thesportsdb.com/api/v1/json/3"
+import { API_ENDPOINTS } from "./api-config";
+
+export const baseURL = API_ENDPOINTS.SPORTSDB;

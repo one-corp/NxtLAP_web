@@ -123,7 +123,7 @@ function Footer() {
                 className="text-slate-400 text-sm font-medium"
                 role="contentinfo"
               >
-                © {new Date().getFullYear()} NxtLAP
+                © 2024 NxtLAP
               </p>
               <p className="text-slate-500 text-xs mt-1">All rights reserved</p>
             </div>

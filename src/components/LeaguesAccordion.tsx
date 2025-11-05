@@ -16,7 +16,9 @@ import { useState, useEffect } from "react";
 import { League } from "@/types/League";
 import { baseURL } from "@/utils/constants";
 import { Event } from "@/types/Event";
-import { EventCardSkeleton } from "./skeletons/EventCard";
+import { RacingLoader } from "./skeletons/RacingLoader";
+import { F1ApiService } from "@/utils/f1-api";
+import { shouldUseAlternativeAPI } from "@/utils/api-config";
 
 function LeaguesAccordion() {
   const [selectedLeague, setSelectedLeague] = useState<League | null>(null);
@@ -27,38 +29,49 @@ function LeaguesAccordion() {
     const fetchLeageEvents = async () => {
       try {
         setLoadingEvents(true);
-        const response = await fetch(
-          `${baseURL}/eventsseason.php?id=${
-            selectedLeague?.id
-          }&s=${new Date().getFullYear()}`
-        );
-        const data = await response.json();
-
-        // Ensure events is an array before filtering
-        const eventsArray = Array.isArray(data?.events) ? data.events : [];
-
-        //getting current time
-        const now = new Date();
-
-        //Calculating end of current week
-        const endOfWeek = new Date(now);
-        endOfWeek.setDate(now.getDate() + (7 - now.getDay()));
-
-        //Converting to ISO:
-        const nowISO = now.toISOString().slice(0, 19);
-
-        const futureEvents: Event[] =
-          eventsArray.filter((event: Event) => event.strTimestamp > nowISO) ||
-          [];
-
-        setUpcomingEvents(futureEvents);
+        
+        // Use F1 API for Formula 1, TheSportsDB for others
+        if (shouldUseAlternativeAPI(selectedLeague?.id || "")) {
+          const f1Events = await F1ApiService.getUpcomingF1Events();
+          setUpcomingEvents(f1Events);
+        } else {
+          // Use TheSportsDB for all other racing series
+          await fetchFromSportsDB();
+        }
       } catch (e) {
         console.error(e instanceof Error ? e.message : e);
       } finally {
         setLoadingEvents(false);
       }
     };
-    fetchLeageEvents();
+
+    const fetchFromSportsDB = async () => {
+      const response = await fetch(
+        `${baseURL}/eventsseason.php?id=${
+          selectedLeague?.id
+        }&s=${new Date().getFullYear()}`
+      );
+      const data = await response.json();
+
+      // Ensure events is an array before filtering
+      const eventsArray = Array.isArray(data?.events) ? data.events : [];
+
+      //getting current time
+      const now = new Date();
+
+      //Converting to ISO:
+      const nowISO = now.toISOString().slice(0, 19);
+
+      const futureEvents: Event[] =
+        eventsArray.filter((event: Event) => event.strTimestamp > nowISO) ||
+        [];
+
+      setUpcomingEvents(futureEvents);
+    };
+
+    if (selectedLeague) {
+      fetchLeageEvents();
+    }
   }, [selectedLeague]);
 
   return (
@@ -132,7 +145,7 @@ function LeaguesAccordion() {
                         Upcoming events
                       </h2>
                     </div>
-                    {loadingEvents ? <EventCardSkeleton /> : <EventCard events={upcomingEvents} />}
+                    {loadingEvents ? <RacingLoader /> : <EventCard events={upcomingEvents} />}
                   </CardContent>
                 </Card>
               </Card>
