@@ -118,14 +118,31 @@ function Footer() {
               </div>
             </div>
 
-            <div className="text-center">
-              <p
-                className="text-slate-400 text-sm font-medium"
-                role="contentinfo"
+            <div className="text-center space-y-4">
+              <Link
+                href="https://apps.apple.com/in/app/nxtlap-race-scores-widgets/id6754256034"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-4 rounded-lg"
+                aria-label="Download on the App Store"
               >
-                © 2024 NxtLAP
-              </p>
-              <p className="text-slate-500 text-xs mt-1">All rights reserved</p>
+                <Image
+                  src="/app-store-badge.svg"
+                  width={135}
+                  height={40}
+                  alt="Download on the App Store"
+                  className="h-10 w-auto"
+                />
+              </Link>
+              <div>
+                <p
+                  className="text-slate-400 text-sm font-medium"
+                  role="contentinfo"
+                >
+                  © 2024 NxtLAP
+                </p>
+                <p className="text-slate-500 text-xs mt-1">All rights reserved</p>
+              </div>
             </div>
           </div>
 
