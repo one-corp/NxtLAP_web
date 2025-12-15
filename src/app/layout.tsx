@@ -2,7 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Lora } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
-import Navigation from "@/components/Navigation";
+import Navigation_v2 from "@/components/Navigation_v2";
+import { SeriesSelector } from "@/components/SeriesSelector";
 import Footer from "@/components/Footer";
 
 export const viewport: Viewport = {
@@ -98,18 +99,19 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${lora.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${lora.variable} antialiased bg-background text-foreground`}
       >
         <a href="#main-content" className="skip-to-main">
           Skip to main content
         </a>
-        <div className="fixed top-0 left-0 right-0 z-50">
-          <Navigation />
+        <div className="flex flex-col min-h-screen">
+          <Navigation_v2 />
+          <SeriesSelector />
+          <main id="main-content" className="flex-1">
+            {children}
+          </main>
+          <Footer />
         </div>
-        <main id="main-content">
-          {children}
-        </main>
-        <Footer />
         <Analytics />
       </body>
     </html>
