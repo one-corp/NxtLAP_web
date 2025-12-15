@@ -1,6 +1,5 @@
 import { allLeagues } from "@/Data/Leagues";
 import { ThreePanelLayout } from "@/components/ThreePanelLayout";
-import { LeftPanel } from "@/components/LeftPanel";
 import { RightPanel } from "@/components/RightPanel";
 import { SeriesEventsFeed } from "@/components/SeriesEventsFeed";
 import Hero from "@/components/Hero";
@@ -37,7 +36,6 @@ export default async function SeriesPage({
 
   return (
     <ThreePanelLayout
-      leftPanel={<LeftPanel />}
       rightPanel={<RightPanel />}
     >
         <div className="space-y-6">

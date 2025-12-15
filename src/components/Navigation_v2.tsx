@@ -16,9 +16,8 @@ function Navigation_v2() {
 
   return (
     <>
-    <div className="sticky top-4 z-50 flex justify-center w-full px-4 mb-4">
-    <nav className="w-full max-w-5xl rounded-full border bg-background/80 backdrop-blur-md shadow-lg" aria-label="Main navigation">
-      <div className="px-6 md:px-8">
+    <div className="w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b mb-6">
+    <nav className="container mx-auto px-4 md:px-6" aria-label="Main navigation">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link
@@ -38,9 +37,9 @@ function Navigation_v2() {
 
           {/* Desktop Nav Items */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8" role="list">
-             {/* Filtered nav items: Removed FAQs and All Leagues */}
+             {/* Filtered nav items: Removed FAQs, kept All Leagues */}
             {navItems
-            .filter(item => item.label !== "FAQs" && item.label !== "All Leagues")
+            .filter(item => item.label !== "FAQs")
             .map((item, idx) => (
               <Link
                 href={item.href}
@@ -82,16 +81,15 @@ function Navigation_v2() {
             </Button>
           </div>
         </div>
-      </div>
     </nav>
     </div>
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 top-[80px] z-40 md:hidden bg-background/95 backdrop-blur-sm animate-in slide-in-from-top-2">
+        <div className="fixed inset-0 top-[64px] z-40 md:hidden bg-background/95 backdrop-blur-sm animate-in slide-in-from-top-2">
           <div className="space-y-1 px-4 py-4">
             {navItems
-             .filter(item => item.label !== "FAQs" && item.label !== "All Leagues")
+             .filter(item => item.label !== "FAQs")
              .map((item, idx) => (
               <Link
                 key={idx}
@@ -115,7 +113,7 @@ function Navigation_v2() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex w-full items-center justify-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium"
+                className="flex w-full items-center justify-center gap-2 bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium"
               >
                 <Download size={16} />
                 <span>Download App</span>

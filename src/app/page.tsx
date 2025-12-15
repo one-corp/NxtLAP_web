@@ -9,7 +9,6 @@ import { StructuredData } from "@/components/StructuredData";
 import { getAllPostsMeta } from "@/lib/blogs";
 import { ThreePanelLayout } from "@/components/ThreePanelLayout";
 import { CombinedEventsFeed } from "@/components/CombinedEventsFeed";
-import { LeftPanel } from "@/components/LeftPanel";
 import { RightPanel } from "@/components/RightPanel";
 
 export const metadata = generatePageMetadata({
@@ -46,7 +45,6 @@ export default async function Home() {
         data={[organizationSchema, webSiteSchema, itemListSchema]}
       />
       <ThreePanelLayout
-        leftPanel={<LeftPanel />}
         rightPanel={<RightPanel />}
       >
         <CombinedEventsFeed />
