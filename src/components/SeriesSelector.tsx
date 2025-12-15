@@ -44,7 +44,10 @@ export function SeriesSelector() {
 
           {/* Individual Leagues */}
           {allLeagues.map((league) => {
-             const slug = league.shortName ? league.shortName.toLowerCase() : league.id;
+             // Generate a URL-friendly slug (kebab-case)
+             // e.g. "V8 Supercars" -> "v8-supercars"
+             const rawSlug = league.shortName || league.id;
+             const slug = rawSlug.toLowerCase().replace(/\s+/g, '-');
              const active = isSeriesActive(slug);
 
              return (

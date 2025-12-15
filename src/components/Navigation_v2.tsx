@@ -15,8 +15,10 @@ function Navigation_v2() {
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md shadow-sm" aria-label="Main navigation">
-      <div className="container mx-auto px-4 md:px-6">
+    <>
+    <div className="sticky top-4 z-50 flex justify-center w-full px-4 mb-4">
+    <nav className="w-full max-w-5xl rounded-full border bg-background/80 backdrop-blur-md shadow-lg" aria-label="Main navigation">
+      <div className="px-6 md:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link
@@ -36,7 +38,10 @@ function Navigation_v2() {
 
           {/* Desktop Nav Items */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8" role="list">
-            {navItems.map((item, idx) => (
+             {/* Filtered nav items: Removed FAQs and All Leagues */}
+            {navItems
+            .filter(item => item.label !== "FAQs" && item.label !== "All Leagues")
+            .map((item, idx) => (
               <Link
                 href={item.href}
                 key={idx}
@@ -78,12 +83,16 @@ function Navigation_v2() {
           </div>
         </div>
       </div>
+    </nav>
+    </div>
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="md:hidden border-t bg-background/95 backdrop-blur-sm animate-in slide-in-from-top-2">
+        <div className="fixed inset-0 top-[80px] z-40 md:hidden bg-background/95 backdrop-blur-sm animate-in slide-in-from-top-2">
           <div className="space-y-1 px-4 py-4">
-            {navItems.map((item, idx) => (
+            {navItems
+             .filter(item => item.label !== "FAQs" && item.label !== "All Leagues")
+             .map((item, idx) => (
               <Link
                 key={idx}
                 href={item.href}
@@ -115,7 +124,7 @@ function Navigation_v2() {
           </div>
         </div>
       )}
-    </nav>
+    </>
   );
 }
 
