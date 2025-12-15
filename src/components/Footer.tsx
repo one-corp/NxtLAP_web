@@ -107,13 +107,13 @@ function Footer() {
               ></div>
 
               {/* Logo container */}
-              <div className="relative bg-slate-800 p-6 rounded-full border border-slate-600 shadow-2xl group-hover:scale-110 transition-transform duration-300">
+              <div className="relative bg-slate-800 rounded-full border border-slate-600 shadow-2xl group-hover:scale-110 transition-transform duration-300 overflow-hidden w-24 h-24 flex items-center justify-center">
                 <Image
-                  src="/favicon.ico"
+                  src="/logo.png"
                   width={100}
                   height={100}
                   alt="NxtLAP logo icon"
-                  className="w-16 h-16 md:w-24 md:h-24 drop-shadow-lg"
+                  className="object-cover w-full h-full rounded-full"
                 />
               </div>
             </div>
