@@ -55,49 +55,49 @@ const EventCard = ({ events }: EventCardProps) => {
                 <div className="absolute inset-0 bg-card/70 backdrop-blur-sm" />
 
                 {/* Content */}
-                <div className="relative z-10 p-6 lg:p-8">
+                <div className="relative z-10 p-4 lg:p-6">
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
-                    <div className="lg:col-span-2 space-y-4">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="p-2 bg-primary/15 rounded-lg">
-                          <Flag className="text-primary w-5 h-5" />
+                    <div className="lg:col-span-2 space-y-3">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="p-1.5 bg-primary/15 rounded-lg">
+                          <Flag className="text-primary w-4 h-4" />
                         </div>
-                        <div className="text-sm font-medium text-muted-foreground">
+                        <div className="text-xs font-medium text-muted-foreground">
                           {strLeague} • {strSeason} • Laps {intRound}
                         </div>
                       </div>
 
-                      <h3 className="text-2xl lg:text-3xl font-bold text-gradient mb-3">
+                      <h3 className="text-xl lg:text-2xl font-bold text-gradient mb-2">
                         {strEvent}
                       </h3>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div className="flex items-center gap-3 p-3 bg-accent/40 rounded-lg border border-border/30">
-                          <MapPin className="text-primary w-5 h-5 flex-shrink-0" />
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div className="flex items-center gap-2 p-2 bg-accent/40 rounded-lg border border-border/30">
+                          <MapPin className="text-primary w-4 h-4 flex-shrink-0" />
                           <div>
-                            <div className="font-semibold text-sm">{strVenue}</div>
-                            <div className="text-xs text-muted-foreground">
+                            <div className="font-semibold text-xs">{strVenue}</div>
+                            <div className="text-[10px] text-muted-foreground">
                               {strCity}, {strCountry}
                             </div>
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-3 p-3 bg-accent/40 rounded-lg border border-border/30">
-                          <Clock className="text-primary w-5 h-5 flex-shrink-0" />
+                        <div className="flex items-center gap-2 p-2 bg-accent/40 rounded-lg border border-border/30">
+                          <Clock className="text-primary w-4 h-4 flex-shrink-0" />
                           <div>
-                            <div className="font-semibold text-sm">
+                            <div className="font-semibold text-xs">
                               {formattedTime}
                             </div>
-                            <div className="text-xs text-muted-foreground">
+                            <div className="text-[10px] text-muted-foreground">
                               Local: {localTime}
                             </div>
                           </div>
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-3 p-4 bg-primary/10 rounded-lg border border-primary/20">
-                        <Calendar className="text-primary w-5 h-5" />
-                        <span className="font-semibold text-primary">
+                      <div className="flex items-center gap-2 p-3 bg-primary/10 rounded-lg border border-primary/20">
+                        <Calendar className="text-primary w-4 h-4" />
+                        <span className="font-semibold text-sm text-primary">
                           {formattedDate}
                         </span>
                         {strPostponed !== "no" && (
@@ -110,13 +110,13 @@ const EventCard = ({ events }: EventCardProps) => {
 
                     <div className="lg:col-span-1">
                       <div className="relative group">
-                        <div className="h-80 w-full bg-gradient-to-br from-red-600/20 via-slate-800/40 to-red-800/20 rounded-xl shadow-lg border border-border/30 transition-transform duration-300 group-hover:scale-105 flex items-center justify-center">
-                          <div className="text-center space-y-3">
-                            <Flag className="w-12 h-12 text-red-500 mx-auto animate-pulse" />
-                            <div className="text-lg font-bold text-gradient">
+                        <div className="h-48 w-full bg-gradient-to-br from-red-600/20 via-slate-800/40 to-red-800/20 rounded-xl shadow-lg border border-border/30 transition-transform duration-300 group-hover:scale-105 flex items-center justify-center">
+                          <div className="text-center space-y-2">
+                            <Flag className="w-8 h-8 text-red-500 mx-auto animate-pulse" />
+                            <div className="text-base font-bold text-gradient">
                               {strLeague}
                             </div>
-                            <div className="text-sm text-muted-foreground">
+                            <div className="text-xs text-muted-foreground">
                               Round {intRound}
                             </div>
                           </div>
