@@ -1,4 +1,3 @@
-import LeaguesAccordion from "@/components/LeaguesAccordion";
 import { LatestBlogs } from "@/components/LatestBlogs";
 import { generatePageMetadata } from "@/lib/seo/metadata";
 import {
@@ -8,6 +7,10 @@ import {
 } from "@/lib/seo/structured-data";
 import { StructuredData } from "@/components/StructuredData";
 import { getAllPostsMeta } from "@/lib/blogs";
+import { ThreePanelLayout } from "@/components/ThreePanelLayout";
+import { CombinedEventsFeed } from "@/components/CombinedEventsFeed";
+import { LeftPanel } from "@/components/LeftPanel";
+import { RightPanel } from "@/components/RightPanel";
 
 export const metadata = generatePageMetadata({
   title: "NxtLAP | Track Upcoming Motorsports Events",
@@ -42,8 +45,16 @@ export default async function Home() {
       <StructuredData
         data={[organizationSchema, webSiteSchema, itemListSchema]}
       />
-      <LeaguesAccordion />
-      <LatestBlogs posts={posts} limit={3} />
+      <ThreePanelLayout
+        leftPanel={<LeftPanel />}
+        rightPanel={<RightPanel />}
+      >
+        <CombinedEventsFeed />
+        <div className="mt-12">
+            <h2 className="text-2xl font-bold mb-6 text-gradient">Latest Insights</h2>
+            <LatestBlogs posts={posts} limit={3} />
+        </div>
+      </ThreePanelLayout>
     </>
   );
 }
