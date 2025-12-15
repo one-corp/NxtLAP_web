@@ -9,9 +9,12 @@ import { notFound } from "next/navigation";
 // Generate static params for all leagues to help with build/caching if needed,
 // though this is a dynamic route.
 export function generateStaticParams() {
-  return allLeagues.map((league) => ({
-    slug: league.shortName ? league.shortName.toLowerCase() : league.id,
-  }));
+  return allLeagues.map((league) => {
+    const rawSlug = league.shortName || league.id;
+    return {
+      slug: rawSlug.toLowerCase().replace(/\s+/g, '-'),
+    };
+  });
 }
 
 export default async function SeriesPage({
@@ -20,10 +23,13 @@ export default async function SeriesPage({
     params: Promise<{ slug: string }>
   }) {
     const slug = (await params).slug;
-  // Find the league by slug (shortName) or ID
-  const league = allLeagues.find(
-    (l) => (l.shortName && l.shortName.toLowerCase() === slug.toLowerCase()) || l.id === slug
-  );
+
+  // Find the league by matching the URL-friendly slug
+  const league = allLeagues.find((l) => {
+    const rawSlug = l.shortName || l.id;
+    const generatedSlug = rawSlug.toLowerCase().replace(/\s+/g, '-');
+    return generatedSlug === slug.toLowerCase();
+  });
 
   if (!league) {
     notFound();
