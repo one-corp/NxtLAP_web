@@ -48,11 +48,8 @@ export default async function Home() {
         rightPanel={<RightPanel />}
       >
         <CombinedEventsFeed />
-        <div className="mt-12">
-            <h2 className="text-2xl font-bold mb-6 text-gradient">Latest Insights</h2>
-            <LatestBlogs posts={posts} limit={3} />
-        </div>
       </ThreePanelLayout>
+      <LatestBlogs posts={posts} limit={3} />
     </>
   );
 }

@@ -23,7 +23,7 @@ export function SeriesSelector() {
   };
 
   return (
-    <div className="w-full border-b bg-background/50 backdrop-blur-sm sticky top-16 z-40 overflow-x-auto no-scrollbar">
+    <div className="w-full border-b bg-background overflow-x-auto no-scrollbar">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center gap-2 py-3">
           {/* 'All' Category */}
