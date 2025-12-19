@@ -1,8 +1,7 @@
 import { Event } from "@/types/Event";
 import { allLeagues } from "@/Data/Leagues";
-import { Calendar, MapPin, Clock, Flag, CalendarPlus } from "lucide-react";
+import { Calendar, MapPin, Clock, Flag } from "lucide-react";
 import Image from "next/image";
-import { generateGoogleCalendarUrl } from "@/utils/calendar";
 
 // --- Helper Functions ---
 
@@ -61,11 +60,6 @@ function EventItem({ event }: EventItemProps) {
   // Find League Logo
   const leagueInfo = allLeagues.find(l => l.id === idLeague || l.name === strLeague || l.shortName === strLeague);
   const leagueLogo = leagueInfo?.logo;
-
-  const handleAddToCalendar = () => {
-    const url = generateGoogleCalendarUrl(event);
-    window.open(url, "_blank");
-  };
 
   return (
     <div className="w-full">
@@ -153,15 +147,6 @@ function EventItem({ event }: EventItemProps) {
                     Postponed
                     </span>
                 )}
-
-                <button
-                    onClick={handleAddToCalendar}
-                    className="w-full flex items-center justify-center gap-2 bg-primary/10 hover:bg-primary/20 text-primary text-xs font-medium py-2 rounded-lg transition-colors"
-                    title="Add to Google Calendar"
-                >
-                    <CalendarPlus className="w-3.5 h-3.5" />
-                    Add to Cal
-                </button>
               </div>
             </div>
           </div>
@@ -224,14 +209,6 @@ function EventItem({ event }: EventItemProps) {
                 </span>
               </div>
             )}
-
-            <button
-                onClick={handleAddToCalendar}
-                className="w-full flex items-center justify-center gap-2 bg-primary/10 hover:bg-primary/20 text-primary text-xs font-medium py-2 rounded-lg transition-colors"
-            >
-                <CalendarPlus className="w-3.5 h-3.5" />
-                Add to Calendar
-            </button>
           </div>
         </div>
       </div>
