@@ -5,6 +5,8 @@ import { SeriesEventsFeed } from "@/components/SeriesEventsFeed";
 import Hero from "@/components/Hero";
 import { notFound } from "next/navigation";
 
+export const revalidate = 3600; // Revalidate every hour
+
 // Generate static params for all leagues to help with build/caching if needed,
 // though this is a dynamic route.
 export function generateStaticParams() {

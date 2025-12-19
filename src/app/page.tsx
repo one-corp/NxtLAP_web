@@ -11,6 +11,8 @@ import { ThreePanelLayout } from "@/components/ThreePanelLayout";
 import { CombinedEventsFeed } from "@/components/CombinedEventsFeed";
 import { RightPanel } from "@/components/RightPanel";
 
+export const revalidate = 3600; // Revalidate every hour
+
 export const metadata = generatePageMetadata({
   title: "NxtLAP | Track Upcoming Motorsports Events",
   description: "Discover and track upcoming motorsport events with AI-powered insights. Stay updated with F1, MotoGP, NASCAR, IndyCar, and more racing leagues in one place.",
