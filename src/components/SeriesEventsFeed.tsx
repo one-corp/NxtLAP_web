@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { baseURL } from "@/utils/constants";
 import { Event } from "@/types/Event";
-import EventCard from "./EventCard";
+import EventList from "./EventList";
 import { RacingLoader } from "./skeletons/RacingLoader";
 import { F1ApiService } from "@/utils/f1-api";
 import { shouldUseAlternativeAPI } from "@/utils/api-config";
@@ -77,9 +77,7 @@ export function SeriesEventsFeed({ leagueId }: SeriesEventsFeedProps) {
            Upcoming Events
         </h2>
       </div>
-      <div className="grid gap-4">
-           <EventCard events={events} />
-      </div>
+      <EventList events={events} />
     </div>
   );
 }
