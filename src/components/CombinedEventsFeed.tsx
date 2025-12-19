@@ -4,15 +4,17 @@ import { useEffect, useState } from "react";
 import { allLeagues } from "@/Data/Leagues";
 import { baseURL } from "@/utils/constants";
 import { Event } from "@/types/Event";
-import EventCard from "./EventCard"; // reusing existing card
+import EventList from "./EventList";
 import { RacingLoader } from "./skeletons/RacingLoader";
 import { F1ApiService } from "@/utils/f1-api";
 import { shouldUseAlternativeAPI } from "@/utils/api-config";
 import { ClipboardClock } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function CombinedEventsFeed() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedLeagueId, setSelectedLeagueId] = useState<string>("all");
 
   useEffect(() => {
     async function fetchAllEvents() {
@@ -82,26 +84,49 @@ export function CombinedEventsFeed() {
     );
   }
 
+  const filteredEvents = selectedLeagueId === "all"
+    ? events
+    : events.filter((e) => e.idLeague === selectedLeagueId);
+
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-         <h2 className="text-xl font-bold flex items-center gap-2">
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold flex items-center gap-2">
            <ClipboardClock className="text-primary w-5 h-5" />
            All Upcoming Races
         </h2>
+
+        {/* Series Filter */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
+            <button
+              onClick={() => setSelectedLeagueId("all")}
+              className={cn(
+                "px-3 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap border",
+                selectedLeagueId === "all"
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "bg-secondary text-secondary-foreground border-transparent hover:bg-secondary/80"
+              )}
+            >
+              All Series
+            </button>
+            {allLeagues.map((league) => (
+              <button
+                key={league.id}
+                onClick={() => setSelectedLeagueId(league.id)}
+                className={cn(
+                  "px-3 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap border",
+                  selectedLeagueId === league.id
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "bg-secondary text-secondary-foreground border-transparent hover:bg-secondary/80"
+                )}
+              >
+                {league.shortName || league.name}
+              </button>
+            ))}
+        </div>
       </div>
 
-      {events.length === 0 ? (
-        <div className="p-8 text-center border rounded-xl bg-card">
-          <p className="text-muted-foreground">No upcoming events found.</p>
-        </div>
-      ) : (
-        <div className="grid gap-4">
-           {/* We might want to group by Date or just list them. EventCard handles a list?
-               Let's check EventCard implementation. */}
-           <EventCard events={events} />
-        </div>
-      )}
+      <EventList events={filteredEvents} />
     </div>
   );
 }
