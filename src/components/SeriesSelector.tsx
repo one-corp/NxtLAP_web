@@ -1,13 +1,39 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { allLeagues } from "@/Data/Leagues";
 import { cn } from "@/lib/utils";
 
 export function SeriesSelector() {
   const pathname = usePathname();
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Show when scrolling up, hide when scrolling down
+      // Also show if at the top of the page
+      if (currentScrollY < lastScrollY || currentScrollY < 10) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    // Add scroll event listener
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
 
   // Helper to determine if a link is active
   // Special case for "All" which is just "/"
@@ -23,7 +49,12 @@ export function SeriesSelector() {
   };
 
   return (
-    <div className="w-full border-b bg-background overflow-x-auto no-scrollbar">
+    <div 
+      className={cn(
+        "fixed top-16 left-0 right-0 w-full border-b bg-background overflow-x-auto no-scrollbar transition-transform duration-300 z-30",
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      )}
+    >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center gap-2 py-3">
           {/* 'All' Category */}
@@ -61,16 +92,6 @@ export function SeriesSelector() {
                       : "bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground"
                   )}
                 >
-                  {league.logo && (
-                    <div className="relative w-4 h-4 overflow-hidden">
-                        <Image
-                            src={league.logo}
-                            alt={league.shortName || league.name}
-                            fill
-                            className="object-contain"
-                        />
-                    </div>
-                  )}
                   <span>{league.shortName || league.name}</span>
                 </Link>
              );

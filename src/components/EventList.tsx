@@ -243,8 +243,8 @@ export default function EventList({ events }: EventListProps) {
       {sortedKeys.map((monthKey) => (
         <div key={monthKey} className="space-y-4">
           {/* Sticky Header */}
-          <div className="sticky top-0 z-20 backdrop-blur-md bg-background/80 py-3 border-b border-border/50 -mx-4 px-4 md:mx-0 md:px-0 md:rounded-lg">
-             <h3 className="text-lg font-bold text-primary flex items-center gap-2">
+          <div className="sticky top-16 z-20 backdrop-blur-md bg-background/80 py-3 border-b border-border/50 -mx-4 px-4 md:mx-0 md:px-0">
+             <h3 className="md:pl-6 pl-1 text-lg font-bold text-primary flex items-center gap-2">
                 <Calendar className="w-5 h-5" />
                 {monthKey}
              </h3>

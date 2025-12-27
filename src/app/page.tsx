@@ -7,7 +7,7 @@ import {
 } from "@/lib/seo/structured-data";
 import { StructuredData } from "@/components/StructuredData";
 import { getAllPostsMeta } from "@/lib/blogs";
-import { ThreePanelLayout } from "@/components/ThreePanelLayout";
+import { TwoPanelLayout } from "@/components/TwoPanelLayout";
 import { CombinedEventsFeed } from "@/components/CombinedEventsFeed";
 import { RightPanel } from "@/components/RightPanel";
 
@@ -44,11 +44,11 @@ export default async function Home() {
       <StructuredData
         data={[organizationSchema, webSiteSchema, itemListSchema]}
       />
-      <ThreePanelLayout
+      <TwoPanelLayout
         rightPanel={<RightPanel />}
       >
         <CombinedEventsFeed />
-      </ThreePanelLayout>
+      </TwoPanelLayout>
       <LatestBlogs posts={posts} limit={3} />
     </>
   );
