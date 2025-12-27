@@ -97,27 +97,8 @@ function Footer() {
             </div>
           </nav>
 
-          {/* Logo Section */}
+          {/* App Download & Copyright Section */}
           <div className="flex flex-col items-center space-y-6">
-            <div className="relative group">
-              {/* Glowing ring around logo */}
-              <div
-                className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-red-500 blur-md opacity-60 group-hover:opacity-80 transition-opacity duration-300 animate-pulse"
-                aria-hidden="true"
-              ></div>
-
-              {/* Logo container */}
-              <div className="relative bg-slate-800 rounded-full border border-slate-600 shadow-2xl group-hover:scale-110 transition-transform duration-300 overflow-hidden w-24 h-24 flex items-center justify-center">
-                <Image
-                  src="/logo.png"
-                  width={100}
-                  height={100}
-                  alt="NxtLAP logo icon"
-                  className="object-cover w-full h-full rounded-full"
-                />
-              </div>
-            </div>
-
             <div className="text-center space-y-4">
               <Link
                 href="https://apps.apple.com/in/app/nxtlap-race-scores-widgets/id6754256034"
@@ -138,36 +119,12 @@ function Footer() {
                 <p
                   className="text-slate-400 text-sm font-medium"
                   role="contentinfo"
-                >
-                  © 2024 NxtLAP
+                >{`© ${new Date().getFullYear()} NxtLAP`}
                 </p>
                 <p className="text-slate-500 text-xs mt-1">All rights reserved</p>
               </div>
             </div>
           </div>
-
-          {/* Additional Info / Stats */}
-          {/* <div className="space-y-6">
-            <div className="bg-gradient-to-r from-slate-800 to-slate-700 p-6 rounded-2xl border border-slate-600 shadow-xl">
-              <h3 className="text-white font-bold text-lg mb-3">
-                Innovation Hub
-              </h3>
-              <p className="text-slate-300 text-sm mb-4 leading-relaxed">
-                Pushing the boundaries of motorsports technology with
-                cutting-edge AI solutions.
-              </p>
-              <div className="grid grid-cols-2 gap-4 text-center">
-                <div>
-                  <p className="text-2xl font-bold text-white">24/7</p>
-                  <p className="text-xs text-slate-400">Analytics</p>
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-white">∞</p>
-                  <p className="text-xs text-slate-400">Possibilities</p>
-                </div>
-              </div>
-            </div>
-          </div> */}
         </div>
 
         {/* Bottom racing stripes */}

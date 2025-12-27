@@ -16,7 +16,7 @@ function Navigation_v2() {
 
   return (
     <>
-    <div className="w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b mb-6">
+    <div className="fixed top-0 left-0 right-0 w-full bg-background backdrop-blur border-b z-50">
     <nav className="container mx-auto px-4 md:px-6" aria-label="Main navigation">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
