@@ -16,9 +16,24 @@ function Navigation_v2() {
 
   return (
     <>
-    <div className="fixed top-0 left-0 right-0 w-full bg-background backdrop-blur border-b z-50">
-    <nav className="container mx-auto px-4 md:px-6" aria-label="Main navigation">
-        <div className="flex h-16 items-center justify-between">
+    <div className="fixed top-0 left-0 right-0 w-full z-50 flex flex-col">
+      {/* App Banner */}
+      <div className="bg-primary text-primary-foreground flex items-center justify-center gap-3 sm:gap-4 px-4 h-12 text-sm sm:text-base font-semibold shadow-md relative z-50">
+        <span className="text-center">Watch race livestreams and news</span>
+        <Link
+          href="https://apps.apple.com/in/app/nxtlap-race-scores-widgets/id6754256034"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-shrink-0 bg-background text-primary hover:bg-muted px-4 py-1 rounded-full text-xs sm:text-sm font-bold transition-all shadow-sm flex items-center gap-1.5 hover:scale-105"
+        >
+          <Download size={14} className="sm:w-4 sm:h-4" />
+          Get App
+        </Link>
+      </div>
+
+      <div className="w-full bg-background backdrop-blur border-b">
+        <nav className="container mx-auto px-4 md:px-6" aria-label="Main navigation">
+          <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link
             href="/"
@@ -61,32 +76,20 @@ function Navigation_v2() {
             ))}
           </div>
 
-          {/* Desktop Right Side (App Button) */}
-          <div className="hidden md:flex items-center">
-            <Link
-              href="https://apps.apple.com/in/app/nxtlap-race-scores-widgets/id6754256034"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-full text-xs font-medium transition-colors focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-4 shadow-sm"
-            >
-              <Download size={14} />
-              <span>Get App</span>
-            </Link>
-          </div>
-
           {/* Mobile Menu Button */}
           <div className="flex md:hidden">
             <Button variant="ghost" size="icon" onClick={toggleMobileMenu} aria-label="Toggle menu">
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           </div>
-        </div>
-    </nav>
+          </div>
+        </nav>
+      </div>
     </div>
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 top-[64px] z-40 md:hidden bg-background/95 backdrop-blur-sm animate-in slide-in-from-top-2">
+        <div className="fixed inset-0 top-[112px] z-40 md:hidden bg-background/95 backdrop-blur-sm animate-in slide-in-from-top-2">
           <div className="space-y-1 px-4 py-4">
             {navItems
              .filter(item => item.label !== "FAQs")

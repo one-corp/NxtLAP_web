@@ -10,7 +10,7 @@ export function TwoPanelLayout({
   rightPanel,
 }: TwoPanelLayoutProps) {
   return (
-    <div className="container mx-auto px-4 md:px-6 pb-6 md:pb-8 pt-36 md:pt-40">
+    <div className="container mx-auto px-4 md:px-6 pb-6 md:pb-8 pt-44 md:pt-48">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 xl:gap-8">
         {/* Center Panel - Main Content */}
         <main className="lg:col-span-9 xl:col-span-9 order-1 lg:order-1 space-y-6 min-h-[50vh]">
