@@ -28,7 +28,7 @@ export default async function BlogsPage() {
   const otherPosts = posts.slice(1);
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen pt-12 sm:pt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-28">
         {/* Header */}
         <div className="text-center mb-16">

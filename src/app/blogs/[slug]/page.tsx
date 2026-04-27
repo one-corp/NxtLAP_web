@@ -38,7 +38,7 @@ export default async function PostPage({ params }: Params) {
   return (
     <>
       <StructuredData data={articleSchema} />
-      <main className="min-h-screen bg-background pt-24 lg:pt-28">
+      <main className="min-h-screen bg-background pt-24 sm:pt-28 md:pt-[120px]">
         {/* Hero Section with Gradient */}
         <div className="relative bg-gradient-to-b from-card/50 to-transparent border-b border-border/50">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

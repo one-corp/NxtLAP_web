@@ -51,7 +51,7 @@ export function SeriesSelector() {
   return (
     <div 
       className={cn(
-        "fixed top-[112px] left-0 right-0 w-full border-b bg-background overflow-x-auto no-scrollbar transition-transform duration-300 z-30",
+        "fixed top-[112px] sm:top-[120px] left-0 right-0 w-full border-b bg-background overflow-x-auto no-scrollbar transition-transform duration-300 z-30",
         isVisible ? "translate-y-0" : "-translate-y-full"
       )}
     >

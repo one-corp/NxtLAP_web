@@ -18,16 +18,32 @@ function Navigation_v2() {
     <>
     <div className="fixed top-0 left-0 right-0 w-full z-50 flex flex-col">
       {/* App Banner */}
-      <div className="bg-primary text-primary-foreground flex items-center justify-center gap-3 sm:gap-4 px-4 h-12 text-sm sm:text-base font-semibold shadow-md relative z-50">
-        <span className="text-center">Watch race livestreams and news</span>
+      <div className="bg-primary text-primary-foreground flex items-center justify-center gap-3 sm:gap-4 px-2 sm:px-4 py-2 sm:h-14 text-sm sm:text-base font-semibold shadow-md relative z-50">
+        <div className="flex items-center gap-2">
+          <Image
+            src="/logo.png"
+            width={24}
+            height={24}
+            alt="NxtLAP logo"
+            className="rounded-md border border-white/20 w-6 h-6 sm:w-8 sm:h-8"
+          />
+          <span className="text-center text-xs sm:text-base leading-tight">
+            Watch race livestreams and news. <span className="hidden sm:inline">Available on AppStore.</span>
+          </span>
+        </div>
         <Link
           href="https://apps.apple.com/in/app/nxtlap-race-scores-widgets/id6754256034"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-shrink-0 bg-background text-primary hover:bg-muted px-4 py-1 rounded-full text-xs sm:text-sm font-bold transition-all shadow-sm flex items-center gap-1.5 hover:scale-105"
+          className="flex-shrink-0 hover:opacity-90 transition-opacity"
         >
-          <Download size={14} className="sm:w-4 sm:h-4" />
-          Get App
+          <Image
+            src="/app-store-badge.svg"
+            width={100}
+            height={34}
+            alt="Download on the App Store"
+            className="h-8 sm:h-[34px] w-auto"
+          />
         </Link>
       </div>
 
@@ -89,7 +105,7 @@ function Navigation_v2() {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 top-[112px] z-40 md:hidden bg-background/95 backdrop-blur-sm animate-in slide-in-from-top-2">
+        <div className="fixed inset-0 top-[112px] sm:top-[120px] z-40 md:hidden bg-background/95 backdrop-blur-sm animate-in slide-in-from-top-2">
           <div className="space-y-1 px-4 py-4">
             {navItems
              .filter(item => item.label !== "FAQs")
