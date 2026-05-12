@@ -6,6 +6,14 @@ import Link from "next/link";
 
 import { useState } from "react";
 import { Button } from "./ui/button";
+import { AppleIcon } from "./AppleIcon";
+
+const navItems = [
+  { label: "Features", href: "#features" },
+  { label: "Why Us", href: "#why-us" },
+  { label: "Reviews", href: "#reviews" },
+  { label: "Blogs", href: "/blogs" },
+];
 
 const navItems = [
   { label: "Features", href: "#features" },
@@ -33,7 +41,7 @@ function Navigation_v2() {
             className="flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-4 rounded-lg"
           >
             <Image
-              src="/logo.png"
+              src="/new-logo.jpg"
               width={40}
               height={40}
               alt="NxtLAP logo"
@@ -105,8 +113,8 @@ function Navigation_v2() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="flex w-full items-center justify-center gap-2 bg-primary text-primary-foreground px-4 py-3 rounded-lg text-sm font-medium hover:bg-primary/90"
               >
-                <Download size={16} />
-                <span>Download App</span>
+                <AppleIcon size={16} />
+                <span>Download on App Store</span>
               </Link>
             </div>
           </div>
