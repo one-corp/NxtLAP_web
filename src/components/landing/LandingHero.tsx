@@ -1,8 +1,9 @@
 "use client";
 
-import { Download, Star } from "lucide-react";
+import { Star } from "lucide-react";
 
 import Link from "next/link";
+import { AppleIcon } from "../AppleIcon";
 
 export function LandingHero() {
   return (
@@ -38,7 +39,7 @@ export function LandingHero() {
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-3 bg-foreground text-background hover:bg-foreground/90 px-8 py-4 rounded-xl font-bold transition-all hover:scale-105 w-full sm:w-auto shadow-xl"
             >
-              <Download size={24} />
+              <AppleIcon size={24} />
               <div className="flex flex-col items-start leading-none">
                 <span className="text-[10px] font-medium opacity-80">Download on the</span>
                 <span className="text-lg">App Store</span>

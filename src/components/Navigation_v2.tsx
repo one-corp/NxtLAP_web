@@ -1,6 +1,6 @@
 "use client"
 
-import { Download, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,14 +8,7 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { AppleIcon } from "./AppleIcon";
 
-const navItems = [
-  { label: "Features", href: "#features" },
-  { label: "Why Us", href: "#why-us" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "Blogs", href: "/blogs" },
-];
-
-const navItems = [
+const localNavItems = [
   { label: "Features", href: "#features" },
   { label: "Why Us", href: "#why-us" },
   { label: "Reviews", href: "#reviews" },
@@ -52,7 +45,7 @@ function Navigation_v2() {
 
           {/* Desktop Nav Items */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8" role="list">
-            {navItems.map((item, idx) => (
+            {localNavItems.map((item, idx) => (
               <Link
                 href={item.href}
                 key={idx}
@@ -72,8 +65,8 @@ function Navigation_v2() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-full text-sm font-bold transition-all shadow-sm hover:scale-105"
             >
-              <Download size={16} />
-              Get App
+              <AppleIcon size={16} />
+              Get on App Store
             </Link>
           </div>
 
@@ -92,7 +85,7 @@ function Navigation_v2() {
       {isMobileMenuOpen && (
         <div className="fixed inset-0 top-[64px] z-40 md:hidden bg-background/95 backdrop-blur-sm animate-in slide-in-from-top-2">
           <div className="space-y-1 px-4 py-4">
-            {navItems.map((item, idx) => (
+            {localNavItems.map((item, idx) => (
               <Link
                 key={idx}
                 href={item.href}
