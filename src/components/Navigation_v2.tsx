@@ -1,12 +1,19 @@
 "use client"
 
-import { Menu, X } from "lucide-react";
+import { Download, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { AppleIcon } from "./AppleIcon";
+
+const navItems = [
+  { label: "Features", href: "#features" },
+  { label: "Why Us", href: "#why-us" },
+  { label: "Reviews", href: "#reviews" },
+  { label: "Blogs", href: "/blogs" },
+];
 
 const navItems = [
   { label: "Features", href: "#features" },
@@ -65,8 +72,8 @@ function Navigation_v2() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-full text-sm font-bold transition-all shadow-sm hover:scale-105"
             >
-              <AppleIcon size={16} />
-              Get on App Store
+              <Download size={16} />
+              Get App
             </Link>
           </div>
 

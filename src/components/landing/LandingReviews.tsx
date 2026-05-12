@@ -22,6 +22,27 @@ const reviews = [
     initials: "JR",
     bg: "bg-purple-500",
   },
+  {
+    name: "Priya M.",
+    role: "MotoGP & F1 fan",
+    content: "I've discovered so much racing via this app. I'm watching GT World Challenge now. I didn't even know what that was a year ago!",
+    initials: "PM",
+    bg: "bg-pink-500",
+  },
+  {
+    name: "Chris L.",
+    role: "NASCAR & IndyCar fan",
+    content: "Living in Europe and following American series used to be a nightmare. The timezone conversion is flawless - I always know exactly when to tune in.",
+    initials: "CL",
+    bg: "bg-orange-500",
+  },
+  {
+    name: "Annika B.",
+    role: "DTM & Formula E fan",
+    content: "Love that it covers smaller series just as well as F1. It's clear the developer really cares about all of motorsport, not just F1.",
+    initials: "AB",
+    bg: "bg-red-500",
+  },
 ];
 
 export function LandingReviews() {
