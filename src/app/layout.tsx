@@ -3,7 +3,6 @@ import { Geist, Geist_Mono, Lora } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import Navigation_v2 from "@/components/Navigation_v2";
-import { SeriesSelector } from "@/components/SeriesSelector";
 import Footer from "@/components/Footer";
 
 export const viewport: Viewport = {
@@ -32,30 +31,23 @@ export const metadata: Metadata = {
   alternates:{
     canonical: "/",
   },
-  title: "NxtLAP | Track Upcoming Motorsports Events",
+  title: "NxtLAP | Watch Race Livestreams and 10+ racing series",
   description:
-    "Discover and track upcoming motorsport events with AI-powered insights. Stay updated with races, schedules, and leagues.",
+    "Stream Live Motorsport & Track 10+ Global Series - All in One App. Your motorsport calendar, racing timetables and live streams - all in one app.",
   keywords: [
-    "upcoming f1 races",
     "motorsport",
     "racing",
     "f1 events",
     "MotoGP schedule",
     "racing leagues",
-    "upcoming races",
+    "live motorsport",
     "NASCAR",
-    "BTCC",
-    "V8 Supercars",
-    "WRC",
-    "SGT",
-    "IMSA",
-    "IndyCar",
-    "British GT",
+    "motorsport streams",
   ],
   openGraph: {
-    title: "NxtLAP",
+    title: "NxtLAP | Watch Race Livestreams",
     description:
-      "Track upcoming motorsport events with the power of AI. Stay informed with smart insights on leagues, venues, and schedules.",
+      "Stream Live Motorsport & Track 10+ Global Series - All in One App.",
     url: "https://nxtlap.com",
     siteName: "NxtLAP",
     images: [
@@ -71,9 +63,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NxtLAP",
+    title: "NxtLAP | Watch Race Livestreams",
     description:
-      "Discover and track upcoming motorsport events with AI-powered insights. Stay updated with races, schedules, and leagues in one place.",
+      "Stream Live Motorsport & Track 10+ Global Series - All in One App.",
     images: ["/og-banner.png"],
     creator: "@codephilic_guy",
   },
@@ -106,8 +98,7 @@ export default function RootLayout({
         </a>
         <div className="flex flex-col min-h-screen">
           <Navigation_v2 />
-          <SeriesSelector />
-          <main id="main-content" className="flex-1">
+          <main id="main-content" className="flex-1 pt-16">
             {children}
           </main>
           <Footer />
