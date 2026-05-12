@@ -8,7 +8,6 @@ export interface NavItemType{
 
 const navItems: NavItemType[] = [
   { label: "All Leagues", href: "/", icon: Trophy },
-  { label: "FAQs", href: "/faqs", },
   {label: "Blogs", href: "/blogs"}
 ];
 

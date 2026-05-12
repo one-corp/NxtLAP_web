@@ -179,7 +179,7 @@ export function buildArticleSchema(post: PostMeta): ArticleSchema {
       name: siteConfig.name,
       logo: {
         '@type': 'ImageObject',
-        url: `${siteConfig.url}/logo.png`,
+        url: `${siteConfig.url}/new-logo.jpg`,
       },
     },
     mainEntityOfPage: {
@@ -204,7 +204,7 @@ export function buildOrganizationSchema(): OrganizationSchema {
     '@type': 'Organization',
     name: siteConfig.name,
     url: siteConfig.url,
-    logo: `${siteConfig.url}/logo.png`,
+    logo: `${siteConfig.url}/new-logo.jpg`,
     sameAs: socialLinks,
     description: siteConfig.description,
   };
