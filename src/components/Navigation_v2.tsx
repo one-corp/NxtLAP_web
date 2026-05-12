@@ -8,6 +8,13 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { AppleIcon } from "./AppleIcon";
 
+const navItems = [
+  { label: "Features", href: "#features" },
+  { label: "Why Us", href: "#why-us" },
+  { label: "Reviews", href: "#reviews" },
+  { label: "Blogs", href: "/blogs" },
+];
+
 const localNavItems = [
   { label: "Features", href: "#features" },
   { label: "Why Us", href: "#why-us" },
