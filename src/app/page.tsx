@@ -4,7 +4,7 @@ import { LandingFeatures } from "@/components/landing/LandingFeatures";
 import { LandingWhyUs } from "@/components/landing/LandingWhyUs";
 import { LandingReviews } from "@/components/landing/LandingReviews";
 import Link from "next/link";
-import { Download } from "lucide-react";
+import { AppleIcon } from "@/components/AppleIcon";
 
 export const metadata = generatePageMetadata({
   title: "NxtLAP | Watch Race Livestreams and 10+ racing series",
@@ -45,7 +45,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-3 bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 rounded-xl font-bold transition-all hover:scale-105 shadow-xl"
             >
-              <Download size={24} />
+              <AppleIcon size={24} />
               <div className="flex flex-col items-start leading-none">
                 <span className="text-[10px] font-medium opacity-80">Download on the</span>
                 <span className="text-lg">App Store</span>
