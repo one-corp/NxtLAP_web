@@ -184,12 +184,3 @@ export function optimizeTitle(title: string, maxLength: number = 60): string {
   return truncateText(title, maxLength);
 }
 
-/**
- * Helper function to ensure description is within SEO best practices (150-160 chars)
- */
-export function optimizeDescription(description: string, minLength: number = 150, maxLength: number = 160): string {
-  if (description.length < minLength) {
-    console.warn(`Description is shorter than recommended ${minLength} characters: "${description}"`);
-  }
-  return truncateText(description, maxLength);
-}
