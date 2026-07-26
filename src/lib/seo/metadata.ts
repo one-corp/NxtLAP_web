@@ -178,13 +178,6 @@ export function truncateText(text: string, maxLength: number): string {
 }
 
 /**
- * Helper function to ensure title is within SEO best practices (under 60 chars)
- */
-export function optimizeTitle(title: string, maxLength: number = 60): string {
-  return truncateText(title, maxLength);
-}
-
-/**
  * Helper function to ensure description is within SEO best practices (150-160 chars)
  */
 export function optimizeDescription(description: string, minLength: number = 150, maxLength: number = 160): string {
