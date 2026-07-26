@@ -225,6 +225,24 @@ export async function getAllSlugs(): Promise<string[]> {
   return files.map((f) => slugFromFilename(f));
 }
 
+export async function getAllPosts(): Promise<Post[]> {
+  const slugs = await getAllSlugs();
+  const allPosts = await Promise.all(
+    slugs.map((slug) => getPostBySlug(slug))
+  );
+
+  const validPosts = allPosts.filter((p) => p !== null) as NonNullable<typeof allPosts[0]>[];
+
+  // Sort by date descending
+  validPosts.sort((a, b) => {
+    const timeA = new Date(a.meta.date).getTime();
+    const timeB = new Date(b.meta.date).getTime();
+    return timeA < timeB ? 1 : timeA > timeB ? -1 : 0;
+  });
+
+  return validPosts;
+}
+
 /**
  * Get related posts based on tags and keywords similarity
  * @param currentPost - The current post to find related posts for
