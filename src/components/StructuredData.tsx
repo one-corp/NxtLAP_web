@@ -14,6 +14,7 @@ import {
   WebSiteSchema,
   SportsEventSchema,
   ItemListSchema,
+  safeJsonLdStringify,
 } from '@/lib/seo/structured-data';
 
 type StructuredDataSchema =
@@ -55,7 +56,7 @@ export function StructuredData({ data }: StructuredDataProps) {
           key={`structured-data-${index}`}
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(schema),
+            __html: safeJsonLdStringify(schema),
           }}
         />
       ))}
