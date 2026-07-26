@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getAllPostsMeta, getPostBySlug } from '@/lib/blogs';
+import { getAllPosts } from '@/lib/blogs';
 import { siteConfig } from '@/config/site';
 
 /**
@@ -8,16 +8,15 @@ import { siteConfig } from '@/config/site';
  */
 export async function GET() {
   try {
-    const posts = await getAllPostsMeta();
+    const posts = await getAllPosts();
     
     // Build RSS 2.0 XML
-    const rssItems = await Promise.all(
-      posts.map(async (post) => {
-        const fullPost = await getPostBySlug(post.slug);
+    const rssItems = posts.map((fullPost) => {
+        const post = fullPost.meta;
         const postUrl = `${siteConfig.url}/blogs/${post.slug}`;
         
         // Get full content HTML
-        const content = fullPost?.contentHtml || '';
+        const content = fullPost.contentHtml || '';
         
         // Build enclosure for featured image if available
         const enclosure = post.featuredImage
@@ -38,8 +37,7 @@ ${enclosure}
     <content:encoded><![CDATA[${content}]]></content:encoded>
 ${post.tags && post.tags.length > 0 ? post.tags.map(tag => `    <category>${tag}</category>`).join('\n') : ''}
   </item>`;
-      })
-    );
+      });
 
     const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" 
