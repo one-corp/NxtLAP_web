@@ -49,6 +49,22 @@ export async function getFileModifiedTime(filePath: string): Promise<string> {
   }
 }
 
+// Common stop words to filter out
+const stopWords = new Set([
+  'the', 'be', 'to', 'of', 'and', 'a', 'in', 'that', 'have', 'i',
+  'it', 'for', 'not', 'on', 'with', 'he', 'as', 'you', 'do', 'at',
+  'this', 'but', 'his', 'by', 'from', 'they', 'we', 'say', 'her', 'she',
+  'or', 'an', 'will', 'my', 'one', 'all', 'would', 'there', 'their',
+  'what', 'so', 'up', 'out', 'if', 'about', 'who', 'get', 'which', 'go',
+  'me', 'when', 'make', 'can', 'like', 'time', 'no', 'just', 'him', 'know',
+  'take', 'people', 'into', 'year', 'your', 'good', 'some', 'could', 'them',
+  'see', 'other', 'than', 'then', 'now', 'look', 'only', 'come', 'its', 'over',
+  'think', 'also', 'back', 'after', 'use', 'two', 'how', 'our', 'work',
+  'first', 'well', 'way', 'even', 'new', 'want', 'because', 'any', 'these',
+  'give', 'day', 'most', 'us', 'is', 'was', 'are', 'been', 'has', 'had',
+  'were', 'said', 'did', 'having', 'may', 'should', 'am', 'being', 'more'
+]);
+
 /**
  * Extract keywords from content using simple frequency analysis
  * @param content - The markdown content to analyze
@@ -56,22 +72,6 @@ export async function getFileModifiedTime(filePath: string): Promise<string> {
  * @returns Array of extracted keywords
  */
 export function extractKeywords(content: string, count: number = 10): string[] {
-  // Common stop words to filter out
-  const stopWords = new Set([
-    'the', 'be', 'to', 'of', 'and', 'a', 'in', 'that', 'have', 'i',
-    'it', 'for', 'not', 'on', 'with', 'he', 'as', 'you', 'do', 'at',
-    'this', 'but', 'his', 'by', 'from', 'they', 'we', 'say', 'her', 'she',
-    'or', 'an', 'will', 'my', 'one', 'all', 'would', 'there', 'their',
-    'what', 'so', 'up', 'out', 'if', 'about', 'who', 'get', 'which', 'go',
-    'me', 'when', 'make', 'can', 'like', 'time', 'no', 'just', 'him', 'know',
-    'take', 'people', 'into', 'year', 'your', 'good', 'some', 'could', 'them',
-    'see', 'other', 'than', 'then', 'now', 'look', 'only', 'come', 'its', 'over',
-    'think', 'also', 'back', 'after', 'use', 'two', 'how', 'our', 'work',
-    'first', 'well', 'way', 'even', 'new', 'want', 'because', 'any', 'these',
-    'give', 'day', 'most', 'us', 'is', 'was', 'are', 'been', 'has', 'had',
-    'were', 'said', 'did', 'having', 'may', 'should', 'am', 'being', 'more'
-  ]);
-
   // Remove markdown syntax and special characters
   const cleanContent = content
     .replace(/```[\s\S]*?```/g, '') // Remove code blocks
