@@ -8,13 +8,6 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { AppleIcon } from "./AppleIcon";
 
-const navItems = [
-  { label: "Features", href: "#features" },
-  { label: "Why Us", href: "#why-us" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "Blogs", href: "/blogs" },
-];
-
 const localNavItems = [
   { label: "Features", href: "#features" },
   { label: "Why Us", href: "#why-us" },
@@ -52,15 +45,6 @@ function Navigation_v2() {
 
           {/* Desktop Nav Items */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8" role="list">
-            <Link
-              href="https://war.nxtlap.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-bold text-red-500 hover:text-red-400 transition-colors animate-pulse uppercase tracking-wider"
-            >
-              Play WarBase
-            </Link>
-
             {localNavItems.map((item, idx) => (
               <Link
                 href={item.href}
@@ -101,15 +85,6 @@ function Navigation_v2() {
       {isMobileMenuOpen && (
         <div className="fixed inset-0 top-[64px] z-40 md:hidden bg-background/95 backdrop-blur-sm animate-in slide-in-from-top-2">
           <div className="space-y-1 px-4 py-4">
-            <Link
-              href="https://war.nxtlap.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block rounded-md px-3 py-2 text-base font-bold text-red-500 hover:bg-muted hover:text-red-400 transition-colors uppercase tracking-wider"
-            >
-              Play WarBase
-            </Link>
             {localNavItems.map((item, idx) => (
               <Link
                 key={idx}
