@@ -139,7 +139,7 @@
     - Link race mentions to league pages
     - _Requirements: 10.1, 10.2, 10.3_
 
-- [ ] 11. Create SEO-optimized blog post template
+- [x] 11. Create SEO-optimized blog post template
   - Create `src/posts/_template.mdx` with complete frontmatter structure
   - Add comments explaining each SEO field
   - Include examples of proper heading hierarchy
@@ -159,18 +159,18 @@
     - Fix any contrast issues
     - _Requirements: 12.5_
 
-- [ ] 13. Optimize page performance
-  - [ ] 13.1 Optimize font loading
+- [x] 13. Optimize page performance
+  - [x] 13.1 Optimize font loading
     - Verify font-display: swap is set
     - Check for render-blocking fonts
     - _Requirements: 6.3_
   
-  - [ ] 13.2 Optimize JavaScript loading
+  - [x] 13.2 Optimize JavaScript loading
     - Ensure non-critical scripts are deferred
     - Check for unnecessary JavaScript
     - _Requirements: 6.4_
   
-  - [ ] 13.3 Verify image optimization
+  - [x] 13.3 Verify image optimization
     - Confirm WebP format usage
     - Check image sizing and lazy loading
     - _Requirements: 6.1, 6.5_
@@ -199,7 +199,7 @@
     - Fix any performance issues
     - _Requirements: 6.6_
   
-  - [ ] 14.5 Accessibility testing
+  - [x] 14.5 Accessibility testing
     - Run WAVE accessibility checker
     - Test keyboard navigation
     - Verify screen reader compatibility

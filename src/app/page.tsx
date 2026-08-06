@@ -5,6 +5,8 @@ import { LandingWhyUs } from "@/components/landing/LandingWhyUs";
 import { LandingReviews } from "@/components/landing/LandingReviews";
 import Link from "next/link";
 import { AppleIcon } from "@/components/AppleIcon";
+import { StructuredData } from "@/components/StructuredData";
+import { buildOrganizationSchema, buildWebSiteSchema } from "@/lib/seo/structured-data";
 
 export const metadata = generatePageMetadata({
   title: "NxtLAP | Watch Race Livestreams and 10+ racing series",
@@ -25,6 +27,7 @@ export const metadata = generatePageMetadata({
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
+      <StructuredData data={[buildOrganizationSchema(), buildWebSiteSchema()]} />
       <LandingHero />
       <LandingFeatures />
       <LandingWhyUs />
