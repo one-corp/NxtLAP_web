@@ -323,3 +323,13 @@ export function sanitizeForSchema(text: string): string {
     .replace(/"/g, '\\"') // Escape quotes
     .trim();
 }
+
+/**
+ * Safely stringify data for JSON-LD to prevent XSS
+ * Escapes < and > characters to their Unicode equivalents
+ */
+export function safeJsonLdStringify(data: any): string {
+  return JSON.stringify(data)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e');
+}
